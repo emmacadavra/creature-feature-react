@@ -7,18 +7,21 @@ import cf_logo_small from "../assets/cf_logo_small.png";
 import home from "../assets/home.png";
 import login from "../assets/login.png";
 import signup from "../assets/signup.png";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <Navbar expand="md" fixed="top" className={styles.NavBar}>
       <Container>
-        <Navbar.Brand className={styles.NavBrand}>
-          <img src={cf_logo_small} alt="Logo" height="60" />
-        </Navbar.Brand>
+        <NavLink to="/">
+          <Navbar.Brand className={styles.NavBrand}>
+            <img src={cf_logo_small} alt="Logo" height="60" />
+          </Navbar.Brand>
+        </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto text-end">
-            <Nav.Link className={styles.NavLink}>
+            <NavLink end to="/" className={styles.NavLink}>
               <img
                 src={home}
                 alt="Home"
@@ -26,8 +29,8 @@ const NavBar = () => {
                 className={styles.NavIcon}
               />
               Home
-            </Nav.Link>
-            <Nav.Link className={styles.NavLink}>
+            </NavLink>
+            <NavLink to="/signin" className={styles.NavLink}>
               <img
                 src={login}
                 alt="Sign In"
@@ -35,8 +38,8 @@ const NavBar = () => {
                 className={styles.NavIcon}
               />
               Sign In
-            </Nav.Link>
-            <Nav.Link className={styles.NavLink}>
+            </NavLink>
+            <NavLink to="/signup" className={styles.NavLink}>
               <img
                 src={signup}
                 alt="Sign Up"
@@ -44,7 +47,7 @@ const NavBar = () => {
                 className={styles.NavIcon}
               />
               Sign Up
-            </Nav.Link>
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
