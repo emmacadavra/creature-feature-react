@@ -7,21 +7,20 @@ import cf_text_logo from "../../assets/cf_text_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const SignUpForm = () => {
-  const [signUpData, setSignUpData] = useState({
+const SignInForm = () => {
+  const [signInData, setSignInData] = useState({
     username: "",
-    password1: "",
-    password2: "",
+    password: "",
   });
-  const { username, password1, password2 } = signUpData;
+  const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
 
   const handleChange = (event) => {
-    setSignUpData({
-      ...signUpData,
+    setSignInData({
+      ...signInData,
       [event.target.name]: event.target.value,
     });
   };
@@ -29,8 +28,8 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/registration/", signUpData);
-      navigate("/signin");
+      await axios.post("/dj-rest-auth/login/", signInData);
+      navigate("/");
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -45,13 +44,12 @@ const SignUpForm = () => {
             alt="Creature Feature"
             className={styles.SignInUpLogo}
           />
-          <h1>Create an account:</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
-              <Form.Label className="d-none">Enter a username</Form.Label>
+              <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter a username"
+                placeholder="Username"
                 name="username"
                 value={username}
                 onChange={handleChange}
@@ -68,39 +66,18 @@ const SignUpForm = () => {
                 {message}
               </Alert>
             ))}
-            <Form.Group controlId="password1">
-              <Form.Label className="d-none">Create password</Form.Label>
+            <Form.Group controlId="password">
+              <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Create password"
-                name="password1"
-                value={password1}
+                placeholder="Password"
+                name="password"
+                value={password}
                 onChange={handleChange}
                 className={`mt-2 ${styles.FormInput}`}
               />
             </Form.Group>
-            {errors.password1?.map((message, idx) => (
-              <Alert
-                variant="info"
-                key={idx}
-                className={styles.Alert}
-                dismissible
-              >
-                {message}
-              </Alert>
-            ))}
-            <Form.Group controlId="password2">
-              <Form.Label className="d-none">Confirm password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm password"
-                name="password2"
-                value={password2}
-                onChange={handleChange}
-                className={`mt-2 ${styles.FormInput}`}
-              />
-            </Form.Group>
-            {errors.password2?.map((message, idx) => (
+            {errors.password?.map((message, idx) => (
               <Alert
                 variant="info"
                 key={idx}
@@ -114,7 +91,7 @@ const SignUpForm = () => {
               type="submit"
               className={`${btnStyles.Button} ${btnStyles.Large}`}
             >
-              Sign up!
+              Sign in!
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert
@@ -129,10 +106,10 @@ const SignUpForm = () => {
           </Form>
         </Container>
         <Container className={`text-center mt-3 ${appStyles.Content}`}>
-          <Link to="/signin" className={styles.Link}>
-            Already have an account?
+          <Link to="/signup" className={styles.Link}>
+            Don't have an account?
             <br />
-            <span>Sign in here!</span>
+            <span>Sign up here!</span>
           </Link>
         </Container>
       </Col>
@@ -140,4 +117,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;
