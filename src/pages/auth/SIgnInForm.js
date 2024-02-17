@@ -107,7 +107,7 @@ const SignInForm = () => {
         </Container>
         <Container className={`text-center mt-3 ${appStyles.Content}`}>
           <Link to="/signup" className={styles.Link}>
-            Don't have an account?
+            Don&apos;t have an account?
             <br />
             <span>Sign up here!</span>
           </Link>
