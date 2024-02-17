@@ -1,6 +1,20 @@
 .NavBar {
   font-weight: 500;
   background-color: #ffefba;
-  border-bottom: solid 3px #fce59b;
+  border-bottom: 3px solid #fce59b;
   padding: 0px;
+}
+
+.NavBrand {
+  padding: 0px;
+}
+
+.NavIcon {
+  margin: 3px;
+}
+
+.NavLink:hover {
+  cursor: pointer;
+  transform: translateY(-0.1rem);
+  transition: transform 150ms;
 }
