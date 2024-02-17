@@ -5,6 +5,10 @@
   min-height: 100vh;
 }
 
+.Main {
+  padding-top: 65px;
+}
+
 * {
   box-sizing: border-box;
 }
