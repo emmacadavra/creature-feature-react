@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import styles from "../../styles/SignInUpForm.module.css";
 import appStyles from "../../App.module.css";
@@ -6,8 +6,11 @@ import btnStyles from "../../styles/Button.module.css";
 import cf_text_logo from "../../assets/cf_text_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { SetCurrentUserContext } from "../../App";
 
 const SignInForm = () => {
+  const setCurrentUser = useContext(SetCurrentUserContext);
+
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -28,7 +31,8 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
       navigate("/");
     } catch (err) {
       setErrors(err.response?.data);

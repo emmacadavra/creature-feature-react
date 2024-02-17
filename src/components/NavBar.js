@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "../styles/NavBar.module.css";
@@ -7,8 +7,29 @@ import home from "../assets/home.png";
 import login from "../assets/login.png";
 import signup from "../assets/signup.png";
 import { NavLink } from "react-router-dom";
+import { CurrentUserContext } from "../App";
 
 const NavBar = () => {
+  const currentUser = useContext(CurrentUserContext);
+  const loggedInNavLinks = <>Logged in as: {currentUser?.username}</>;
+  const loggedOutNavLinks = (
+    <>
+      <NavLink to="/signin" className={styles.NavLink}>
+        <img src={login} alt="Sign In" height="32" className={styles.NavIcon} />
+        Sign In
+      </NavLink>
+      <NavLink to="/signup" className={styles.NavLink}>
+        <img
+          src={signup}
+          alt="Sign Up"
+          height="32"
+          className={styles.NavIcon}
+        />
+        Sign Up
+      </NavLink>
+    </>
+  );
+
   return (
     <Navbar expand="md" fixed="top" className={styles.NavBar}>
       <NavLink to="/">
@@ -23,24 +44,7 @@ const NavBar = () => {
             <img src={home} alt="Home" height="32" className={styles.NavIcon} />
             Home
           </NavLink>
-          <NavLink to="/signin" className={styles.NavLink}>
-            <img
-              src={login}
-              alt="Sign In"
-              height="32"
-              className={styles.NavIcon}
-            />
-            Sign In
-          </NavLink>
-          <NavLink to="/signup" className={styles.NavLink}>
-            <img
-              src={signup}
-              alt="Sign Up"
-              height="32"
-              className={styles.NavIcon}
-            />
-            Sign Up
-          </NavLink>
+          {currentUser ? loggedInNavLinks : loggedOutNavLinks}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
