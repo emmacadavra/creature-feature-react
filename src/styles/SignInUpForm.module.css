@@ -1,0 +1,31 @@
+.Row {
+  height: calc(100vh - 65px);
+}
+
+.SignInUpLogo {
+  max-width: 100%;
+}
+
+.FormInput {
+  border: 2px solid #bd75e8;
+  background-color: #f2e6fa;
+  padding: 10px;
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
+}
+
+.Link {
+  color: rgb(0, 0, 0, 0.75);
+  text-decoration: none;
+}
+
+.Link span {
+  text-decoration: underline;
+  color: #9715e2;
+}
+
+.Link span:hover {
+  color: #9715e2;
+  font-weight: 500;
+}

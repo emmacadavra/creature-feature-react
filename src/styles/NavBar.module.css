@@ -2,7 +2,7 @@
   font-weight: 500;
   background-color: #ffefba;
   border-bottom: 3px solid #fce59b;
-  padding: 0px;
+  padding: 0 0.5rem;
 }
 
 .NavBrand {
@@ -16,7 +16,7 @@
 .NavLink {
   color: rgb(0, 0, 0, 0.75);
   text-decoration: none;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
 }
 
 .NavLink:hover {

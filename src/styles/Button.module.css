@@ -1,0 +1,14 @@
+.Button {
+  align-self: center;
+  margin: 10px;
+  padding: 5px 10px;
+  background-color: #88d8c1;
+  color: rgb(0, 0, 0, 0.75);
+  border: 2px solid #5ea591;
+  font-weight: 500;
+}
+
+.Large {
+  padding: 10px 30px;
+  font-size: 1.4rem;
+}
