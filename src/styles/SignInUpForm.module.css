@@ -29,3 +29,8 @@
   color: #9715e2;
   font-weight: 500;
 }
+
+.Alert {
+  margin: 0 auto;
+  width: 70%;
+}
