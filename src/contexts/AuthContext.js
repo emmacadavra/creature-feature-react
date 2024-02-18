@@ -17,7 +17,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data } = await axiosResp.get("dj-rest-auth/user/");
       setCurrentUser(data);
-      console.log(data);
     } catch (err) {
       console.error(err);
     }

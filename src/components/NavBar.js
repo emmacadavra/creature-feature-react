@@ -23,9 +23,11 @@ const NavBar = () => {
   const { toggleExpand, setToggleExpand, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
+    console.log("TESTING 1");
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      console.log("TESTING 2");
     } catch (err) {
       console.error(err);
     }
@@ -62,12 +64,11 @@ const NavBar = () => {
         />
         My Faves
       </NavLink>
-      <NavLink to="/" className={styles.NavLink}>
+      <NavLink to="/" onClick={handleSignOut} className={styles.NavLink}>
         <img
           src={logout}
           alt="Sign out"
           height="32"
-          onClick={handleSignOut}
           className={styles.NavIcon}
         />
         Sign Out
