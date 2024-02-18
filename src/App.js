@@ -6,6 +6,7 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import { AuthProvider } from "./contexts/AuthContext.js";
+import CreatePost from "./pages/posts/CreatePost.js";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<h1>Homepage</h1>} />
             <Route path="/signin" element={<SignInForm />} />
             <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/posts/create" element={<CreatePost />} />
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
         </Container>

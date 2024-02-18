@@ -36,7 +36,7 @@ const NavBar = () => {
       <img
         src={newpost}
         alt="Create new post"
-        height="32"
+        height="38"
         className={styles.NavIcon}
       />
       Create Post
