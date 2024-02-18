@@ -3,6 +3,8 @@ import { Form, Button, Col, Row, Container, Image } from "react-bootstrap";
 import uploadimage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
 import Asset from "../../components/Asset.js";
+import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 const CreatePost = () => {
   //   const [errors, setErrors] = useState({});
@@ -35,16 +37,17 @@ const CreatePost = () => {
 
   const postFormFields = (
     <div>
-      <Form.Group>
+      <Form.Group className="text-center">
         <Form.Label>Title</Form.Label>
         <Form.Control
           type="text"
           name="title"
           value={title}
           onChange={handleChange}
+          required
         />
       </Form.Group>
-      <Form.Group>
+      <Form.Group className="text-center mt-3">
         <Form.Label>Content</Form.Label>
         <Form.Control
           as="textarea"
@@ -54,7 +57,7 @@ const CreatePost = () => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group>
+      <Form.Group className="text-center mt-3">
         <Form.Label>Creature Category</Form.Label>
         <Form.Select name="category" value={category} onChange={handleChange}>
           <option value="fluffy">Facinorous Fluffballs</option>
@@ -62,8 +65,10 @@ const CreatePost = () => {
           <option value="feathers">Feathered Fiends</option>
         </Form.Select>
       </Form.Group>
-      <Button>Save Draft</Button>
-      <Button>Post Me!</Button>
+      <div className="text-center">
+        <Button className={`${btnStyles.Button}`}>Save Draft</Button>
+        <Button className={`${btnStyles.Button}`}>Post Me!</Button>
+      </div>
     </div>
   );
 
@@ -71,12 +76,14 @@ const CreatePost = () => {
     <Form>
       <Row>
         <Col>
-          <Container>
-            <Form.Group>
+          <Container
+            className={`${appStyles.Content} d-flex flex-column justify-content-center`}
+          >
+            <Form.Group className="text-center">
               {image ? (
                 <>
                   <figure>
-                    <Image src={image} rounded />
+                    <Image src={image} rounded className={appStyles.Image} />
                   </figure>
                   <div>
                     <Form.Label htmlFor="upload-image">
@@ -86,7 +93,10 @@ const CreatePost = () => {
                   </div>
                 </>
               ) : (
-                <Form.Label htmlFor="upload-image">
+                <Form.Label
+                  htmlFor="upload-image"
+                  className="d-flex justify-content-center"
+                >
                   <Asset
                     src={uploadimage}
                     message="Click or tap to upload your image!"

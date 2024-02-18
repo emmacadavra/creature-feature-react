@@ -10,6 +10,12 @@
   color: rgb(0, 0, 0, 0.75);
 }
 
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+
 .Content {
   background-color: #fffcf0;
   border: 2px solid #fce59b;
