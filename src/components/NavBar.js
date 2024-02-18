@@ -14,10 +14,13 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.js";
 import Avatar from "./Avatar.js";
 import axios from "axios";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle.js";
 
 const NavBar = () => {
   const { currentUser } = useAuth();
   const { setCurrentUser } = useAuth();
+
+  const { toggleExpand, setToggleExpand, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
     try {
@@ -100,14 +103,23 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar expand="md" fixed="top" className={styles.NavBar}>
+    <Navbar
+      expanded={toggleExpand}
+      expand="md"
+      fixed="top"
+      className={styles.NavBar}
+    >
       <NavLink to="/">
         <Navbar.Brand className={styles.NavBrand}>
           <img src={cf_logo_small} alt="Logo" height="60" />
         </Navbar.Brand>
       </NavLink>
       {currentUser && newPostIcon}
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle
+        ref={ref}
+        onClick={() => setToggleExpand(!toggleExpand)}
+        aria-controls="basic-navbar-nav"
+      />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto text-end">
           <NavLink end to="/" className={styles.NavLink}>
