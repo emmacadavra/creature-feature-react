@@ -1,13 +1,24 @@
-import React, { useState } from "react";
-import { Form, Button, Col, Row, Container, Image } from "react-bootstrap";
+import React, { useRef, useState } from "react";
+import {
+  Form,
+  Button,
+  Col,
+  Row,
+  Container,
+  Image,
+  Alert,
+} from "react-bootstrap";
 import uploadimage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
 import Asset from "../../components/Asset.js";
+import styles from "../../styles/CreateEditPost.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { useNavigate } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults.js";
 
 const CreatePost = () => {
-  //   const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
     title: "",
@@ -17,6 +28,9 @@ const CreatePost = () => {
   });
 
   const { title, content, image, category } = postData;
+
+  const imageInput = useRef(null);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setPostData({
@@ -35,6 +49,26 @@ const CreatePost = () => {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image", imageInput.current.files[0]);
+    formData.append("category", category);
+
+    try {
+      const { data } = await axiosReq.post("/posts/", formData);
+      navigate(`/posts/${data.id}`);
+    } catch (err) {
+      console.error(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
+
   const postFormFields = (
     <div>
       <Form.Group className="text-center">
@@ -47,6 +81,11 @@ const CreatePost = () => {
           required
         />
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="info" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <Form.Group className="text-center mt-3">
         <Form.Label>Content</Form.Label>
         <Form.Control
@@ -57,6 +96,11 @@ const CreatePost = () => {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.content?.map((message, idx) => (
+        <Alert variant="info" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <Form.Group className="text-center mt-3">
         <Form.Label>Creature Category</Form.Label>
         <Form.Select name="category" value={category} onChange={handleChange}>
@@ -65,15 +109,29 @@ const CreatePost = () => {
           <option value="feathers">Feathered Fiends</option>
         </Form.Select>
       </Form.Group>
+      {errors?.category?.map((message, idx) => (
+        <Alert variant="info" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <div className="text-center">
-        <Button className={`${btnStyles.Button}`}>Save Draft</Button>
-        <Button className={`${btnStyles.Button}`}>Post Me!</Button>
+        <Button className={`${btnStyles.Button} ${styles.Button}`}>
+          Save Draft
+        </Button>
+        <Button type="submit" className={`${btnStyles.Button}`}>
+          Post Me!
+        </Button>
+      </div>
+      <div className="text-center">
+        <Button onClick={() => navigate(-1)} className={`${btnStyles.Button}`}>
+          Cancel
+        </Button>
       </div>
     </div>
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col>
           <Container
@@ -105,14 +163,19 @@ const CreatePost = () => {
               )}
 
               <Form.Control
-                controlId="formFile"
                 id="upload-image"
-                className="d-none"
+                ref={imageInput}
                 type="file"
                 accept="image/*"
                 onChange={handleChangeImage}
+                className="d-none"
               />
             </Form.Group>
+            {errors?.image?.map((message, idx) => (
+              <Alert variant="info" key={idx}>
+                {message}
+              </Alert>
+            ))}
             <div>{postFormFields}</div>
           </Container>
         </Col>
