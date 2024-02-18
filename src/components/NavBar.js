@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "../styles/NavBar.module.css";
@@ -7,11 +7,11 @@ import home from "../assets/home.png";
 import login from "../assets/login.png";
 import signup from "../assets/signup.png";
 import { NavLink } from "react-router-dom";
-import { CurrentUserContext } from "../App";
+import { useAuth } from "../contexts/AuthContext.js";
 
 const NavBar = () => {
-  const currentUser = useContext(CurrentUserContext);
-  const loggedInNavLinks = <>Logged in as: {currentUser?.username}</>;
+  const auth = useAuth();
+  const loggedInNavLinks = <>Logged in as: {auth.currentUser?.username}</>;
   const loggedOutNavLinks = (
     <>
       <NavLink to="/signin" className={styles.NavLink}>
@@ -44,7 +44,7 @@ const NavBar = () => {
             <img src={home} alt="Home" height="32" className={styles.NavIcon} />
             Home
           </NavLink>
-          {currentUser ? loggedInNavLinks : loggedOutNavLinks}
+          {auth.currentUser ? loggedInNavLinks : loggedOutNavLinks}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
