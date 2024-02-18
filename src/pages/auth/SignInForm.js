@@ -9,7 +9,8 @@ import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext.js";
 
 const SignInForm = () => {
-  const auth = useAuth();
+  const { setCurrentUser } = useAuth();
+
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -31,7 +32,7 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      auth.setCurrentUser(data.user);
+      setCurrentUser(data.user);
       navigate("/");
     } catch (err) {
       setErrors(err.response?.data);

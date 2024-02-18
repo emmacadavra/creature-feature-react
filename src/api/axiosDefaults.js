@@ -4,3 +4,6 @@ axios.defaults.baseURL =
   "https://creature-feature-api-43ea2b93451a.herokuapp.com/";
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
+
+export const axiosReq = axios.create();
+export const axiosResp = axios.create();
