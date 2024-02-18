@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import { Routes, Route } from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
-import SignInForm from "./pages/auth/SIgnInForm";
+import SignInForm from "./pages/auth/SignInForm";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
