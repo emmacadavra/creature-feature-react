@@ -5,26 +5,9 @@ import { Routes, Route } from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
-import { useEffect } from "react";
-import axios from "axios";
-import { AuthProvider, useAuth } from "./contexts/AuthContext.js";
+import { AuthProvider } from "./contexts/AuthContext.js";
 
 function App() {
-  const auth = useAuth();
-  const handleMount = async () => {
-    try {
-      const { data } = await axios.get("dj-rest-auth/user/");
-      auth.setCurrentUser(data);
-      console.log(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    handleMount();
-  }, []);
-
   return (
     <AuthProvider>
       <div className={styles.App}>

@@ -10,8 +10,8 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.js";
 
 const NavBar = () => {
-  const auth = useAuth();
-  const loggedInNavLinks = <>Logged in as: {auth.currentUser?.username}</>;
+  const { currentUser } = useAuth();
+  const loggedInNavLinks = <>Logged in as: {currentUser?.username}</>;
   const loggedOutNavLinks = (
     <>
       <NavLink to="/signin" className={styles.NavLink}>
@@ -44,7 +44,7 @@ const NavBar = () => {
             <img src={home} alt="Home" height="32" className={styles.NavIcon} />
             Home
           </NavLink>
-          {auth.currentUser ? loggedInNavLinks : loggedOutNavLinks}
+          {currentUser ? loggedInNavLinks : loggedOutNavLinks}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
