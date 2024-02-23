@@ -26,7 +26,7 @@ const PostPage = () => {
   return (
     <Row>
       <Col>
-        <Post {...post.results[0]} setPosts={setPost} />
+        <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container>Comments</Container>
       </Col>
     </Row>
