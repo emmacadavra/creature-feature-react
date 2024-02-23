@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import Post from "./Post";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const PostPage = () => {
   return (
     <Row>
       <Col>
-        <p>Post component</p>
+        <Post {...post.results[0]} setPosts={setPost} />
         <Container>Comments</Container>
       </Col>
     </Row>

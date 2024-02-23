@@ -1,0 +1,7 @@
+/* THIS IS DUPLICATE TO 'CONTENT' IN APP CSS */
+.Post {
+  background-color: #fffcf0;
+  border: 2px solid #fce59b;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
