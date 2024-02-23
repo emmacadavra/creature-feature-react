@@ -11,7 +11,7 @@ const PostPage = () => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: post }] = await Promise.all([
+        const { data: post } = await Promise.all([
           axiosReq.get(`/posts/${id}`),
         ]);
         setPost({ results: [post] });
