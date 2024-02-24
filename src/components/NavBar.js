@@ -6,8 +6,8 @@ import cf_logo_small from "../assets/cf_logo_small.png";
 import home from "../assets/home.png";
 import login from "../assets/login.png";
 import signup from "../assets/signup.png";
-import myfeed from "../assets/myfeed.png";
-import faves from "../assets/faves.png";
+// import myfeed from "../assets/myfeed.png";
+// import faves from "../assets/faves.png";
 import logout from "../assets/logout.png";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.js";
@@ -32,7 +32,7 @@ const NavBar = () => {
 
   const loggedInNavLinks = (
     <>
-      <NavLink to="/myfeed" className={styles.NavLink}>
+      {/* <NavLink to="/myfeed" className={styles.NavLink}>
         <img
           src={myfeed}
           alt="My feed"
@@ -49,7 +49,7 @@ const NavBar = () => {
           className={styles.NavIcon}
         />
         My Faves
-      </NavLink>
+      </NavLink> */}
       <NavLink to="/" onClick={handleSignOut} className={styles.NavLink}>
         <img
           src={logout}

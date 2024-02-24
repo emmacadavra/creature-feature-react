@@ -10,6 +10,10 @@ import newpost from "../../assets/newpost.png";
 
 const Posts = () => {
   const { currentUser } = useAuth();
+  // const profile_id = currentUser?.profile_id || "";
+  // ^ above code suggested for filtering posts (video 15a)
+  // suggested code for filter by profiles following: filter={`owner__followed__owner__profile=${profile_id}&`}
+  // suggested code for filter by liked posts: filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
 
   const [showCreatePost, setShowCreatePost] = useState(false);
 
@@ -47,7 +51,7 @@ const Posts = () => {
       </Row>
       <Row>
         <Col className="d-flex flex-column justify-content-center">
-          <PostList />
+          <PostList message="No results found. Try adjusting the search keywords!" />
         </Col>
       </Row>
     </Container>
