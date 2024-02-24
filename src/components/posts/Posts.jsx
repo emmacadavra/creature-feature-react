@@ -10,7 +10,6 @@ const Posts = () => {
   const toggleShowCreatePost = () => {
     setShowCreatePost(!showCreatePost);
   };
-  console.log(showCreatePost);
   return (
     <div>
       {showCreatePost && <CreatePost />}

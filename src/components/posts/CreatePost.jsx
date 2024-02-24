@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import uploadimage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
-import Asset from "../../components/Asset.js";
+import Asset from "../Asset.js";
 import styles from "../../styles/CreateEditPost.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
