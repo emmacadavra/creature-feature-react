@@ -10,8 +10,8 @@ import signup from "../assets/signup.png";
 // import faves from "../assets/faves.png";
 import logout from "../assets/logout.png";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext.js";
-import Avatar from "./Avatar.js";
+import { useAuth } from "../contexts/AuthContext";
+import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle.js";
 
@@ -65,7 +65,7 @@ const NavBar = () => {
       >
         <Avatar
           src={currentUser?.profile_image}
-          text="My profile"
+          text="My Profile"
           height={38}
         />
       </NavLink>

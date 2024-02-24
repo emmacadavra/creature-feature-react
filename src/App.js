@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
-import { AuthProvider } from "./contexts/AuthContext.js";
+import { AuthProvider } from "./contexts/AuthContext";
 import Homepage from "./pages/Homepage.jsx";
 // import CreatePost from "./pages/posts/CreatePost.js";
 // import PostPage from "./pages/posts/PostPage.js";

@@ -6,7 +6,7 @@ import btnStyles from "../../styles/Button.module.css";
 import cf_text_logo from "../../assets/cf_text_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../../contexts/AuthContext.js";
+import { useAuth } from "../../contexts/AuthContext";
 
 const SignInForm = () => {
   const { setCurrentUser } = useAuth();

@@ -3,7 +3,7 @@ import { PostFilters } from "./PostFilters";
 import PostList from "./PostList";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import CreatePost from "./CreatePost";
-import { useAuth } from "../../contexts/AuthContext.js";
+import { useAuth } from "../../contexts/AuthContext";
 import styles from "../../styles/Posts.module.css";
 import appStyles from "../../App.module.css";
 import newpost from "../../assets/newpost.png";
