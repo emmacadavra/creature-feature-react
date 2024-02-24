@@ -2,11 +2,11 @@ import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "../styles/NavBar.module.css";
-import cf_logo_small from "../assets/cf_logo_small.png";
+import cfLogoSmall from "../assets/cf_logo_small.png";
 import home from "../assets/home.png";
 import login from "../assets/login.png";
 import signup from "../assets/signup.png";
-// import myfeed from "../assets/myfeed.png";
+// import myfeed from "../assets/my_feed.png";
 // import faves from "../assets/faves.png";
 import logout from "../assets/logout.png";
 import { NavLink } from "react-router-dom";
@@ -98,7 +98,7 @@ const NavBar = () => {
     >
       <NavLink to="/">
         <Navbar.Brand className={styles.NavBrand}>
-          <img src={cf_logo_small} alt="Logo" height="60" />
+          <img src={cfLogoSmall} alt="Logo" height="60" />
         </Navbar.Brand>
       </NavLink>
       <Navbar.Toggle

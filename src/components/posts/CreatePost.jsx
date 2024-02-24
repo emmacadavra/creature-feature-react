@@ -8,7 +8,7 @@ import {
   Image,
   Alert,
 } from "react-bootstrap";
-import uploadimage from "../../assets/upload.png";
+import uploadImage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
 import Asset from "../Asset";
 import styles from "../../styles/CreateEditPost.module.css";
@@ -156,7 +156,7 @@ const CreatePost = () => {
                   className={`d-flex justify-content-center`}
                 >
                   <Asset
-                    src={uploadimage}
+                    src={uploadImage}
                     message="Click or tap to upload your image!"
                   />
                 </Form.Label>

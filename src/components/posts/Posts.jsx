@@ -6,7 +6,7 @@ import CreatePost from "./CreatePost";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "../../styles/Posts.module.css";
 import appStyles from "../../App.module.css";
-import newpost from "../../assets/newpost.png";
+import newpost from "../../assets/new_post.png";
 
 const Posts = () => {
   const { currentUser } = useAuth();
