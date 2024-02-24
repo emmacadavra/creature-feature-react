@@ -12,7 +12,9 @@ const PostList = ({ message, filter = "", query }) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
+        const { data } = await axiosReq.get(
+          `/posts/?filter=${filter}&search=${query}`,
+        );
         // 'filter' relating to filter prop that was entered into Routes
         setPostsData(data.results);
         setPostsLoaded(true);

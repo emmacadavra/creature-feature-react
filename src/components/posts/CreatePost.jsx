@@ -122,11 +122,11 @@ const CreatePost = () => {
           Post Me!
         </Button>
       </div>
-      <div className="text-center">
+      {/* <div className="text-center">
         <Button onClick={() => navigate(-1)} className={`${btnStyles.Button}`}>
           Cancel
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 
