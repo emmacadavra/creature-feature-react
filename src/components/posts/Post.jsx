@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import crownDefault from "../../assets/crown.png";
 import crownGreyscale from "../../assets/crown_greyscale.png";
@@ -56,30 +56,30 @@ const Post = (props) => {
             overlay={<Tooltip>You can&apos;t react to your own posts!</Tooltip>}
           >
             <span>
-              <img src={crownDefault} className={styles.Reactions} />
+              <Image src={crownDefault} className={styles.Reactions} />
               {crown_count}
-              <img src={goodDefault} className={styles.Reactions} />
+              <Image src={goodDefault} className={styles.Reactions} />
               {good_count}
-              <img src={loveDefault} className={styles.Reactions} />
+              <Image src={loveDefault} className={styles.Reactions} />
               {love_count}
             </span>
           </OverlayTrigger>
         ) : reaction_id ? (
           <span onClick={() => {}}>
-            <img src={crownHighlight} className={styles.Reactions} />
+            <Image src={crownHighlight} className={styles.Reactions} />
             {crown_count}
-            <img src={goodHighlight} className={styles.Reactions} />
+            <Image src={goodHighlight} className={styles.Reactions} />
             {good_count}
-            <img src={loveHighlight} className={styles.Reactions} />
+            <Image src={loveHighlight} className={styles.Reactions} />
             {love_count}
           </span>
         ) : currentUser ? (
           <span onClick={() => {}}>
-            <img src={crownDefault} className={styles.Reactions} />
+            <Image src={crownDefault} className={styles.Reactions} />
             {crown_count}
-            <img src={goodDefault} className={styles.Reactions} />
+            <Image src={goodDefault} className={styles.Reactions} />
             {good_count}
-            <img src={loveDefault} className={styles.Reactions} />
+            <Image src={loveDefault} className={styles.Reactions} />
             {love_count}
           </span>
         ) : (
@@ -89,16 +89,16 @@ const Post = (props) => {
               <Tooltip>You must be logged in to react to posts!</Tooltip>
             }
           >
-            <img src={crownGreyscale} className={styles.Reactions} />
+            <Image src={crownGreyscale} className={styles.Reactions} />
             {crown_count}
-            <img src={goodGreyscale} className={styles.Reactions} />
+            <Image src={goodGreyscale} className={styles.Reactions} />
             {good_count}
-            <img src={loveGreyscale} className={styles.Reactions} />
+            <Image src={loveGreyscale} className={styles.Reactions} />
             {love_count}
           </OverlayTrigger>
         )}
         <Link to={`/posts/${id}`}>
-          <img src={commentsImg} className={styles.Reactions} />
+          <Image src={commentsImg} className={styles.Reactions} />
           {comment_count}
         </Link>
       </div>

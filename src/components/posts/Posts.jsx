@@ -6,7 +6,7 @@ import CreatePost from "./CreatePost";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "../../styles/Posts.module.css";
 import appStyles from "../../App.module.css";
-import newpost from "../../assets/new_post.png";
+import newPost from "../../assets/new_post.png";
 
 const Posts = () => {
   const { currentUser } = useAuth();
@@ -27,7 +27,7 @@ const Posts = () => {
       className={`${appStyles.IconLink} ${styles.CreateButton}`}
     >
       <img
-        src={newpost}
+        src={newPost}
         alt="Create new post"
         height="38"
         className={appStyles.Icon}
