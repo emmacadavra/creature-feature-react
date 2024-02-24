@@ -1,0 +1,30 @@
+.CreateButton {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  padding: 10px 13px 7px 10px;
+  margin-top: 10px;
+}
+
+.CreateButton:hover {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  color: rgb(0, 0, 0, 0.9);
+}
+
+.CreateButton:hover:active {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  color: rgb(0, 0, 0, 0.9);
+}
+
+.CreateButton:active {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  color: rgb(0, 0, 0, 0.9);
+}
+
+.CreateButton:focus {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  color: rgb(0, 0, 0, 0.9);
+}

@@ -10,6 +10,24 @@
   color: rgb(0, 0, 0, 0.75);
 }
 
+.Icon {
+  margin: 3px;
+}
+
+.IconLink {
+  color: rgb(0, 0, 0, 0.75);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.IconLink:hover {
+  cursor: pointer;
+  color: rgb(0, 0, 0, 0.9);
+  transform: translateY(-0.1rem);
+  transition: transform 150ms;
+}
+
 .Image {
   max-height: 40vh;
   max-width: 100%;

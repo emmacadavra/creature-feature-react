@@ -153,7 +153,7 @@ const CreatePost = () => {
               ) : (
                 <Form.Label
                   htmlFor="upload-image"
-                  className="d-flex justify-content-center"
+                  className={`d-flex justify-content-center`}
                 >
                   <Asset
                     src={uploadimage}

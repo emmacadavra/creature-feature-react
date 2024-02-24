@@ -6,7 +6,6 @@ import cf_logo_small from "../assets/cf_logo_small.png";
 import home from "../assets/home.png";
 import login from "../assets/login.png";
 import signup from "../assets/signup.png";
-import newpost from "../assets/newpost.png";
 import myfeed from "../assets/myfeed.png";
 import faves from "../assets/faves.png";
 import logout from "../assets/logout.png";
@@ -23,27 +22,14 @@ const NavBar = () => {
   const { toggleExpand, setToggleExpand, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
-    console.log("TESTING 1");
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
-      console.log("TESTING 2");
     } catch (err) {
       console.error(err);
     }
   };
 
-  const newPostIcon = (
-    <NavLink to="/posts/create" className={styles.NavLink}>
-      <img
-        src={newpost}
-        alt="Create new post"
-        height="38"
-        className={styles.NavIcon}
-      />
-      Create Post
-    </NavLink>
-  );
   const loggedInNavLinks = (
     <>
       <NavLink to="/myfeed" className={styles.NavLink}>
@@ -115,7 +101,6 @@ const NavBar = () => {
           <img src={cf_logo_small} alt="Logo" height="60" />
         </Navbar.Brand>
       </NavLink>
-      {currentUser && newPostIcon}
       <Navbar.Toggle
         ref={ref}
         onClick={() => setToggleExpand(!toggleExpand)}
