@@ -13,7 +13,7 @@ import lovedefault from "../../assets/love.png";
 import lovegreyscale from "../../assets/love-greyscale.png";
 import lovehighlight from "../../assets/love-highlight.png";
 import commentsimg from "../../assets/comments.png";
-import Avatar from "../../components/Avatar";
+import Avatar from "../Avatar";
 
 const Post = (props) => {
   const {
@@ -31,7 +31,6 @@ const Post = (props) => {
     good_count,
     love_count,
     updated_on,
-    postPage,
   } = props;
 
   const currentUser = useAuth();
@@ -46,12 +45,10 @@ const Post = (props) => {
         </Link>
         <div className="d-flex align-items-center">
           <span>{updated_on}</span>
-          {is_owner && postPage && "..."}
+          {is_owner && "..."}
         </div>
       </Card.Body>
-      <Link to={`/posts/${id}`}>
-        <Card.Img src={image} alt={title} />
-      </Link>
+      <Card.Img src={image} alt={title} />
       <div>
         {is_owner ? (
           <OverlayTrigger

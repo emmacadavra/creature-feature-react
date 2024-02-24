@@ -19,8 +19,8 @@ const PostList = () => {
 
   return (
     <div>
-      {postsData.map((post, key) => {
-        return <Post key={key} />;
+      {postsData.map((post) => {
+        return <Post {...post} key={post.id} setPostsData={setPostsData} />;
       })}
     </div>
   );
