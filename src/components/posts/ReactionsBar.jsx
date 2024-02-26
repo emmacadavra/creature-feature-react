@@ -40,7 +40,9 @@ const ReactionsBar = ({ postId, isOwner }) => {
               ...props.style,
             }}
           >
-            Simple tooltip
+            {currentUser
+              ? "You can't react to your own posts!"
+              : "Please log in to react to posts!"}
           </div>
         )}
       </Overlay>
@@ -48,10 +50,10 @@ const ReactionsBar = ({ postId, isOwner }) => {
         <Image
           src={crownSrc}
           onClick={() => {
-            if (isOwner === false) {
+            if (currentUser && isOwner === false) {
               createReaction(userId, postId, "CROWN");
             } else {
-              setShow(true);
+              setShow(!show);
             }
           }}
           className={styles.Reactions}
@@ -60,10 +62,10 @@ const ReactionsBar = ({ postId, isOwner }) => {
         <Image
           src={goodSrc}
           onClick={() => {
-            if (isOwner === false) {
+            if (currentUser && isOwner === false) {
               createReaction(userId, postId, "GOOD");
             } else {
-              setShow(true);
+              setShow(!show);
             }
           }}
           className={styles.Reactions}
@@ -72,10 +74,10 @@ const ReactionsBar = ({ postId, isOwner }) => {
         <Image
           src={loveSrc}
           onClick={() => {
-            if (isOwner === false) {
+            if (currentUser && isOwner === false) {
               createReaction(userId, postId, "LOVE");
             } else {
-              setShow(true);
+              setShow(!show);
             }
           }}
           className={styles.Reactions}

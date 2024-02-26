@@ -4,6 +4,7 @@ export const getPosts = async (filter = "", query = "") => {
   const { data } = await axiosReq.get(
     `/posts/?filter=${filter}&search=${query}`,
   );
+
   return data.results.map((post) => {
     return {
       id: post.id,
