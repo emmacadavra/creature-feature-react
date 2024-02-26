@@ -37,7 +37,19 @@ const PostList = ({ message, filter = "", query }) => {
               {postsData.length ? (
                 postsData.map((post) => {
                   return (
-                    <Post {...post} key={post.id} setPostsData={setPostsData} />
+                    <Post
+                      id={post.id}
+                      owner={post.owner}
+                      profileId={post.profileId}
+                      profileImage={post.profileImage}
+                      title={post.title}
+                      content={post.content}
+                      image={post.image}
+                      category={post.category}
+                      updatedOn={post.updatedOn}
+                      key={post.id}
+                      setPostsData={setPostsData}
+                    />
                   );
                 })
               ) : (

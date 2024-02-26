@@ -1,35 +1,76 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styles from "../../styles/ReactionsBar.module.css";
 import crownDefault from "../../assets/crown.png";
-import crownGreyscale from "../../assets/crown_greyscale.png";
-import crownHighlight from "../../assets/crown_highlight.png";
+// import crownGreyscale from "../../assets/crown_greyscale.png";
+// import crownHighlight from "../../assets/crown_highlight.png";
 import goodDefault from "../../assets/good.png";
-import goodGreyscale from "../../assets/good_greyscale.png";
-import goodHighlight from "../../assets/good_highlight.png";
+// import goodGreyscale from "../../assets/good_greyscale.png";
+// import goodHighlight from "../../assets/good_highlight.png";
 import loveDefault from "../../assets/love.png";
-import loveGreyscale from "../../assets/love_greyscale.png";
-import loveHighlight from "../../assets/love_highlight.png";
-import commentsImg from "../../assets/comments.png";
-import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import loveGreyscale from "../../assets/love_greyscale.png";
+// import loveHighlight from "../../assets/love_highlight.png";
+// import commentsImg from "../../assets/comments.png";
+import { Image, Overlay } from "react-bootstrap";
+import { createReaction } from "../../api/reactions";
+// import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
-const ReactionsBar = ({
-  id,
-  is_owner,
-  reaction_id,
-  crown_count,
-  good_count,
-  love_count,
-  comments_count,
-}) => {
-  const currentUser = useAuth();
+const ReactionsBar = ({ postId }) => {
+  const { currentUser } = useAuth();
+  const userId = currentUser.pk;
+  const [show] = useState(false);
+  const target = useRef(null);
+
   const crownSrc = crownDefault;
   const goodSrc = goodDefault;
   const loveSrc = loveDefault;
 
   return (
     <div>
+      <Overlay target={target.current} show={show} placement="top">
+        {(props) => (
+          <div
+            {...props}
+            style={{
+              position: "absolute",
+              backgroundColor: "rgba(255, 100, 100, 0.85)",
+              padding: "2px 10px",
+              color: "white",
+              borderRadius: 3,
+              ...props.style,
+            }}
+          >
+            Simple tooltip
+          </div>
+        )}
+      </Overlay>
+      <span ref={target}>
+        <Image
+          src={crownSrc}
+          onClick={() => {
+            createReaction(userId, postId, "CROWN");
+          }}
+          className={styles.Reactions}
+        />
+        1
+        <Image
+          src={goodSrc}
+          onClick={() => {
+            createReaction(userId, postId, "GOOD");
+          }}
+          className={styles.Reactions}
+        />
+        2
+        <Image
+          src={loveSrc}
+          onClick={() => {
+            createReaction(userId, postId, "LOVE");
+          }}
+          className={styles.Reactions}
+        />
+        3
+      </span>
+
       {/* {is_owner ? (
         <OverlayTrigger
           placement="top"

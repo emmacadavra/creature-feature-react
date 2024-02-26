@@ -26,6 +26,7 @@ const Post = (props) => {
   // } = props;
 
   const {
+    id,
     owner,
     profileId,
     profileImage,
@@ -35,7 +36,7 @@ const Post = (props) => {
     category,
     updatedOn,
   } = props;
-
+  console.log(props);
   const currentUser = useAuth();
   const is_owner = currentUser?.username === owner;
 
@@ -65,7 +66,7 @@ const Post = (props) => {
         </div>
       </Card.Body>
       <Card.Img src={image} alt={title} />
-      <ReactionsBar />
+      <ReactionsBar postId={id} />
       <Card.Body>
         {category && <Card.Text>{category}</Card.Text>}
         {title && <Card.Title className="text-center">{title}</Card.Title>}
