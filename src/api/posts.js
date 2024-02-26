@@ -16,9 +16,12 @@ export const getPosts = async (filter = "", query = "") => {
       content: post.content,
       image: post.image,
       category: post.category,
-      currentUserReaction: post.currentUserReaction,
-      reactionId: post.current_user_reaction.reaction_id,
-      reactionType: post.current_user_reaction.reaction_type,
+      currentUserReaction: post.current_user_reaction
+        ? {
+            reactionId: post.current_user_reaction.reaction_id,
+            reactionType: post.current_user_reaction.reaction_type,
+          }
+        : null,
       reactionCount: post.reactions_count,
       commentCount: post.comments_count,
       crownCount: post.crown_count,

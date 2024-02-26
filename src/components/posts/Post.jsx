@@ -8,23 +8,6 @@ import ReactionsBar from "./ReactionsBar";
 // import { axiosResp } from "../../api/axiosDefaults";
 
 const Post = (props) => {
-  // const {
-  //   id,
-  //   owner,
-  //   profileId,
-  //   profileImage,
-  //   title,
-  //   content,
-  //   image,
-  //   category,
-  //   reactionId,
-  //   commentCount,
-  //   crownCount,
-  //   goodCount,
-  //   loveCount,
-  //   updatedOn,
-  // } = props;
-
   const {
     id,
     owner,
@@ -34,6 +17,7 @@ const Post = (props) => {
     content,
     image,
     category,
+    currentUserReaction,
     crownCount,
     goodCount,
     loveCount,
@@ -60,6 +44,7 @@ const Post = (props) => {
       <ReactionsBar
         postId={id}
         isOwner={isOwner}
+        currentUserReaction={currentUserReaction}
         crownCount={crownCount}
         goodCount={goodCount}
         loveCount={loveCount}

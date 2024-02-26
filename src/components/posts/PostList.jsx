@@ -12,7 +12,7 @@ const PostList = ({ message, filter = "", query }) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const data = await getPosts();
+        const data = await getPosts(filter, query);
         setPostsData(data);
         setPostsLoaded(true);
       } catch (err) {
@@ -20,12 +20,7 @@ const PostList = ({ message, filter = "", query }) => {
       }
     };
     setPostsLoaded(false);
-    const timer = setTimeout(() => {
-      fetchPosts();
-    }, 1000);
-    return () => {
-      clearTimeout(timer);
-    };
+    fetchPosts();
   }, [filter, query]);
 
   return (
@@ -46,7 +41,8 @@ const PostList = ({ message, filter = "", query }) => {
                       content={post.content}
                       image={post.image}
                       category={post.category}
-                      crownCount={post.loveCount}
+                      currentUserReaction={post.currentUserReaction}
+                      crownCount={post.crownCount}
                       goodCount={post.goodCount}
                       loveCount={post.loveCount}
                       updatedOn={post.updatedOn}

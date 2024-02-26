@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import styles from "../../styles/ReactionsBar.module.css";
 import crownDefault from "../../assets/crown.png";
-// import crownGreyscale from "../../assets/crown_greyscale.png";
-// import crownHighlight from "../../assets/crown_highlight.png";
+import crownGreyscale from "../../assets/crown_greyscale.png";
+import crownHighlight from "../../assets/crown_highlight.png";
 import goodDefault from "../../assets/good.png";
-// import goodGreyscale from "../../assets/good_greyscale.png";
-// import goodHighlight from "../../assets/good_highlight.png";
+import goodGreyscale from "../../assets/good_greyscale.png";
+import goodHighlight from "../../assets/good_highlight.png";
 import loveDefault from "../../assets/love.png";
-// import loveGreyscale from "../../assets/love_greyscale.png";
-// import loveHighlight from "../../assets/love_highlight.png";
+import loveGreyscale from "../../assets/love_greyscale.png";
+import loveHighlight from "../../assets/love_highlight.png";
 // import commentsImg from "../../assets/comments.png";
 import { Image, Overlay } from "react-bootstrap";
 import { createReaction } from "../../api/reactions";
@@ -18,6 +18,7 @@ import { useAuth } from "../../contexts/AuthContext";
 const ReactionsBar = ({
   postId,
   isOwner,
+  currentUserReaction,
   crownCount,
   goodCount,
   loveCount,
@@ -27,9 +28,25 @@ const ReactionsBar = ({
   const [show, setShow] = useState(false);
   const target = useRef(null);
 
-  const crownSrc = crownDefault;
-  const goodSrc = goodDefault;
-  const loveSrc = loveDefault;
+  let crownSrc = crownDefault;
+  let goodSrc = goodDefault;
+  let loveSrc = loveDefault;
+
+  if (currentUserReaction) {
+    if (currentUserReaction.reactionType === "CROWN") {
+      crownSrc = crownHighlight;
+      goodSrc = goodGreyscale;
+      loveSrc = loveGreyscale;
+    } else if (currentUserReaction.reactionType === "GOOD") {
+      crownSrc = crownGreyscale;
+      goodSrc = goodHighlight;
+      loveSrc = loveGreyscale;
+    } else if (currentUserReaction.reactionType === "LOVE") {
+      crownSrc = crownGreyscale;
+      goodSrc = goodGreyscale;
+      loveSrc = loveHighlight;
+    }
+  }
 
   const handleReaction = (reaction) => {
     if (currentUser && isOwner === false) {
