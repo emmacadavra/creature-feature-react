@@ -31,6 +31,8 @@ export const PostFilters = ({ query, onQueryChange, onFilterChange }) => {
             My Faves
           </Button>
         </Col>
+      </Row>
+      <Row>
         <Col>
           <Button onClick={() => {}}>Fluffy Placeholder</Button>
         </Col>

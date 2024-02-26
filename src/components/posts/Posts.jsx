@@ -44,13 +44,15 @@ const Posts = () => {
       </Row>
       <Row>
         <Col className="d-flex flex-column justify-content-center">
-          <PostFilters
-            value={query}
-            onQueryChange={(event) => setQuery(event.target.value)}
-            onFilterChange={(filter) => {
-              setFilter(filter);
-            }}
-          />
+          {currentUser && (
+            <PostFilters
+              value={query}
+              onQueryChange={(event) => setQuery(event.target.value)}
+              onFilterChange={(filter) => {
+                setFilter(filter);
+              }}
+            />
+          )}
         </Col>
       </Row>
       <Row>

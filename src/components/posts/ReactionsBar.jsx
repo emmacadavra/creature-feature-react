@@ -10,12 +10,27 @@ import loveDefault from "../../assets/love.png";
 import loveGreyscale from "../../assets/love_greyscale.png";
 import loveHighlight from "../../assets/love_highlight.png";
 import commentsImg from "../../assets/comments.png";
-import { Link, Image, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
-const ReactionsBar = () => {
+const ReactionsBar = ({
+  id,
+  is_owner,
+  reaction_id,
+  crown_count,
+  good_count,
+  love_count,
+  comments_count,
+}) => {
+  const currentUser = useAuth();
+  const crownSrc = crownDefault;
+  const goodSrc = goodDefault;
+  const loveSrc = loveDefault;
+
   return (
     <div>
-      {is_owner ? (
+      {/* {is_owner ? (
         <OverlayTrigger
           placement="top"
           overlay={<Tooltip>You can&apos;t react to your own posts!</Tooltip>}
@@ -60,12 +75,12 @@ const ReactionsBar = () => {
           {love_count}
         </OverlayTrigger>
       )}
-      {/* INSERT REACTIONS BAR W/ REACTION COUNTS ETC */}
-      <Link to={`/posts/${id}`}>
-        {/* NEED TO AMEND THIS TO COMMENTS */}
+      INSERT REACTIONS BAR W/ REACTION COUNTS ETC
+      <Link to={`posts/${id}`}>
+        NEED TO AMEND THIS TO COMMENTS
         <Image src={commentsImg} className={styles.Reactions} />
-        {comment_count}
-      </Link>
+        {comments_count}
+      </Link> */}
     </div>
   );
 };
