@@ -1,9 +1,12 @@
 import React from "react";
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
-import styles from "../../styles/Posts.module.css";
+import styles from "../../styles/PostFilters.module.css";
+import appStyles from "../../App.module.css";
 import search from "../../assets/search.png";
 import { useAuth } from "../../contexts/AuthContext";
 import debounce from "debounce";
+import myFeed from "../../assets/my_feed.png";
+import myFaves from "../../assets/my_faves.png";
 
 export const PostFilters = ({ query, onQueryChange, onFilterChange }) => {
   const { currentUser } = useAuth();
@@ -18,23 +21,37 @@ export const PostFilters = ({ query, onQueryChange, onFilterChange }) => {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col xs={6}>
           <Button
             onClick={() => {
               onFilterChange(`owner__followed__owner__profile=${profile_id}`);
             }}
+            className={`${styles.FilterButton}`}
           >
+            <img
+              src={myFeed}
+              alt="My Feed"
+              height="38"
+              className={appStyles.Icon}
+            />
             My Feed
           </Button>
         </Col>
-        <Col>
+        <Col xs={6}>
           <Button
             onClick={() => {
               onFilterChange(
                 `reactions__owner__profile=${profile_id}&ordering=-reactions__created_on`,
               );
             }}
+            className={`${styles.FilterButton}`}
           >
+            <img
+              src={myFaves}
+              alt="My Faves"
+              height="38"
+              className={appStyles.Icon}
+            />
             My Faves
           </Button>
         </Col>

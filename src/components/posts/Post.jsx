@@ -29,14 +29,18 @@ const Post = (props) => {
 
   return (
     <Card className={styles.Post}>
-      <Card.Body className="align-items-center justify-content-between">
+      <Card.Body className="d-flex align-items-center justify-content-between">
         <Link to={`/profiles/${profileId}`}>
           <Avatar src={profileImage} height={55} />
           {owner}
         </Link>
-        <div className="d-flex align-items-center">
+        <div className="align-items-center">
+          <div>
+            {category && (
+              <Card.Text className="text-center">{category}</Card.Text>
+            )}
+          </div>
           <span>{updatedOn}</span>
-          {/* NOTE: BELOW TEXT NOT SHOWING */}
           {isOwner && "..."}
         </div>
       </Card.Body>
@@ -50,7 +54,6 @@ const Post = (props) => {
         loveCount={loveCount}
       />
       <Card.Body>
-        {category && <Card.Text>{category}</Card.Text>}
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
       </Card.Body>

@@ -32,24 +32,6 @@ const NavBar = () => {
 
   const loggedInNavLinks = (
     <>
-      {/* <NavLink to="/myfeed" className={styles.NavLink}>
-        <img
-          src={myfeed}
-          alt="My feed"
-          height="32"
-          className={styles.NavIcon}
-        />
-        My Feed
-      </NavLink>
-      <NavLink to="/myfaves" className={styles.NavLink}>
-        <img
-          src={faves}
-          alt="My faves"
-          height="32"
-          className={styles.NavIcon}
-        />
-        My Faves
-      </NavLink> */}
       <NavLink to="/" onClick={handleSignOut} className={styles.NavLink}>
         <img
           src={logout}

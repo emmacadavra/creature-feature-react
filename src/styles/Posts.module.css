@@ -28,24 +28,3 @@
   border: 2px solid #fce59b;
   color: rgb(0, 0, 0, 0.9);
 }
-
-.SearchBar input {
-  border-radius: 10px;
-  border: 2px solid #fce59b;
-  background-color: #fffcf0;
-  padding-left: 40px;
-  margin: 16px 0;
-}
-
-.SearchIcon {
-  position: absolute;
-  height: 2.5rem;
-  padding: 9px 15px;
-  padding-left: 13px;
-  margin-top: 15px;
-}
-
-.SearchIcon:hover {
-  cursor: default;
-  color: #cfced3;
-}

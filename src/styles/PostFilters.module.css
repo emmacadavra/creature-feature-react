@@ -1,0 +1,53 @@
+.SearchBar input {
+  border-radius: 10px;
+  border: 2px solid #fce59b;
+  background-color: #fffcf0;
+  padding-left: 40px;
+  margin: 16px 0;
+}
+
+.SearchIcon {
+  position: absolute;
+  height: 2.5rem;
+  padding: 9px 15px;
+  padding-left: 13px;
+  margin-top: 15px;
+}
+
+.SearchIcon:hover {
+  cursor: default;
+  color: #cfced3;
+}
+
+.FilterButton {
+  color: rgb(0, 0, 0, 0.75);
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  padding: 10px 13px 7px 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.FilterButton:hover {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  color: rgb(0, 0, 0, 0.9);
+}
+
+.FilterButton:hover:active {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  color: rgb(0, 0, 0, 0.9);
+}
+
+.FilterButton:active {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  color: rgb(0, 0, 0, 0.9);
+}
+
+.FilterButton:focus {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  color: rgb(0, 0, 0, 0.9);
+}

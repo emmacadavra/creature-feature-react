@@ -120,52 +120,7 @@ const ReactionsBar = ({
         {loveCount}
       </span>
 
-      {/* {is_owner ? (
-        <OverlayTrigger
-          placement="top"
-          overlay={<Tooltip>You can&apos;t react to your own posts!</Tooltip>}
-        >
-          <span>
-            <Image src={crownDefault} className={styles.Reactions} />
-            {crown_count}
-            <Image src={goodDefault} className={styles.Reactions} />
-            {good_count}
-            <Image src={loveDefault} className={styles.Reactions} />
-            {love_count}
-          </span>
-        </OverlayTrigger>
-      ) : reaction_id ? (
-        <span onClick={() => {}}>
-          <Image src={crownHighlight} className={styles.Reactions} />
-          {crown_count}
-          <Image src={goodHighlight} className={styles.Reactions} />
-          {good_count}
-          <Image src={loveHighlight} className={styles.Reactions} />
-          {love_count}
-        </span>
-      ) : currentUser ? (
-        <span onClick={() => {}}>
-          <Image src={crownDefault} className={styles.Reactions} />
-          {crown_count}
-          <Image src={goodDefault} className={styles.Reactions} />
-          {good_count}
-          <Image src={loveDefault} className={styles.Reactions} />
-          {love_count}
-        </span>
-      ) : (
-        <OverlayTrigger
-          placement="top"
-          overlay={<Tooltip>You must be logged in to react to posts!</Tooltip>}
-        >
-          <Image src={crownGreyscale} className={styles.Reactions} />
-          {crown_count}
-          <Image src={goodGreyscale} className={styles.Reactions} />
-          {good_count}
-          <Image src={loveGreyscale} className={styles.Reactions} />
-          {love_count}
-        </OverlayTrigger>
-      )}
-      INSERT REACTIONS BAR W/ REACTION COUNTS ETC
+      {/* 
       <Link to={`posts/${id}`}>
         NEED TO AMEND THIS TO COMMENTS
         <Image src={commentsImg} className={styles.Reactions} />
