@@ -24,12 +24,21 @@ export const PostFilters = ({ query, onQueryChange, onFilterChange }) => {
           <Button
             onClick={() => {
               onFilterChange(
-                `reactions__owner__profile=${profile_id}&ordering=-reactions__created_on&`,
+                `reactions__owner__profile=${profile_id}&ordering=-reactions__created_on`,
               );
             }}
           >
             My Faves
           </Button>
+        </Col>
+        <Col>
+          <Button onClick={() => {}}>Fluffy Placeholder</Button>
+        </Col>
+        <Col>
+          <Button onClick={() => {}}>Scaly Placeholder</Button>
+        </Col>
+        <Col>
+          <Button onClick={() => {}}>Feathered Placeholder</Button>
         </Col>
       </Row>
       <Row>

@@ -15,7 +15,6 @@ const PostList = ({ message, filter = "", query }) => {
         const { data } = await axiosReq.get(
           `/posts/?filter=${filter}&search=${query}`,
         );
-        // 'filter' relating to filter prop that was entered into Routes
         setPostsData(data.results);
         setPostsLoaded(true);
       } catch (err) {
@@ -30,7 +29,6 @@ const PostList = ({ message, filter = "", query }) => {
       clearTimeout(timer);
     };
   }, [filter, query]);
-  // ^ above, tutorial suggests [filter, pathname], relating to useLocation()
 
   return (
     <Container>
