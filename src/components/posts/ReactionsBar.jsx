@@ -25,6 +25,14 @@ const ReactionsBar = ({ postId, isOwner }) => {
   const goodSrc = goodDefault;
   const loveSrc = loveDefault;
 
+  const handleReaction = (reaction) => {
+    if (currentUser && isOwner === false) {
+      createReaction(userId, postId, reaction);
+    } else {
+      setShow(!show);
+    }
+  };
+
   return (
     <div>
       <Overlay target={target.current} show={show} placement="right">
@@ -50,11 +58,7 @@ const ReactionsBar = ({ postId, isOwner }) => {
         <Image
           src={crownSrc}
           onClick={() => {
-            if (currentUser && isOwner === false) {
-              createReaction(userId, postId, "CROWN");
-            } else {
-              setShow(!show);
-            }
+            handleReaction("CROWN");
           }}
           className={styles.Reactions}
         />
@@ -62,11 +66,7 @@ const ReactionsBar = ({ postId, isOwner }) => {
         <Image
           src={goodSrc}
           onClick={() => {
-            if (currentUser && isOwner === false) {
-              createReaction(userId, postId, "GOOD");
-            } else {
-              setShow(!show);
-            }
+            handleReaction("GOOD");
           }}
           className={styles.Reactions}
         />
@@ -74,11 +74,7 @@ const ReactionsBar = ({ postId, isOwner }) => {
         <Image
           src={loveSrc}
           onClick={() => {
-            if (currentUser && isOwner === false) {
-              createReaction(userId, postId, "LOVE");
-            } else {
-              setShow(!show);
-            }
+            handleReaction("LOVE");
           }}
           className={styles.Reactions}
         />
