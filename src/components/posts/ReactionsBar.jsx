@@ -15,7 +15,13 @@ import { createReaction } from "../../api/reactions";
 // import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
-const ReactionsBar = ({ postId, isOwner }) => {
+const ReactionsBar = ({
+  postId,
+  isOwner,
+  crownCount,
+  goodCount,
+  loveCount,
+}) => {
   const { currentUser } = useAuth();
   const userId = currentUser?.pk;
   const [show, setShow] = useState(false);
@@ -62,7 +68,7 @@ const ReactionsBar = ({ postId, isOwner }) => {
           }}
           className={styles.Reactions}
         />
-        1
+        {crownCount}
         <Image
           src={goodSrc}
           onClick={() => {
@@ -70,7 +76,7 @@ const ReactionsBar = ({ postId, isOwner }) => {
           }}
           className={styles.Reactions}
         />
-        2
+        {goodCount}
         <Image
           src={loveSrc}
           onClick={() => {
@@ -78,7 +84,7 @@ const ReactionsBar = ({ postId, isOwner }) => {
           }}
           className={styles.Reactions}
         />
-        3
+        {loveCount}
       </span>
 
       {/* {is_owner ? (

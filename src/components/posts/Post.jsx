@@ -34,23 +34,14 @@ const Post = (props) => {
     content,
     image,
     category,
+    crownCount,
+    goodCount,
+    loveCount,
     updatedOn,
   } = props;
 
   const { currentUser } = useAuth();
   const isOwner = currentUser?.username === owner;
-
-  // const handleReaction = async () => {
-  //   try {
-  //     const { data } = await axiosResp.post("/reactions/", { post: id });
-  //     setPostsData((prevPostsData) => ({
-  //       ...prevPostsData,
-  //       results: prevPostsData.results.map((post) => {
-  //         // return post.id === id? {...post, likes_count: post.likes_count + 1, like_id: data.id}
-  //       }),
-  //     }));
-  //   } catch (err) {}
-  // };
 
   return (
     <Card className={styles.Post}>
@@ -66,7 +57,13 @@ const Post = (props) => {
         </div>
       </Card.Body>
       <Card.Img src={image} alt={title} />
-      <ReactionsBar postId={id} isOwner={isOwner} />
+      <ReactionsBar
+        postId={id}
+        isOwner={isOwner}
+        crownCount={crownCount}
+        goodCount={goodCount}
+        loveCount={loveCount}
+      />
       <Card.Body>
         {category && <Card.Text>{category}</Card.Text>}
         {title && <Card.Title className="text-center">{title}</Card.Title>}
