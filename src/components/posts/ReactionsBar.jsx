@@ -15,6 +15,40 @@ import { createReaction } from "../../api/reactions";
 // import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
+const getReactionsSrc = (currentUserReaction) => {
+  if (!currentUserReaction) {
+    return {
+      crownSrc: crownDefault,
+      goodSrc: goodDefault,
+      loveSrc: loveDefault,
+    };
+  }
+
+  if (currentUserReaction.reactionType === "CROWN") {
+    return {
+      crownSrc: crownHighlight,
+      goodSrc: goodGreyscale,
+      loveSrc: loveGreyscale,
+    };
+  }
+
+  if (currentUserReaction.reactionType === "GOOD") {
+    return {
+      crownSrc: crownGreyscale,
+      goodSrc: goodHighlight,
+      loveSrc: loveGreyscale,
+    };
+  }
+
+  if (currentUserReaction.reactionType === "LOVE") {
+    return {
+      crownSrc: crownGreyscale,
+      goodSrc: goodGreyscale,
+      loveSrc: loveHighlight,
+    };
+  }
+};
+
 const ReactionsBar = ({
   postId,
   isOwner,
@@ -28,26 +62,6 @@ const ReactionsBar = ({
   const [show, setShow] = useState(false);
   const target = useRef(null);
 
-  let crownSrc = crownDefault;
-  let goodSrc = goodDefault;
-  let loveSrc = loveDefault;
-
-  if (currentUserReaction) {
-    if (currentUserReaction.reactionType === "CROWN") {
-      crownSrc = crownHighlight;
-      goodSrc = goodGreyscale;
-      loveSrc = loveGreyscale;
-    } else if (currentUserReaction.reactionType === "GOOD") {
-      crownSrc = crownGreyscale;
-      goodSrc = goodHighlight;
-      loveSrc = loveGreyscale;
-    } else if (currentUserReaction.reactionType === "LOVE") {
-      crownSrc = crownGreyscale;
-      goodSrc = goodGreyscale;
-      loveSrc = loveHighlight;
-    }
-  }
-
   const handleReaction = (reaction) => {
     if (currentUser && isOwner === false) {
       createReaction(userId, postId, reaction);
@@ -55,6 +69,8 @@ const ReactionsBar = ({
       setShow(!show);
     }
   };
+
+  const { crownSrc, goodSrc, loveSrc } = getReactionsSrc(currentUserReaction);
 
   return (
     <div>

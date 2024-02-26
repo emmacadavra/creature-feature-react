@@ -47,7 +47,7 @@ const Posts = () => {
           {currentUser && (
             <PostFilters
               value={query}
-              onQueryChange={(event) => setQuery(event.target.value)}
+              onQueryChange={(query) => setQuery(query)}
               onFilterChange={(filter) => {
                 setFilter(filter);
               }}

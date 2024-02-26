@@ -3,10 +3,17 @@ import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 import styles from "../../styles/Posts.module.css";
 import search from "../../assets/search.png";
 import { useAuth } from "../../contexts/AuthContext";
+import debounce from "debounce";
 
 export const PostFilters = ({ query, onQueryChange, onFilterChange }) => {
   const { currentUser } = useAuth();
   const profile_id = currentUser?.profile_id || "";
+
+  const handleQueryChange = (event) => {
+    onQueryChange(event.target.value);
+  };
+
+  const debouncedHandleQueryChange = debounce(handleQueryChange, 300);
 
   return (
     <Container>
@@ -53,7 +60,7 @@ export const PostFilters = ({ query, onQueryChange, onFilterChange }) => {
             <Form.Control
               type="text"
               value={query}
-              onChange={onQueryChange}
+              onChange={debouncedHandleQueryChange}
               className="me-sm-2"
               placeholder="Search posts"
             />
