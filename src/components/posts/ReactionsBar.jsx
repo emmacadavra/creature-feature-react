@@ -15,10 +15,10 @@ import { createReaction } from "../../api/reactions";
 // import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
-const ReactionsBar = ({ postId }) => {
+const ReactionsBar = ({ postId, isOwner }) => {
   const { currentUser } = useAuth();
-  const userId = currentUser.pk;
-  const [show] = useState(false);
+  const userId = currentUser?.pk;
+  const [show, setShow] = useState(false);
   const target = useRef(null);
 
   const crownSrc = crownDefault;
@@ -27,7 +27,7 @@ const ReactionsBar = ({ postId }) => {
 
   return (
     <div>
-      <Overlay target={target.current} show={show} placement="top">
+      <Overlay target={target.current} show={show} placement="right">
         {(props) => (
           <div
             {...props}
@@ -48,7 +48,11 @@ const ReactionsBar = ({ postId }) => {
         <Image
           src={crownSrc}
           onClick={() => {
-            createReaction(userId, postId, "CROWN");
+            if (isOwner === false) {
+              createReaction(userId, postId, "CROWN");
+            } else {
+              setShow(true);
+            }
           }}
           className={styles.Reactions}
         />
@@ -56,7 +60,11 @@ const ReactionsBar = ({ postId }) => {
         <Image
           src={goodSrc}
           onClick={() => {
-            createReaction(userId, postId, "GOOD");
+            if (isOwner === false) {
+              createReaction(userId, postId, "GOOD");
+            } else {
+              setShow(true);
+            }
           }}
           className={styles.Reactions}
         />
@@ -64,7 +72,11 @@ const ReactionsBar = ({ postId }) => {
         <Image
           src={loveSrc}
           onClick={() => {
-            createReaction(userId, postId, "LOVE");
+            if (isOwner === false) {
+              createReaction(userId, postId, "LOVE");
+            } else {
+              setShow(true);
+            }
           }}
           className={styles.Reactions}
         />

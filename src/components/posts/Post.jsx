@@ -36,9 +36,9 @@ const Post = (props) => {
     category,
     updatedOn,
   } = props;
-  console.log(props);
-  const currentUser = useAuth();
-  const is_owner = currentUser?.username === owner;
+
+  const { currentUser } = useAuth();
+  const isOwner = currentUser?.username === owner;
 
   // const handleReaction = async () => {
   //   try {
@@ -62,11 +62,11 @@ const Post = (props) => {
         <div className="d-flex align-items-center">
           <span>{updatedOn}</span>
           {/* NOTE: BELOW TEXT NOT SHOWING */}
-          {is_owner && "..."}
+          {isOwner && "..."}
         </div>
       </Card.Body>
       <Card.Img src={image} alt={title} />
-      <ReactionsBar postId={id} />
+      <ReactionsBar postId={id} isOwner={isOwner} />
       <Card.Body>
         {category && <Card.Text>{category}</Card.Text>}
         {title && <Card.Title className="text-center">{title}</Card.Title>}
