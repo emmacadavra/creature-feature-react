@@ -2,6 +2,8 @@
 
 ## **Project Overview**
 
+Creature Feature is a quirky, interactibve photo-sharing app dedicated to our often smaller - but by no means lesser - animal companions. Although it shares a name with the famous horror/sci films known as 'Creature Features', the creatures featured on this platform are anything but scary!
+
 ![Am I responsive screenshot](#)
 
 _Include link to back-end repo and live link (also add live link to back-end repo)_
@@ -19,23 +21,22 @@ _Include link to back-end repo and live link (also add live link to back-end rep
 1. [**Current Features**](#current-features)
    - [**Header and Navigation**](#header-and-navigation)
    - [**Home Page**](#home-page)
-   - [**Content Feed**](#content-feed)
-   - [**Content View**](#content-view)
-   - [**Content Reactions**](#content-reactions)
-     - [**_Type 1 TBC_**]
-     - [**_Type 2 TBC_**]
-     - [**_Type 3 TBC_**]
-   - [**Comments**](#comments)
-     - [**_Like and Unlike Comments_**](#like-and-unlike-comments)
-   - [**My Reactions**](#my-reactions)
-   - [**Popular Posts by Reaction**](#popular-posts-by-reaction)
+   - [**Post Filters**](#post-filters)
+     - [**_My Feed_**](#my-feed)
+     - [**_My Faves_**](#my-faves)
+     - [**_Category Search_**](#category-search)
+     - [**_Search Bar_**](#search-bar)
+   - [**Reactions**](#reactions)
+   - [**Categories**](#categories)
+   - [**Infinite Scroll**](#infinite-scroll)
    - [**Create and Edit Content**](#create-and-edit-content)
    - [**Delete Content**](#delete-content)
+   - [**Comments**](#comments)
+     - [**_Like and Unlike Comments_**](#like-and-unlike-comments)
    - [**Profile Page**](#profile-page)
      - [**_Follow Counts_**](#follow-counts)
    - [**Edit Profile**](#edit-profile)
    - [**Popular Profiles**](#popular-profiles)
-   - [**Search Bar**](#search-bar)
    - [**Authentication Pages**](#authentication-pages)
      - [**_Register_**](#register)
      - [**_Log In_**](#log-in)
@@ -71,29 +72,29 @@ _Include link to back-end repo and live link (also add live link to back-end rep
 
 ### **Home Page**
 
-### **Content Feed**
+### **Post Filters**
 
-### **Content View**
+#### **My Feed**
 
-### **Content Reactions**
+#### **My Faves**
 
-#### **Type 1 TBC**
+#### **Category Search**
 
-#### **Type 2 TBC**
+#### **Search Bar**
 
-#### **Type 3 TBC**
+### **Reactions**
 
-### **Comments**
+### **Categories**
 
-#### **Like and Unlike Comments**
-
-### **My Reactions**
-
-### **Popular Posts by Reaction**
+### **Infinite Scroll**
 
 ### **Create and Edit Content**
 
 ### **Delete Content**
+
+### **Comments**
+
+#### **Like and Unlike Comments**
 
 ### **Profile Page**
 
@@ -102,8 +103,6 @@ _Include link to back-end repo and live link (also add live link to back-end rep
 ### **Edit Profile**
 
 ### **Popular Profiles**
-
-### **Search Bar**
 
 ### **Authentication Pages**
 
