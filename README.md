@@ -2,7 +2,9 @@
 
 ## **Project Overview**
 
-Creature Feature is a quirky, interactibve photo-sharing app dedicated to our often smaller - but by no means lesser - animal companions. Although it shares a name with the famous horror/sci films known as 'Creature Features', the creatures featured on this platform are anything but scary!
+Creature Feature is a quirky and fun interactive photo-sharing app dedicated to our often smaller - but by no means lesser - animal companions. Although it shares its name with the famous horror/sci-fi genre of films known as 'Creature Features', the creatures featured on this platform are anything but spooky… Unless they want to be, of course! That said, despite the cutesy aesthetic this app employs, the spirit of the genre is subtly kept alive through the unusual names of the [**_post categories_**](#categories) users must pick from to let the world know what type of creature it is they’re featuring! The thematic combining of the _’creepy & kooky’_ with the charming & adorable provides a truly distinctive, engaging platform for users to _sink their claws into_.
+
+The primary intention of this app is to provide a smooth, user-friendly platform on which registered users can create posts containing pictures of their beloved pets, and engage with posts created by other users. They can view and follow the [**_profiles_**](#profile-page) of other users whose posts they enjoy, control what they see by utilising a variety of [**_post filters_**](#post-filters), and - most importantly - interact with and comment on the posts they can see. What makes this app stand out against others of its kind are the three [**_adorable post reactions_**](#reactions) that replace ‘likes’ or the more traditional kinds of post reactions found on other social media platforms.
 
 ![Am I responsive screenshot](#)
 
@@ -12,7 +14,7 @@ _Include link to back-end repo and live link (also add live link to back-end rep
 
 1. [**Project Overview**](#project-overview)
 1. [**Project Planning**](#project-planning)
-   - [**Site Aims**](#site-aims)
+   - [**Project Goals**](#project-goals)
    - [**User Stories**](#user-stories)
    - [**Design**](#design)
      - [**_Typography_**](#typography)
@@ -32,7 +34,7 @@ _Include link to back-end repo and live link (also add live link to back-end rep
    - [**Create and Edit Content**](#create-and-edit-content)
    - [**Delete Content**](#delete-content)
    - [**Comments**](#comments)
-     - [**_Like and Unlike Comments_**](#like-and-unlike-comments)
+     - [**_Like and Reply to Comments_**](#like-and-reply-to-comments)
    - [**Profile Page**](#profile-page)
      - [**_Follow Counts_**](#follow-counts)
    - [**Edit Profile**](#edit-profile)
@@ -43,7 +45,7 @@ _Include link to back-end repo and live link (also add live link to back-end rep
      - [**_Log Out_**](#log-out)
 1. [**Resuable Components**](#reusable-components)
 1. [**Agile Development**](#agile-development)
-1. [**Technologies Used**](#technologies-used)
+1. [**Technologies and Dependencies**](#technologies-and-dependencies)
    - [**Frameworks**](#frameworks)
    - [**Libraries**](#libraries)
 1. [**Testing**](#testing)
@@ -54,7 +56,7 @@ _Include link to back-end repo and live link (also add live link to back-end rep
 
 ## **Project Planning**
 
-### **Site Aims**
+### **Project Goals**
 
 ### **User Stories**
 
@@ -94,7 +96,7 @@ _Include link to back-end repo and live link (also add live link to back-end rep
 
 ### **Comments**
 
-#### **Like and Unlike Comments**
+#### **Like and Reply to Comments**
 
 ### **Profile Page**
 
@@ -116,7 +118,7 @@ _Include link to back-end repo and live link (also add live link to back-end rep
 
 ## **Agile Development**
 
-## **Technologies Used**
+## **Technologies and Dependencies**
 
 ### **Frameworks**
 
