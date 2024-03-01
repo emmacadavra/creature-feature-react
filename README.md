@@ -266,6 +266,7 @@ _Please note the unique URLs linked for each icon._
 - [**_Change Image icon by Freepik on Flaticon_**](https://www.flaticon.com/free-icon/camera_8719664)
 - [**_No Results icon by Freepik on Flaticon_**](https://www.flaticon.com/free-icon/search_7409412)
 - [**_Search icon by Freepik on Flaticon_**](https://www.flaticon.com/free-icon/magnifying-glass_9406832)
+- [**_Three Dots icon by Freepik on Flaticon_**](https://www.flaticon.com/free-icon/kebab-menu_11932812)
 
 ##### **Stickers:**
 

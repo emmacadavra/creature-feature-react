@@ -4,18 +4,21 @@ import { Col, Container, Row } from "react-bootstrap";
 import noResults from "../../assets/no_results.png";
 import Asset from "../Asset";
 import { getPosts } from "../../api/posts";
-// import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteScroll from "react-infinite-scroll-component";
 // import { fetchMoreData } from "../../utils/utils";
 
 const PostList = ({ message, filter = "", query }) => {
-  const [postsData, setPostsData] = useState({ results: [] });
+  const [postsData, setPostsData] = useState([]);
   const [postsLoaded, setPostsLoaded] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hasMorePages, setHasMorePages] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const data = await getPosts(filter, query);
-        setPostsData(data);
+        const data = await getPosts(filter, query, page);
+        setPostsData(data.results);
+        setHasMorePages(data.hasMorePages);
         setPostsLoaded(true);
       } catch (err) {
         console.error(err);
@@ -23,7 +26,7 @@ const PostList = ({ message, filter = "", query }) => {
     };
     setPostsLoaded(false);
     fetchPosts();
-  }, [filter, query]);
+  }, [filter, query, page]);
 
   return (
     <Container>
@@ -32,33 +35,36 @@ const PostList = ({ message, filter = "", query }) => {
           {postsLoaded ? (
             <>
               {postsData.length ? (
-                // <InfiniteScroll
-                //   dataLength={postsData.length}
-                //   loader={<Asset spinner />}
-                //   hasMore={!!postsData.next}
-                //   next={() => fetchMoreData(postsData, setPostsData)}
-                // >
-                postsData.map((post) => {
-                  return (
-                    <Post
-                      id={post.id}
-                      owner={post.owner}
-                      profileId={post.profileId}
-                      profileImage={post.profileImage}
-                      title={post.title}
-                      content={post.content}
-                      image={post.image}
-                      category={post.category}
-                      currentUserReaction={post.currentUserReaction}
-                      crownCount={post.crownCount}
-                      goodCount={post.goodCount}
-                      loveCount={post.loveCount}
-                      updatedOn={post.updatedOn}
-                      key={post.id}
-                      setPostsData={setPostsData}
-                    />
-                  );
-                })
+                <InfiniteScroll
+                  dataLength={postsData.length}
+                  loader={<Asset spinner />}
+                  hasMore={hasMorePages}
+                  next={() => {
+                    setPage(page + 1);
+                  }}
+                >
+                  {postsData.map((post) => {
+                    return (
+                      <Post
+                        id={post.id}
+                        owner={post.owner}
+                        profileId={post.profileId}
+                        profileImage={post.profileImage}
+                        title={post.title}
+                        content={post.content}
+                        image={post.image}
+                        category={post.category}
+                        currentUserReaction={post.currentUserReaction}
+                        crownCount={post.crownCount}
+                        goodCount={post.goodCount}
+                        loveCount={post.loveCount}
+                        updatedOn={post.updatedOn}
+                        key={post.id}
+                        setPostsData={setPostsData}
+                      />
+                    );
+                  })}
+                </InfiniteScroll>
               ) : (
                 <Container>
                   <Asset src={noResults} message={message} />

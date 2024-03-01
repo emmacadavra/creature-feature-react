@@ -5,6 +5,7 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import ReactionsBar from "./ReactionsBar";
+import { MoreDropdown } from "./MoreDropdown";
 // import { axiosResp } from "../../api/axiosDefaults";
 
 const Post = (props) => {
@@ -34,14 +35,14 @@ const Post = (props) => {
           <Avatar src={profileImage} height={55} />
           {owner}
         </Link>
-        <div className="align-items-center">
+        <div className="d-flex align-items-center">
           <div>
             {category && (
               <Card.Text className="text-center">{category}</Card.Text>
             )}
+            <span>{updatedOn}</span>
           </div>
-          <span>{updatedOn}</span>
-          {isOwner && "..."}
+          {isOwner && <MoreDropdown />}
         </div>
       </Card.Body>
       <Card.Img src={image} alt={title} />
