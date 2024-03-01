@@ -5,6 +5,7 @@ import noResults from "../../assets/no_results.png";
 import Asset from "../Asset";
 import { getPosts } from "../../api/posts";
 // import InfiniteScroll from "react-infinite-scroll-component";
+// import { fetchMoreData } from "../../utils/utils";
 
 const PostList = ({ message, filter = "", query }) => {
   const [postsData, setPostsData] = useState({ results: [] });
@@ -35,7 +36,7 @@ const PostList = ({ message, filter = "", query }) => {
                 //   dataLength={postsData.length}
                 //   loader={<Asset spinner />}
                 //   hasMore={!!postsData.next}
-                //   next={() => {}}
+                //   next={() => fetchMoreData(postsData, setPostsData)}
                 // >
                 postsData.map((post) => {
                   return (
