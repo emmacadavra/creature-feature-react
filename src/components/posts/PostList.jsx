@@ -5,26 +5,29 @@ import noResults from "../../assets/no_results.png";
 import Asset from "../Asset";
 import { getPosts } from "../../api/posts";
 import InfiniteScroll from "react-infinite-scroll-component";
-// import { fetchMoreData } from "../../utils/utils";
 
 const PostList = ({ message, filter = "", query }) => {
   const [postsData, setPostsData] = useState([]);
   const [postsLoaded, setPostsLoaded] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMorePages, setHasMorePages] = useState(true);
+  const [appendPosts, setAppendPosts] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const data = await getPosts(filter, query, page);
-        setPostsData(data.results);
+        setPostsData(
+          appendPosts ? [...postsData, ...data.results] : data.results,
+        );
         setHasMorePages(data.hasMorePages);
         setPostsLoaded(true);
+        setAppendPosts(false);
       } catch (err) {
         console.error(err);
       }
     };
-    setPostsLoaded(false);
+    setPostsLoaded(!appendPosts ? false : true);
     fetchPosts();
   }, [filter, query, page]);
 
@@ -41,6 +44,7 @@ const PostList = ({ message, filter = "", query }) => {
                   hasMore={hasMorePages}
                   next={() => {
                     setPage(page + 1);
+                    setAppendPosts(true);
                   }}
                 >
                   {postsData.map((post) => {
