@@ -59,8 +59,8 @@ const CreatePost = () => {
     formData.append("category", category);
 
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
-      navigate(`/posts/${data.id}`);
+      await axiosReq.post("/posts/", formData);
+      navigate("/*");
     } catch (err) {
       console.error(err);
       if (err.response?.status !== 401) {

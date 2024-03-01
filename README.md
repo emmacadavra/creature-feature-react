@@ -278,4 +278,7 @@ _Please note the unique URLS linked for each sticker._
 
 ##### **Images:**
 
-- [**_Ghost cat image_**](https://imagitory.tumblr.com/post/151766195042/my-ghostcat) - williamcrisafi on Tumblr (found on imagitory.tumblr.com)
+- [**_Ghost cat image_**](https://imagitory.tumblr.com/post/151766195042/my-ghostcat) by williamcrisafi on Tumblr (found on imagitory.tumblr.com)
+- [**_Parrots Perched on Brown Wooden Surface_**](https://www.pexels.com/photo/parrots-perched-on-brown-wooden-surface-1599452/) by Magda Ehlers from Pexels
+- [**_White Duckling on Grass_**](https://www.pexels.com/photo/white-duckling-on-grass-55834/) by Pixabay
+- [**_Beige Python on Brown Branch of Tree_**](https://www.pexels.com/photo/beige-python-on-brown-branch-of-tree-1108192/) by Worldspectrum

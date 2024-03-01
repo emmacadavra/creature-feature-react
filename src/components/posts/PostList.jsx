@@ -4,6 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import noResults from "../../assets/no_results.png";
 import Asset from "../Asset";
 import { getPosts } from "../../api/posts";
+// import InfiniteScroll from "react-infinite-scroll-component";
 
 const PostList = ({ message, filter = "", query }) => {
   const [postsData, setPostsData] = useState({ results: [] });
@@ -30,6 +31,12 @@ const PostList = ({ message, filter = "", query }) => {
           {postsLoaded ? (
             <>
               {postsData.length ? (
+                // <InfiniteScroll
+                //   dataLength={postsData.length}
+                //   loader={<Asset spinner />}
+                //   hasMore={!!postsData.next}
+                //   next={() => {}}
+                // >
                 postsData.map((post) => {
                   return (
                     <Post

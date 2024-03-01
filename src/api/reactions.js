@@ -14,3 +14,5 @@ export const createReaction = async (userId, postId, reaction) => {
 //     `/reactions/${getPosts.currentUserReaction.reactionId}/`,
 //   );
 // };
+
+// ^^^ need to set currentUserReaction to null
