@@ -18,18 +18,15 @@ ThreeDotsMeatballs.displayName = "ThreeDotsMeatballs";
 
 export const MoreDropdown = () => {
   return (
-    <Dropdown className="ms-auto">
-      <Dropdown.Toggle as={ThreeDotsMeatballs} id="dropdown-custom-components">
-        Custom toggle
-      </Dropdown.Toggle>
+    <Dropdown className="ms-auto" drop="left">
+      <Dropdown.Toggle as={ThreeDotsMeatballs} />
 
-      <Dropdown.Menu popperConfig={{ strategy: "fixed" }}>
-        <Dropdown.Item eventKey="1">Red</Dropdown.Item>
-        <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
-        <Dropdown.Item eventKey="3" active>
-          Orange
-        </Dropdown.Item>
-        <Dropdown.Item eventKey="1">Red-Orange</Dropdown.Item>
+      <Dropdown.Menu
+        className="text-center"
+        popperConfig={{ strategy: "fixed" }}
+      >
+        <Dropdown.Item>EDIT</Dropdown.Item>
+        <Dropdown.Item>BIN</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
