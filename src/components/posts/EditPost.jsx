@@ -17,7 +17,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults.js";
 
-const CreatePost = () => {
+const EditPost = () => {
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
@@ -179,4 +179,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default EditPost;

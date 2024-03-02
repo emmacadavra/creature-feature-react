@@ -18,17 +18,29 @@ const ThreeDotsMeatballs = React.forwardRef(({ onClick }, ref) => (
 
 ThreeDotsMeatballs.displayName = "ThreeDotsMeatballs";
 
-export const MoreDropdown = () => {
+export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
-    <Dropdown className="ms-auto" drop="left">
+    <Dropdown className="ms-auto" drop="start">
       <Dropdown.Toggle as={ThreeDotsMeatballs} />
 
       <Dropdown.Menu
         className="text-center"
         popperConfig={{ strategy: "fixed" }}
       >
-        <Dropdown.Item>EDIT</Dropdown.Item>
-        <Dropdown.Item>BIN</Dropdown.Item>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={handleEdit}
+          aria-label="Edit post"
+        >
+          EDIT
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={handleDelete}
+          aria-label="Delete post"
+        >
+          BIN
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

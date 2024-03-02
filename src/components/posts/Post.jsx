@@ -2,10 +2,11 @@ import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "../Avatar";
 import ReactionsBar from "./ReactionsBar";
 import { MoreDropdown } from "./MoreDropdown";
+import { axiosResp } from "../../api/axiosDefaults";
 // import { axiosResp } from "../../api/axiosDefaults";
 
 const Post = (props) => {
@@ -27,6 +28,24 @@ const Post = (props) => {
 
   const { currentUser } = useAuth();
   const isOwner = currentUser?.username === owner;
+  // edit & delete post code below
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/posts/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosResp.delete(`posts/${id}/`);
+      navigate("/");
+      // NEED TO AMEND THIS
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // end of edit & delete code
 
   return (
     <Card className={styles.Post}>
@@ -42,7 +61,9 @@ const Post = (props) => {
             )}
             <span>{updatedOn}</span>
           </div>
-          {isOwner && <MoreDropdown />}
+          {isOwner && (
+            <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+          )}
         </div>
       </Card.Body>
       <Card.Img src={image} alt={title} />

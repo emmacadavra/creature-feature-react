@@ -31,6 +31,23 @@ const PostList = ({ message, filter = "", query }) => {
     fetchPosts();
   }, [filter, query, page]);
 
+  // notes on rerendering component when post created/deleted:
+  // (example from https://www.youtube.com/watch?v=Nxe-9PkP8Nw)
+
+  // const [authors, setAuthors] = useState([])
+
+  // useEffect (() => {
+  //  const fetchData = async () => {
+  //    const result = await fetch('httpe://bleblebe')
+  //    const jsonResult = await result.json()
+  //    setAuthors(jsonResult)
+  //  }
+  //  fetchData()
+  // }, [])
+
+  // const newAuthor = await result.json()
+  // setAuthors(oldAuthors=>[...oldAuthors, newAuthor])
+
   return (
     <Container>
       <Row>
