@@ -5,7 +5,8 @@ import Avatar from "../Avatar";
 import { axiosResp } from "../../api/axiosDefaults";
 
 const CreateComment = (props) => {
-  const { post, profileImage, profileId, setPostsData, setComments } = props;
+  // Need to clarify if post needs updating to postId or vice versa
+  const { postId, profileImage, profileId, setPostsData, setComments } = props;
   const [content, setContent] = useState("");
 
   const handleChange = (event) => {
@@ -17,7 +18,7 @@ const CreateComment = (props) => {
     try {
       const { data } = await axiosResp.post("/comments/", {
         content,
-        post,
+        postId,
       });
       setComments((prevComments) => ({
         ...prevComments,

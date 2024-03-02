@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { Card, Image } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "../Avatar";
 import ReactionsBar from "./ReactionsBar";
@@ -10,6 +10,8 @@ import { axiosResp } from "../../api/axiosDefaults";
 import { getComments } from "../../api/comments";
 import CreateComment from "../comments/CreateComment";
 import commentsImg from "../../assets/comments.png";
+import Asset from "../Asset";
+// import Comment from "../comments/Comment";
 
 const Post = (props) => {
   const {
@@ -31,12 +33,28 @@ const Post = (props) => {
   } = props;
 
   const { currentUser } = useAuth();
-  const isOwner = currentUser?.username === owner;
 
-  const currentUserProfileImage = currentUser?.profileImage;
-
-  const [comments, setComments] = useState({ results: [] });
+  const [commentsData, setCommentsData] = useState({ results: [] });
+  const [commentsLoaded, setCommentsLoaded] = useState(false);
   const [showComments, setShowComments] = useState(false);
+
+  const isOwner = currentUser?.username === owner;
+  const currentUserProfileImage = currentUser?.profileImage;
+  const postId = id;
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const commentsData = await getComments(postId);
+        setCommentsData(commentsData.results);
+        setCommentsLoaded(true);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    setCommentsLoaded(false);
+    fetchComments();
+  }, []);
 
   const toggleShowComments = () => {
     setShowComments(!showComments);
@@ -90,9 +108,10 @@ const Post = (props) => {
           goodCount={goodCount}
           loveCount={loveCount}
         />
-
         <span>
-          <Image src={commentsImg} onClick={toggleShowComments} fluid />
+          <Button onClick={toggleShowComments}>
+            <img src={commentsImg} />
+          </Button>
           {commentCount}
         </span>
       </div>
@@ -100,17 +119,38 @@ const Post = (props) => {
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
       </Card.Body>
-      {currentUser ? (
-        <CreateComment
-          post={id}
-          profileId={currentUser.profileId}
-          profileImage={currentUserProfileImage}
-          setPostsData={setPostsData}
-          setComments={setComments}
-        />
-      ) : comments.results.length ? (
-        "Comments"
-      ) : null}
+      {showComments && (
+        <div>
+          {currentUser && (
+            <CreateComment
+              post={id}
+              profileId={currentUser.profileId}
+              profileImage={currentUserProfileImage}
+              setPostsData={setPostsData}
+              setComments={setCommentsData}
+            />
+          )}
+          {commentsLoaded ? (
+            commentsData.length ? (
+              commentsData.map((comment) => {
+                return (
+                  <p key={comment.id}>
+                    {comment.owner}: {comment.content}
+                  </p>
+                );
+              })
+            ) : currentUser ? (
+              <span>No comments to diplay - why not be the first?</span>
+            ) : (
+              <span>No comments to display.</span>
+            )
+          ) : (
+            <Container>
+              <Asset spinner />
+            </Container>
+          )}
+        </div>
+      )}
     </Card>
   );
 };

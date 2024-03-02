@@ -14,9 +14,6 @@ const Posts = () => {
   const [filter, setFilter] = useState("");
   const [showCreatePost, setShowCreatePost] = useState(false);
 
-  // suggested code for filter by profiles following: {`owner__followed__owner__profile=${profile_id}`}
-  // suggested code for filter by liked posts: {`likes__owner__profile=${profile_id}&ordering=-likes__created_at`}
-
   const toggleShowCreatePost = () => {
     setShowCreatePost(!showCreatePost);
   };

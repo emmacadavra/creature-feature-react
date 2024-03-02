@@ -12,7 +12,7 @@ export const getComments = async (postId) => {
         id: comment.id,
         owner: comment.owner,
         isOwner: comment.is_owner,
-        post: comment.post,
+        postId: comment.post,
         content: comment.content,
         profileId: comment.profile_id,
         profileImage: comment.profile_image,
