@@ -5,7 +5,7 @@ import Avatar from "../Avatar";
 import { axiosResp } from "../../api/axiosDefaults";
 
 const CreateComment = (props) => {
-  const { post, setPost, setComments, profileImage, profile_id } = props;
+  const { post, profileImage, profileId, setPostsData, setComments } = props;
   const [content, setContent] = useState("");
 
   const handleChange = (event) => {
@@ -23,7 +23,7 @@ const CreateComment = (props) => {
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
-      setPost((prevPost) => ({
+      setPostsData((prevPost) => ({
         results: [
           {
             ...prevPost.results[0],
@@ -41,11 +41,11 @@ const CreateComment = (props) => {
     <Form className="mt-2" onSubmit={handleSubmit}>
       <Form.Group>
         <InputGroup>
-          <Link to={`/profiles/${profile_id}`}>
+          <Link to={`/profiles/${profileId}`}>
             <Avatar src={profileImage} />
           </Link>
           <Form.Control
-            placeholder="my comment..."
+            placeholder="Leave a comment..."
             as="textarea"
             value={content}
             onChange={handleChange}
@@ -58,7 +58,7 @@ const CreateComment = (props) => {
         disabled={!content.trim()}
         type="submit"
       >
-        post
+        Post Comment
       </button>
     </Form>
   );

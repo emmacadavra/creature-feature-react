@@ -9,10 +9,8 @@ import goodHighlight from "../../assets/good_highlight.png";
 import loveDefault from "../../assets/love.png";
 import loveGreyscale from "../../assets/love_greyscale.png";
 import loveHighlight from "../../assets/love_highlight.png";
-// import commentsImg from "../../assets/comments.png";
 import { Image, Overlay } from "react-bootstrap";
 import { createReaction } from "../../api/reactions";
-// import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 const getReactionsSrc = (currentUserReaction) => {
@@ -93,13 +91,14 @@ const ReactionsBar = ({
           </div>
         )}
       </Overlay>
-      <span ref={target}>
+      <span ref={target} className="d-flex align-items-center">
         <Image
           src={crownSrc}
           onClick={() => {
             handleReaction("CROWN");
           }}
           className={styles.Reactions}
+          fluid
         />
         {crownCount}
         <Image
@@ -108,6 +107,7 @@ const ReactionsBar = ({
             handleReaction("GOOD");
           }}
           className={styles.Reactions}
+          fluid
         />
         {goodCount}
         <Image
@@ -116,6 +116,7 @@ const ReactionsBar = ({
             handleReaction("LOVE");
           }}
           className={styles.Reactions}
+          fluid
         />
         {loveCount}
       </span>

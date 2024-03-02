@@ -7,6 +7,7 @@ import Avatar from "../Avatar";
 import ReactionsBar from "./ReactionsBar";
 import { MoreDropdown } from "./MoreDropdown";
 import { axiosResp } from "../../api/axiosDefaults";
+import { getComments } from "../../api/comments";
 import CreateComment from "../comments/CreateComment";
 import commentsImg from "../../assets/comments.png";
 
@@ -25,12 +26,16 @@ const Post = (props) => {
     goodCount,
     loveCount,
     commentCount,
+    setPostsData,
     updatedOn,
   } = props;
 
   const { currentUser } = useAuth();
   const isOwner = currentUser?.username === owner;
 
+  const currentUserProfileImage = currentUser?.profileImage;
+
+  const [comments, setComments] = useState({ results: [] });
   const [showComments, setShowComments] = useState(false);
 
   const toggleShowComments = () => {
@@ -76,7 +81,7 @@ const Post = (props) => {
         </div>
       </Card.Body>
       <Card.Img src={image} alt={title} />
-      <div>
+      <div className="d-flex justify-content-between">
         <ReactionsBar
           postId={id}
           isOwner={isOwner}
@@ -87,11 +92,7 @@ const Post = (props) => {
         />
 
         <span>
-          <Image
-            src={commentsImg}
-            onClick={toggleShowComments}
-            className={styles.Reactions}
-          />
+          <Image src={commentsImg} onClick={toggleShowComments} fluid />
           {commentCount}
         </span>
       </div>
@@ -99,7 +100,17 @@ const Post = (props) => {
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
       </Card.Body>
-      <CreateComment />
+      {currentUser ? (
+        <CreateComment
+          post={id}
+          profileId={currentUser.profileId}
+          profileImage={currentUserProfileImage}
+          setPostsData={setPostsData}
+          setComments={setComments}
+        />
+      ) : comments.results.length ? (
+        "Comments"
+      ) : null}
     </Card>
   );
 };

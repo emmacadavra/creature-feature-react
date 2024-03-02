@@ -79,6 +79,7 @@ const PostList = ({ message, filter = "", query }) => {
                         crownCount={post.crownCount}
                         goodCount={post.goodCount}
                         loveCount={post.loveCount}
+                        commentCount={post.commentCount}
                         updatedOn={post.updatedOn}
                         key={post.id}
                         setPostsData={setPostsData}
