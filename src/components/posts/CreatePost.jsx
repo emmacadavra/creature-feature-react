@@ -104,9 +104,9 @@ const CreatePost = () => {
       <Form.Group className="text-center mt-3">
         <Form.Label>Creature Category</Form.Label>
         <Form.Select name="category" value={category} onChange={handleChange}>
-          <option value="fluffy">Facinorous Fluffballs</option>
-          <option value="scaly">Reptillian Villains</option>
-          <option value="feathers">Feathered Fiends</option>
+          <option value="Facinorous Fluffballs">Facinorous Fluffballs</option>
+          <option value="Reptillian Villains">Reptillian Villains</option>
+          <option value="Feathered Fiends">Feathered Fiends</option>
         </Form.Select>
       </Form.Group>
       {errors?.category?.map((message, idx) => (

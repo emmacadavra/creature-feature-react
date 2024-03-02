@@ -7,8 +7,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import { AuthProvider } from "./contexts/AuthContext";
 import Homepage from "./pages/Homepage.jsx";
-// import CreatePost from "./pages/posts/CreatePost.js";
-// import PostPage from "./pages/posts/PostPage.js";
+import EditPost from "./components/posts/EditPost.jsx";
 
 function App() {
   return (
@@ -20,8 +19,7 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/signin" element={<SignInForm />} />
             <Route path="/signup" element={<SignUpForm />} />
-            {/* <Route path="/posts/create" element={<CreatePost />} />
-            <Route path="/posts/:id" element={<PostPage />} /> */}
+            <Route path="/posts/:id/edit" element={<EditPost />} />
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
         </Container>

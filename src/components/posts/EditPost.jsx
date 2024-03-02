@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Form,
   Button,
@@ -8,13 +8,11 @@ import {
   Image,
   Alert,
 } from "react-bootstrap";
-import uploadImage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
-import Asset from "../Asset";
 import styles from "../../styles/CreateEditPost.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults.js";
 
 const EditPost = () => {
@@ -27,10 +25,28 @@ const EditPost = () => {
     category: "",
   });
 
-  const { title, content, image, category } = postData;
+  const { title, content, category, image } = postData;
 
   const imageInput = useRef(null);
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/posts/${id}/`);
+        const { title, content, category, image, is_owner } = data;
+
+        is_owner
+          ? setPostData({ title, content, image, category })
+          : navigate("/");
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    handleMount();
+  }, [navigate, id]);
 
   const handleChange = (event) => {
     setPostData({
@@ -55,11 +71,14 @@ const EditPost = () => {
 
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
     formData.append("category", category);
 
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
+
     try {
-      await axiosReq.post("/posts/", formData);
+      await axiosReq.put(`/posts/${id}/`, formData);
       navigate("/");
     } catch (err) {
       console.error(err);
@@ -104,9 +123,9 @@ const EditPost = () => {
       <Form.Group className="text-center mt-3">
         <Form.Label>Creature Category</Form.Label>
         <Form.Select name="category" value={category} onChange={handleChange}>
-          <option value="fluffy">Facinorous Fluffballs</option>
-          <option value="scaly">Reptillian Villains</option>
-          <option value="feathers">Feathered Fiends</option>
+          <option value="Facinorous Fluffballs">Facinorous Fluffballs</option>
+          <option value="Reptillian Villains">Reptillian Villains</option>
+          <option value="Feathered Fiends">Feathered Fiends</option>
         </Form.Select>
       </Form.Group>
       {errors?.category?.map((message, idx) => (
@@ -116,9 +135,9 @@ const EditPost = () => {
       ))}
       <div className="text-center">
         <Button type="submit" className={`${btnStyles.Button}`}>
-          Post Me!
+          Update!
         </Button>
-        <Button onClick={() => {}} className={`${styles.Button}`}>
+        <Button onClick={() => navigate(-1)} className={`${styles.Button}`}>
           Cancel
         </Button>
       </div>
@@ -133,29 +152,15 @@ const EditPost = () => {
             className={`${appStyles.Content} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-              {image ? (
-                <>
-                  <figure>
-                    <Image src={image} rounded className={appStyles.Image} />
-                  </figure>
-                  <div>
-                    <Form.Label htmlFor="upload-image">
-                      <img src={camera} alt="Choose a new image" height="32" />
-                      Choose a different picture
-                    </Form.Label>
-                  </div>
-                </>
-              ) : (
-                <Form.Label
-                  htmlFor="upload-image"
-                  className="d-flex justify-content-center"
-                >
-                  <Asset
-                    src={uploadImage}
-                    message="Click or tap to upload your image!"
-                  />
+              <figure>
+                <Image src={image} rounded className={appStyles.Image} />
+              </figure>
+              <div>
+                <Form.Label htmlFor="upload-image">
+                  <img src={camera} alt="Choose a new image" height="32" />
+                  Choose a different picture
                 </Form.Label>
-              )}
+              </div>
 
               <Form.Control
                 id="upload-image"
