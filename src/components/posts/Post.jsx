@@ -11,7 +11,7 @@ import { getComments } from "../../api/comments";
 import CreateComment from "../comments/CreateComment";
 import commentsImg from "../../assets/comments.png";
 import Asset from "../Asset";
-// import Comment from "../comments/Comment";
+import Comment from "../comments/Comment";
 
 const Post = (props) => {
   const {
@@ -40,12 +40,11 @@ const Post = (props) => {
 
   const isOwner = currentUser?.username === owner;
   const currentUserProfileImage = currentUser?.profileImage;
-  const postId = id;
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const commentsData = await getComments(postId);
+        const commentsData = await getComments(id);
         setCommentsData(commentsData.results);
         setCommentsLoaded(true);
       } catch (err) {
@@ -54,7 +53,7 @@ const Post = (props) => {
     };
     setCommentsLoaded(false);
     fetchComments();
-  }, []);
+  }, [id]);
 
   const toggleShowComments = () => {
     setShowComments(!showComments);
@@ -133,14 +132,10 @@ const Post = (props) => {
           {commentsLoaded ? (
             commentsData.length ? (
               commentsData.map((comment) => {
-                return (
-                  <p key={comment.id}>
-                    {comment.owner}: {comment.content}
-                  </p>
-                );
+                return <Comment key={comment.id} {...comment} />;
               })
             ) : currentUser ? (
-              <span>No comments to diplay - why not be the first?</span>
+              <span>No comments to display... Why not be the first?</span>
             ) : (
               <span>No comments to display.</span>
             )

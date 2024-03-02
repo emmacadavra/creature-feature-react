@@ -19,6 +19,7 @@ export const getComments = async (postId) => {
         likeId: comment.like_id,
         likesCount: comment.likes_count,
         createdOn: comment.created_on,
+        updatedOn: comment.updated_on,
       };
     }),
   };
