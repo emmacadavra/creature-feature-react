@@ -5,7 +5,7 @@ import { Button, Card, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "../Avatar";
 import ReactionsBar from "./ReactionsBar";
-import { MoreDropdown } from "./MoreDropdown";
+import { MoreDropdown } from "../MoreDropdown";
 import { axiosResp } from "../../api/axiosDefaults";
 import { getComments } from "../../api/comments";
 import CreateComment from "../comments/CreateComment";
@@ -132,7 +132,14 @@ const Post = (props) => {
           {commentsLoaded ? (
             commentsData.length ? (
               commentsData.map((comment) => {
-                return <Comment key={comment.id} {...comment} />;
+                return (
+                  <Comment
+                    key={comment.id}
+                    {...comment}
+                    setPostsData={setPostsData}
+                    setCommentsData={setCommentsData}
+                  />
+                );
               })
             ) : currentUser ? (
               <span>No comments to display... Why not be the first?</span>

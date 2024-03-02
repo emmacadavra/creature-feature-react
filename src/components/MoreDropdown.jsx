@@ -1,12 +1,11 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
-import styles from "../../styles/MoreDropdown.module.css";
-import threeDots from "../../assets/three_dots.png";
+import styles from "../styles/MoreDropdown.module.css";
+import threeDots from "../assets/three_dots.png";
 
 const ThreeDotsMeatballs = React.forwardRef(({ onClick }, ref) => (
   <img
     src={threeDots}
-    height={38}
     ref={ref}
     onClick={(e) => {
       e.preventDefault();

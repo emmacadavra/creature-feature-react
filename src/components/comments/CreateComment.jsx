@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Form, InputGroup } from "react-bootstrap";
 import Avatar from "../Avatar";
 import { axiosResp } from "../../api/axiosDefaults";
+import styles from "../../styles/CreateEditComment.module.css";
 
 const CreateComment = (props) => {
   // Need to clarify if post needs updating to postId or vice versa
@@ -55,7 +56,7 @@ const CreateComment = (props) => {
         </InputGroup>
       </Form.Group>
       <button
-        className={"btn d-block ml-auto"}
+        className={`${styles.Button} btn d-block ml-auto`}
         disabled={!content.trim()}
         type="submit"
       >
