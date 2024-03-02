@@ -119,13 +119,6 @@ const ReactionsBar = ({
         />
         {loveCount}
       </span>
-
-      {/* 
-      <Link to={`posts/${id}`}>
-        NEED TO AMEND THIS TO COMMENTS
-        <Image src={commentsImg} className={styles.Reactions} />
-        {comments_count}
-      </Link> */}
     </div>
   );
 };

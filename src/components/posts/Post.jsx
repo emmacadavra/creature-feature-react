@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { Card } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "../Avatar";
 import ReactionsBar from "./ReactionsBar";
 import { MoreDropdown } from "./MoreDropdown";
 import { axiosResp } from "../../api/axiosDefaults";
-// import { axiosResp } from "../../api/axiosDefaults";
+import CreateComment from "../comments/CreateComment";
+import commentsImg from "../../assets/comments.png";
 
 const Post = (props) => {
   const {
@@ -23,11 +24,19 @@ const Post = (props) => {
     crownCount,
     goodCount,
     loveCount,
+    commentCount,
     updatedOn,
   } = props;
 
   const { currentUser } = useAuth();
   const isOwner = currentUser?.username === owner;
+
+  const [showComments, setShowComments] = useState(false);
+
+  const toggleShowComments = () => {
+    setShowComments(!showComments);
+  };
+
   // edit & delete post code below
   const navigate = useNavigate();
 
@@ -67,18 +76,30 @@ const Post = (props) => {
         </div>
       </Card.Body>
       <Card.Img src={image} alt={title} />
-      <ReactionsBar
-        postId={id}
-        isOwner={isOwner}
-        currentUserReaction={currentUserReaction}
-        crownCount={crownCount}
-        goodCount={goodCount}
-        loveCount={loveCount}
-      />
+      <div>
+        <ReactionsBar
+          postId={id}
+          isOwner={isOwner}
+          currentUserReaction={currentUserReaction}
+          crownCount={crownCount}
+          goodCount={goodCount}
+          loveCount={loveCount}
+        />
+
+        <span>
+          <Image
+            src={commentsImg}
+            onClick={toggleShowComments}
+            className={styles.Reactions}
+          />
+          {commentCount}
+        </span>
+      </div>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
       </Card.Body>
+      <CreateComment />
     </Card>
   );
 };

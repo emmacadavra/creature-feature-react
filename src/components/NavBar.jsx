@@ -6,8 +6,6 @@ import cfLogoSmall from "../assets/cf_logo_small.png";
 import home from "../assets/home.png";
 import login from "../assets/login.png";
 import signup from "../assets/signup.png";
-// import myfeed from "../assets/my_feed.png";
-// import faves from "../assets/faves.png";
 import logout from "../assets/logout.png";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
