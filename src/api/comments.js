@@ -24,3 +24,15 @@ export const getComments = async (postId) => {
     }),
   };
 };
+
+export const createComment = async (content, postId) => {
+  const { data: newComment } = await axiosReq.post("/comments/", {
+    content: content,
+    post: postId,
+  });
+  return newComment;
+};
+
+export const deleteComment = async (commentId) => {
+  return axiosReq.delete(`comments/${commentId}/`);
+};
