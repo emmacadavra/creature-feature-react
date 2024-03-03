@@ -6,14 +6,38 @@
 
 .Meatballs {
   cursor: pointer;
+  padding: 0;
+  background-color: #fffcf0;
+  border: none;
+  margin: 0 0 0 3px;
 }
 
 .Meatballs:hover {
   cursor: pointer;
+  background-color: #fffcf0;
+  border: none;
 }
 
-.Absolute {
+.Meatballs:hover:active {
+  cursor: pointer;
+  background-color: #fffcf0;
+  border: none;
+}
+
+.Meatballs:active {
+  cursor: pointer;
+  background-color: #fffcf0;
+  border: none;
+}
+
+.Meatballs:focus {
+  cursor: pointer;
+  background-color: #fffcf0;
+  border: none;
+}
+
+/* .Absolute {
   position: absolute;
   right: 0;
   z-index: 99;
-}
+} */

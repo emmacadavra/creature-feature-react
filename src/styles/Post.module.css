@@ -17,3 +17,18 @@
   transform: translateY(0.1rem);
   transition: transform 150ms;
 }
+
+.CommentsButton:hover:active {
+  background-color: #fffcf0;
+  border: none;
+}
+
+.CommentsButton:active {
+  background-color: #fffcf0;
+  border: none;
+}
+
+.CommentsButton:focus {
+  background-color: #fffcf0;
+  border: none;
+}
