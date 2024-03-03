@@ -2,3 +2,8 @@
   margin: 3px;
   cursor: pointer;
 }
+
+.Reactions:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}

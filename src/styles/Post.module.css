@@ -5,3 +5,15 @@
   border-radius: 10px;
   padding: 0.5rem;
 }
+
+.CommentsButton {
+  background-color: #fffcf0;
+  border: none;
+}
+
+.CommentsButton:hover {
+  background-color: #fffcf0;
+  border: none;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}

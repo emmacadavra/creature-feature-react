@@ -108,7 +108,10 @@ const Post = (props) => {
           loveCount={loveCount}
         />
         <span>
-          <Button onClick={toggleShowComments}>
+          <Button
+            onClick={toggleShowComments}
+            className={styles.CommentsButton}
+          >
             <img src={commentsImg} />
           </Button>
           {commentCount}

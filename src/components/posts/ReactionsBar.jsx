@@ -13,7 +13,15 @@ import { Image, Overlay } from "react-bootstrap";
 import { createReaction } from "../../api/reactions";
 import { useAuth } from "../../contexts/AuthContext";
 
-const getReactionsSrc = (currentUserReaction) => {
+const getReactionsSrc = (postOwner, currentUserReaction) => {
+  if (postOwner === true) {
+    return {
+      crownSrc: crownDefault,
+      goodSrc: goodDefault,
+      loveSrc: loveDefault,
+    };
+  }
+
   if (!currentUserReaction) {
     return {
       crownSrc: crownDefault,
@@ -68,7 +76,12 @@ const ReactionsBar = ({
     }
   };
 
-  const { crownSrc, goodSrc, loveSrc } = getReactionsSrc(currentUserReaction);
+  const postOwner = currentUser && isOwner === true;
+
+  const { crownSrc, goodSrc, loveSrc } = getReactionsSrc(
+    postOwner,
+    currentUserReaction,
+  );
 
   return (
     <div>
