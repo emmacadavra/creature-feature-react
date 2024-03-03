@@ -2,45 +2,27 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, InputGroup } from "react-bootstrap";
 import Avatar from "../Avatar";
-import { axiosResp } from "../../api/axiosDefaults";
 import styles from "../../styles/CreateEditComment.module.css";
 
-const CreateComment = (props) => {
-  // Need to clarify if post needs updating to postId or vice versa
-  const { post, profileImage, profileId, setPostsData, setComments } = props;
+const CreateComment = ({
+  postId,
+  profileImage,
+  profileId,
+  onCommentCreate,
+}) => {
   const [content, setContent] = useState("");
 
   const handleChange = (event) => {
     setContent(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const { data } = await axiosResp.post("/comments/", {
-        content,
-        post,
-      });
-      setComments((prevComments) => ({
-        ...prevComments,
-        results: [data, ...prevComments.results],
-      }));
-      setPostsData((prevPost) => ({
-        results: [
-          {
-            ...prevPost.results[0],
-            comments_count: prevPost.results[0].comments_count + 1,
-          },
-        ],
-      }));
-      setContent("");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
-    <Form className="mt-2" onSubmit={handleSubmit}>
+    <Form
+      className="mt-2"
+      onSubmit={() => {
+        onCommentCreate(content, postId);
+      }}
+    >
       <Form.Group>
         <InputGroup>
           <Link to={`/profiles/${profileId}`}>

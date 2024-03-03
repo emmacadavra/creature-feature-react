@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "../Avatar";
 import ReactionsBar from "./ReactionsBar";
 import { MoreDropdown } from "../MoreDropdown";
 import { axiosResp } from "../../api/axiosDefaults";
-import { getComments } from "../../api/comments";
-import CreateComment from "../comments/CreateComment";
 import commentsImg from "../../assets/comments.png";
-import Asset from "../Asset";
-import Comment from "../comments/Comment";
+import Comments from "../comments/Comments";
 
 const Post = (props) => {
   const {
@@ -28,32 +25,14 @@ const Post = (props) => {
     goodCount,
     loveCount,
     commentCount,
-    setPostsData,
     updatedOn,
   } = props;
 
   const { currentUser } = useAuth();
 
-  const [commentsData, setCommentsData] = useState({ results: [] });
-  const [commentsLoaded, setCommentsLoaded] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
   const isOwner = currentUser?.username === owner;
-  const currentUserProfileImage = currentUser?.profileImage;
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const commentsData = await getComments(id);
-        setCommentsData(commentsData.results);
-        setCommentsLoaded(true);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    setCommentsLoaded(false);
-    fetchComments();
-  }, [id]);
 
   const toggleShowComments = () => {
     setShowComments(!showComments);
@@ -93,7 +72,7 @@ const Post = (props) => {
             <span>{updatedOn}</span>
           </div>
           {isOwner && (
-            <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+            <MoreDropdown onEdit={handleEdit} onDelete={handleDelete} />
           )}
         </div>
       </Card.Body>
@@ -121,41 +100,7 @@ const Post = (props) => {
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
       </Card.Body>
-      {showComments && (
-        <div>
-          {currentUser && (
-            <CreateComment
-              post={id}
-              profileId={currentUser.profileId}
-              profileImage={currentUserProfileImage}
-              setPostsData={setPostsData}
-              setComments={setCommentsData}
-            />
-          )}
-          {commentsLoaded ? (
-            commentsData.length ? (
-              commentsData.map((comment) => {
-                return (
-                  <Comment
-                    key={comment.id}
-                    {...comment}
-                    setPostsData={setPostsData}
-                    setCommentsData={setCommentsData}
-                  />
-                );
-              })
-            ) : currentUser ? (
-              <span>No comments to display... Why not be the first?</span>
-            ) : (
-              <span>No comments to display.</span>
-            )
-          ) : (
-            <Container>
-              <Asset spinner />
-            </Container>
-          )}
-        </div>
-      )}
+      {showComments && <Comments postId={id} />}
     </Card>
   );
 };

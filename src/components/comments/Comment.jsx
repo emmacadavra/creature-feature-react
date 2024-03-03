@@ -1,48 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Comment.module.css";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import { useAuth } from "../../contexts/AuthContext";
 import { MoreDropdown } from "../MoreDropdown";
-import { axiosResp } from "../../api/axiosDefaults";
+import EditComment from "./EditComment";
 
-const Comment = (props) => {
-  const {
-    id,
-    owner,
-    profileId,
-    profileImage,
-    content,
-    updatedOn,
-    setPostsData,
-    setCommentsData,
-  } = props;
-
+const Comment = ({
+  id,
+  owner,
+  profileId,
+  profileImage,
+  content,
+  updatedOn,
+  onCommentDelete,
+}) => {
+  const [showEditForm, setShowEditForm] = useState(false);
   const { currentUser } = useAuth();
   const isOwner = currentUser?.username === owner;
-  console.log(currentUser);
-  console.log("Is Owner?:", isOwner);
-
-  const handleDelete = async () => {
-    try {
-      await axiosResp.delete(`comments/${id}/`);
-      setPostsData((prevPost) => ({
-        results: [
-          {
-            ...prevPost.results[0],
-            comments_count: prevPost.results[0].comments_count - 1,
-          },
-        ],
-      }));
-      setCommentsData((prevComments) => ({
-        ...prevComments,
-        results: prevComments.results.filter((comment) => comment.id !== id),
-      }));
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   return (
     <div>
@@ -55,11 +31,26 @@ const Comment = (props) => {
           <div className="align-self-center ms-2">
             <span className={styles.Owner}>{owner}</span>
             <span className={styles.Date}>{updatedOn}</span>
-            <p>{content}</p>
+            {showEditForm ? (
+              <EditComment
+                id={id}
+                profile_id={profileId}
+                content={content}
+                profileImage={profileImage}
+                setShowEditForm={setShowEditForm}
+              />
+            ) : (
+              <p>{content}</p>
+            )}
           </div>
           {isOwner && (
             <div className="ms-auto">
-              <MoreDropdown handleEdit={() => {}} handleDelete={handleDelete} />
+              <MoreDropdown
+                onEdit={() => setShowEditForm(true)}
+                onDelete={() => {
+                  onCommentDelete(id);
+                }}
+              />
             </div>
           )}
         </Card.Body>
