@@ -77,29 +77,24 @@ const Post = (props) => {
         </div>
       </Card.Body>
       <Card.Img src={image} alt={title} />
-      <div className="d-flex justify-content-between">
-        <ReactionsBar
-          postId={id}
-          isOwner={isOwner}
-          currentUserReaction={currentUserReaction}
-          crownCount={crownCount}
-          goodCount={goodCount}
-          loveCount={loveCount}
-        />
-        <span>
-          <Button
-            onClick={toggleShowComments}
-            className={styles.CommentsButton}
-          >
-            <img src={commentsImg} />
-          </Button>
-          {commentCount}
-        </span>
-      </div>
+      <ReactionsBar
+        postId={id}
+        isOwner={isOwner}
+        currentUserReaction={currentUserReaction}
+        crownCount={crownCount}
+        goodCount={goodCount}
+        loveCount={loveCount}
+      />
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
       </Card.Body>
+      <div>
+        <Button onClick={toggleShowComments} className={styles.CommentsButton}>
+          <img src={commentsImg} />
+        </Button>
+        {commentCount}
+      </div>
       {showComments && <Comments postId={id} />}
     </Card>
   );

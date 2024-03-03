@@ -3,26 +3,6 @@ import { Button, Dropdown } from "react-bootstrap";
 import styles from "../styles/MoreDropdown.module.css";
 import threeDots from "../assets/three_dots.png";
 
-// const ThreeDotsMeatballs = React.forwardRef(({ onClick }, ref) => {
-//   return (
-//     <Dropdown>
-//       <Dropdown.Toggle variant="success" id="dropdown-basic" />
-
-//       <Dropdown.Menu>
-//         <Dropdown.Item
-//           onClick={() => {
-//             console.log("onClick handler");
-//           }}
-//         >
-//           Action
-//         </Dropdown.Item>
-//         <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-//         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-//       </Dropdown.Menu>
-//     </Dropdown>
-//   );
-// });
-
 const ThreeDotsMeatballs = React.forwardRef(({ onClick }, ref) => (
   <Button
     ref={ref}

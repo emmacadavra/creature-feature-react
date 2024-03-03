@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import styles from "../../styles/ReactionsBar.module.css";
+import styles from "./ReactionsBar.module.css";
 import crownDefault from "../../assets/crown.png";
 import crownGreyscale from "../../assets/crown_greyscale.png";
 import crownHighlight from "../../assets/crown_highlight.png";
@@ -9,7 +9,7 @@ import goodHighlight from "../../assets/good_highlight.png";
 import loveDefault from "../../assets/love.png";
 import loveGreyscale from "../../assets/love_greyscale.png";
 import loveHighlight from "../../assets/love_highlight.png";
-import { Image, Overlay } from "react-bootstrap";
+import { Overlay } from "react-bootstrap";
 import { createReaction } from "../../api/reactions";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -84,7 +84,7 @@ const ReactionsBar = ({
   );
 
   return (
-    <div>
+    <>
       <Overlay target={target.current} show={show} placement="right">
         {(props) => (
           <div
@@ -104,36 +104,39 @@ const ReactionsBar = ({
           </div>
         )}
       </Overlay>
-      <span ref={target} className="d-flex align-items-center">
-        <Image
-          src={crownSrc}
-          onClick={() => {
-            handleReaction("CROWN");
-          }}
-          className={styles.Reactions}
-          fluid
-        />
-        {crownCount}
-        <Image
-          src={goodSrc}
-          onClick={() => {
-            handleReaction("GOOD");
-          }}
-          className={styles.Reactions}
-          fluid
-        />
-        {goodCount}
-        <Image
-          src={loveSrc}
-          onClick={() => {
-            handleReaction("LOVE");
-          }}
-          className={styles.Reactions}
-          fluid
-        />
-        {loveCount}
-      </span>
-    </div>
+      <div ref={target} className={styles.ReactionsContainer}>
+        <div className={styles.Reaction}>
+          <img
+            src={crownSrc}
+            onClick={() => {
+              handleReaction("CROWN");
+            }}
+            className={styles.ReactionImg}
+          />
+          {crownCount}
+        </div>
+        <div className={styles.Reaction}>
+          <img
+            src={goodSrc}
+            onClick={() => {
+              handleReaction("GOOD");
+            }}
+            className={styles.ReactionImg}
+          />
+          {goodCount}
+        </div>
+        <div className={styles.Reaction}>
+          <img
+            src={loveSrc}
+            onClick={() => {
+              handleReaction("LOVE");
+            }}
+            className={styles.ReactionImg}
+          />
+          {loveCount}
+        </div>
+      </div>
+    </>
   );
 };
 

@@ -1,0 +1,20 @@
+.ReactionsContainer {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.Reaction {
+  display: flex;
+  flex-grow: 1;
+}
+
+.ReactionImg {
+  cursor: pointer;
+  width: 100%;
+}
+
+.ReactionImg:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
