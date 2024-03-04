@@ -13,7 +13,6 @@ import camera from "../../assets/camera.png";
 import Asset from "../Asset";
 import styles from "../../styles/CreateEditPost.module.css";
 import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults.js";
 
@@ -115,7 +114,7 @@ const CreatePost = () => {
         </Alert>
       ))}
       <div className="text-center">
-        <Button type="submit" className={`${btnStyles.Button}`}>
+        <Button type="submit" className={`${appStyles.Button}`}>
           Post Me!
         </Button>
         <Button onClick={() => {}} className={`${styles.Button}`}>

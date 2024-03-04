@@ -44,3 +44,37 @@
 * {
   box-sizing: border-box;
 }
+
+.Button {
+  align-self: center;
+  margin: 10px;
+  padding: 5px 10px;
+  background-color: #88d8c1;
+  color: rgb(0, 0, 0, 0.75);
+  border: 2px solid #5ea591;
+  font-weight: 500;
+}
+
+.Button:hover {
+  opacity: 0.8;
+  background-color: #4db497;
+  border-color: transparent;
+}
+
+.Button:hover:active {
+  background-color: #4db497;
+  border-color: transparent;
+}
+
+.Button:active {
+  background-color: #4db497;
+}
+
+.Button:focus {
+  background-color: #4db497;
+}
+
+.Large {
+  padding: 10px 30px;
+  font-size: 1.4rem;
+}

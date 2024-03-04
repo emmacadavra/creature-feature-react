@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../styles/Comment.module.css";
+import styles from "./Comment.module.css";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";

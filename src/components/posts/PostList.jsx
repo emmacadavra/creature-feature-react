@@ -5,6 +5,7 @@ import noResults from "../../assets/no_results.png";
 import Asset from "../Asset";
 import { getPosts } from "../../api/posts";
 import InfiniteScroll from "react-infinite-scroll-component";
+// import styles from "./PostList.module.css";
 
 const PostList = ({ message, filter = "", query }) => {
   const [postsData, setPostsData] = useState([]);

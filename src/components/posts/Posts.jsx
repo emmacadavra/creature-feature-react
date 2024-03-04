@@ -4,7 +4,7 @@ import PostList from "./PostList";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import CreatePost from "./CreatePost";
 import { useAuth } from "../../contexts/AuthContext";
-import styles from "../../styles/Posts.module.css";
+import styles from "./Posts.module.css";
 import appStyles from "../../App.module.css";
 import newPost from "../../assets/new_post.png";
 

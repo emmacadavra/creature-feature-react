@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import styles from "../../styles/SignInUpForm.module.css";
 import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
 import cf_text_logo from "../../assets/cf_text_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -112,7 +111,7 @@ const SignUpForm = () => {
             ))}
             <Button
               type="submit"
-              className={`${btnStyles.Button} ${btnStyles.Large}`}
+              className={`${appStyles.Button} ${appStyles.Large}`}
             >
               Sign up!
             </Button>

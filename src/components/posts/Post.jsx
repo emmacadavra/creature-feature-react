@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../styles/Post.module.css";
+import styles from "./Post.module.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";

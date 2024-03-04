@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
-import styles from "../../styles/PostFilters.module.css";
+import styles from "./PostFilters.module.css";
 import appStyles from "../../App.module.css";
 import search from "../../assets/search.png";
 import { useAuth } from "../../contexts/AuthContext";

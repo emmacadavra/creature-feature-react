@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Dropdown } from "react-bootstrap";
-import styles from "../styles/MoreDropdown.module.css";
+import styles from "./MoreDropdown.module.css";
 import threeDots from "../assets/three_dots.png";
 
 const ThreeDotsMeatballs = React.forwardRef(({ onClick }, ref) => (
