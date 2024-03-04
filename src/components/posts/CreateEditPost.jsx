@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Form,
   Button,
@@ -8,44 +8,34 @@ import {
   Image,
   Alert,
 } from "react-bootstrap";
+import uploadImage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
-import styles from "../../styles/CreateEditPost.module.css";
+import Asset from "../Asset.jsx";
+import styles from "./CreateEditPost.module.css";
 import appStyles from "../../App.module.css";
-import { useNavigate, useParams } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults.js";
 
-const EditPost = () => {
-  const [errors, setErrors] = useState({});
+const CreateEditPost = ({
+  onPostCreate,
+  onPostEdit,
+  onPostCancel,
+  postId,
+  defaultTitle = "",
+  defaultContent = "",
+  defaultImage = "",
+  defaultCategory = "",
+}) => {
+  const [errors] = useState({});
 
   const [postData, setPostData] = useState({
-    title: "",
-    content: "",
-    image: "",
-    category: "",
+    title: defaultTitle,
+    content: defaultContent,
+    image: defaultImage,
+    category: defaultCategory,
   });
 
   const { title, content, category, image } = postData;
 
   const imageInput = useRef(null);
-  const navigate = useNavigate();
-  const { id } = useParams();
-
-  useEffect(() => {
-    const handleMount = async () => {
-      try {
-        const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { title, content, category, image, is_owner } = data;
-
-        is_owner
-          ? setPostData({ title, content, image, category })
-          : navigate("/");
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    handleMount();
-  }, [navigate, id]);
 
   const handleChange = (event) => {
     setPostData({
@@ -66,24 +56,18 @@ const EditPost = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
+    const newPostData = new FormData();
 
-    formData.append("title", title);
-    formData.append("content", content);
-    formData.append("category", category);
-
-    if (imageInput?.current?.files[0]) {
-      formData.append("image", imageInput.current.files[0]);
+    newPostData.append("title", title);
+    newPostData.append("content", content);
+    if (imageInput.current.files.length > 0) {
+      newPostData.append("image", imageInput.current.files[0]);
     }
-
-    try {
-      await axiosReq.put(`/posts/${id}/`, formData);
-      navigate("/");
-    } catch (err) {
-      console.error(err);
-      if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
-      }
+    newPostData.append("category", category);
+    if (postId) {
+      onPostEdit(postId, newPostData);
+    } else {
+      onPostCreate(newPostData);
     }
   };
 
@@ -94,7 +78,7 @@ const EditPost = () => {
         <Form.Control
           type="text"
           name="title"
-          value={title}
+          value={title ?? ""}
           onChange={handleChange}
           required
         />
@@ -110,7 +94,7 @@ const EditPost = () => {
           as="textarea"
           rows={7}
           name="content"
-          value={content}
+          value={content ?? ""}
           onChange={handleChange}
         />
       </Form.Group>
@@ -121,7 +105,11 @@ const EditPost = () => {
       ))}
       <Form.Group className="text-center mt-3">
         <Form.Label>Creature Category</Form.Label>
-        <Form.Select name="category" value={category} onChange={handleChange}>
+        <Form.Select
+          name="category"
+          value={category ?? ""}
+          onChange={handleChange}
+        >
           <option value="Facinorous Fluffballs">Facinorous Fluffballs</option>
           <option value="Reptillian Villains">Reptillian Villains</option>
           <option value="Feathered Fiends">Feathered Fiends</option>
@@ -134,9 +122,9 @@ const EditPost = () => {
       ))}
       <div className="text-center">
         <Button type="submit" className={`${appStyles.Button}`}>
-          Update!
+          Post Me!
         </Button>
-        <Button onClick={() => navigate(-1)} className={`${styles.Button}`}>
+        <Button onClick={onPostCancel} className={`${styles.Button}`}>
           Cancel
         </Button>
       </div>
@@ -151,15 +139,29 @@ const EditPost = () => {
             className={`${appStyles.Content} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-              <figure>
-                <Image src={image} rounded className={appStyles.Image} />
-              </figure>
-              <div>
-                <Form.Label htmlFor="upload-image">
-                  <img src={camera} alt="Choose a new image" height="32" />
-                  Choose a different picture
+              {image ? (
+                <>
+                  <figure>
+                    <Image src={image} rounded className={appStyles.Image} />
+                  </figure>
+                  <div>
+                    <Form.Label htmlFor="upload-image">
+                      <img src={camera} alt="Choose a new image" height="32" />
+                      Choose a different picture
+                    </Form.Label>
+                  </div>
+                </>
+              ) : (
+                <Form.Label
+                  htmlFor="upload-image"
+                  className="d-flex justify-content-center"
+                >
+                  <Asset
+                    src={uploadImage}
+                    message="Click or tap to upload your image!"
+                  />
                 </Form.Label>
-              </div>
+              )}
 
               <Form.Control
                 id="upload-image"
@@ -183,4 +185,4 @@ const EditPost = () => {
   );
 };
 
-export default EditPost;
+export default CreateEditPost;

@@ -30,7 +30,7 @@ const Comments = ({ postId }) => {
       const newComment = await createComment(content, postId);
       setCommentsData([newComment, ...commentsData]);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
