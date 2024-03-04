@@ -10,6 +10,8 @@ const Comments = ({ postId }) => {
   const { currentUser } = useAuth();
   const [commentsData, setCommentsData] = useState({ results: [] });
   const [commentsLoaded, setCommentsLoaded] = useState(false);
+  const profileId = currentUser?.profile_id;
+  const profileImage = currentUser?.profile_image;
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -50,8 +52,8 @@ const Comments = ({ postId }) => {
       {currentUser && (
         <CreateComment
           postId={postId}
-          profileId={currentUser.profileId}
-          profileImage={currentUser?.profileImage}
+          profileId={profileId}
+          profileImage={profileImage}
           onCommentCreate={handleCreate}
         />
       )}

@@ -35,7 +35,6 @@ export const PostFilters = () => {
   };
 
   const debouncedHandleQueryChange = debounce(handleQueryChange, 300);
-  console.log(profileId);
 
   return (
     <Container>
