@@ -12,22 +12,24 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { deletePost, editPost, getPosts } from "../../api/posts";
 import Post from "./Post";
 import { createPost } from "../../api/posts.js";
+import { useSearchParams } from "react-router-dom";
 
 const Posts = () => {
   const { currentUser } = useAuth();
-  const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState("");
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [postsData, setPostsData] = useState([]);
   const [postsLoaded, setPostsLoaded] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMorePages, setHasMorePages] = useState(true);
   const [appendPosts, setAppendPosts] = useState(false);
+  const [searchParams] = useSearchParams();
+
+  const searchParamsObj = Object.fromEntries(searchParams.entries());
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const data = await getPosts(filter, query, page);
+        const data = await getPosts({ ...searchParamsObj, page });
         setPostsData(
           appendPosts ? [...postsData, ...data.results] : data.results,
         );
@@ -40,7 +42,7 @@ const Posts = () => {
     };
     setPostsLoaded(!appendPosts ? false : true);
     fetchPosts();
-  }, [filter, query, page]);
+  }, [searchParams, page]);
 
   const toggleShowCreatePost = () => {
     setShowCreatePost(!showCreatePost);
@@ -110,15 +112,7 @@ const Posts = () => {
       </Row>
       <Row>
         <Col className="d-flex flex-column justify-content-center">
-          {currentUser && (
-            <PostFilters
-              value={query}
-              onQueryChange={(query) => setQuery(query)}
-              onFilterChange={(filter) => {
-                setFilter(filter);
-              }}
-            />
-          )}
+          {currentUser && <PostFilters />}
         </Col>
       </Row>
       <Row>

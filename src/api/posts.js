@@ -27,10 +27,8 @@ const transformPostData = (post) => {
   };
 };
 
-export const getPosts = async (filter = "", query = "", page = 1) => {
-  const { data } = await axiosReq.get(
-    `/posts/?filter=${filter}&search=${query}&page=${page}`,
-  );
+export const getPosts = async (params) => {
+  const { data } = await axiosReq.get(`/posts`, { params: params });
 
   return {
     hasMorePages: data.next ? true : false,
