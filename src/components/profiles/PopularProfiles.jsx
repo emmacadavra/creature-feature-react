@@ -4,6 +4,7 @@ import appStyles from "../../App.module.css";
 import { getPopularProfiles } from "../../api/profiles";
 import { useAuth } from "../../contexts/AuthContext";
 import Asset from "../Asset";
+import MiniProfile from "./MiniProfile";
 // import styles from "./PopularProfiles.module.css";
 
 const PopularProfiles = ({ mobile }) => {
@@ -18,7 +19,6 @@ const PopularProfiles = ({ mobile }) => {
     const handleMount = async () => {
       try {
         const data = await getPopularProfiles(currentUser);
-        console.log(data);
         setProfileData({
           ...profileData,
           popularProfiles: data,
@@ -42,12 +42,12 @@ const PopularProfiles = ({ mobile }) => {
           {mobile ? (
             <div className="d-flex justify-content-around">
               {popularProfiles.results.slice(0, 4).map((profile) => (
-                <p key={profile.id}>{profile.owner}</p>
+                <MiniProfile key={profile.id} profile={profile} mobile />
               ))}
             </div>
           ) : (
             popularProfiles.results.map((profile) => (
-              <p key={profile.id}>{profile.owner}</p>
+              <MiniProfile key={profile.id} profile={profile} />
             ))
           )}
         </>

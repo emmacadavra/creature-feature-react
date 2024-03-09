@@ -30,7 +30,6 @@ export const PostFilters = () => {
   }, [searchParamsObj.search]);
 
   const handleQueryChange = (event) => {
-    console.log(event);
     setSearchParams({ ...searchParamsObj, search: event.target.value });
   };
 

@@ -7,14 +7,14 @@ const Homepage = () => {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col lg={3}>
           <PopularProfiles mobile />
           {/* Profile info */}
         </Col>
-        <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <Col className="py-2 p-0 p-lg-2" lg={6}>
           <Posts />
         </Col>
-        <Col>
+        <Col lg={3}>
           <PopularProfiles />
         </Col>
       </Row>
