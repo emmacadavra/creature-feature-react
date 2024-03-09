@@ -10,14 +10,11 @@ import {
   editComment,
   getComments,
 } from "../../api/comments";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 const Comments = ({ postId }) => {
   const { currentUser } = useAuth();
   const [commentsData, setCommentsData] = useState([]);
   const [commentsLoaded, setCommentsLoaded] = useState(false);
-  const [page, setPage] = useState(1);
-  const [hasMorePages, setHasMorePages] = useState(true);
   const [appendComments, setAppendComments] = useState(false);
 
   // TODO: update UseAuth to transform to camelCase
@@ -31,7 +28,6 @@ const Comments = ({ postId }) => {
         setCommentsData(
           appendComments ? [...commentsData, ...data.results] : data.results,
         );
-        setHasMorePages(data.hasMorePages);
         setCommentsLoaded(true);
         setAppendComments(false);
       } catch (err) {
@@ -40,7 +36,7 @@ const Comments = ({ postId }) => {
     };
     setCommentsLoaded(!appendComments ? false : true);
     fetchComments();
-  }, [page]);
+  }, [postId]);
 
   const handleCreate = async (postId, commentData) => {
     try {
@@ -88,31 +84,21 @@ const Comments = ({ postId }) => {
       {commentsLoaded ? (
         <>
           {commentsData.length ? (
-            <InfiniteScroll
-              dataLength={commentsData.length}
-              loader={<Asset spinner />}
-              hasMore={hasMorePages}
-              next={() => {
-                setPage(page + 1);
-                setAppendComments(true);
-              }}
-            >
-              {commentsData.map((comment) => {
-                return (
-                  <Comment
-                    key={comment.id}
-                    id={comment.id}
-                    owner={comment.owner}
-                    profileId={comment.profileId}
-                    profileImage={comment.profileImage}
-                    content={comment.content}
-                    updatedOn={comment.updatedOn}
-                    onCommentEdit={handleEdit}
-                    onCommentDelete={handleDelete}
-                  />
-                );
-              })}
-            </InfiniteScroll>
+            commentsData.map((comment) => {
+              return (
+                <Comment
+                  key={comment.id}
+                  id={comment.id}
+                  owner={comment.owner}
+                  profileId={comment.profileId}
+                  profileImage={comment.profileImage}
+                  content={comment.content}
+                  updatedOn={comment.updatedOn}
+                  onCommentEdit={handleEdit}
+                  onCommentDelete={handleDelete}
+                />
+              );
+            })
           ) : currentUser ? (
             <span>No comments to display... Why not be the first?</span>
           ) : (
