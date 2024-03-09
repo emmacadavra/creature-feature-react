@@ -28,7 +28,7 @@ const transformPostData = (post) => {
 };
 
 export const getPosts = async (params) => {
-  const { data } = await axiosReq.get(`/posts`, { params: params });
+  const { data } = await axiosReq.get(`/posts/`, { params: params });
 
   return {
     hasMorePages: data.next ? true : false,
@@ -51,7 +51,7 @@ export const editPost = async (postId, editPostData) => {
     throw new Error("editPostData must be an instance of FormData");
   }
   const { data: editedPost } = await axiosReq.put(
-    `/posts/${postId}`,
+    `/posts/${postId}/`,
     editPostData,
   );
   return transformPostData(editedPost);

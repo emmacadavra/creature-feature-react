@@ -4,25 +4,37 @@ import { Form, InputGroup } from "react-bootstrap";
 import Avatar from "../Avatar";
 import styles from "./CreateEditComment.module.css";
 
-const CreateComment = ({
+const CreateEditComment = ({
+  onCommentCreate,
+  onCommentEdit,
+  commentId,
   postId,
   profileImage,
   profileId,
-  onCommentCreate,
+  defaultContent = "",
 }) => {
-  const [content, setContent] = useState("");
+  const [commentData, setCommentData] = useState({ content: defaultContent });
+
+  const { content } = commentData;
 
   const handleChange = (event) => {
-    setContent(event.target.value);
+    setCommentData({
+      ...commentData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (commentId) {
+      onCommentEdit(commentId, commentData);
+    } else {
+      onCommentCreate(postId, commentData);
+    }
   };
 
   return (
-    <Form
-      className="mt-2"
-      onSubmit={() => {
-        onCommentCreate(content, postId);
-      }}
-    >
+    <Form className="mt-2" onSubmit={handleSubmit}>
       <Form.Group>
         <InputGroup>
           <Link to={`/profiles/${profileId}`}>
@@ -31,7 +43,8 @@ const CreateComment = ({
           <Form.Control
             placeholder="Leave a comment..."
             as="textarea"
-            value={content}
+            name="content"
+            value={content ?? ""}
             onChange={handleChange}
             rows={2}
           />
@@ -39,7 +52,7 @@ const CreateComment = ({
       </Form.Group>
       <button
         className={`${styles.Button} btn d-block ml-auto`}
-        disabled={!content.trim()}
+        disabled={!commentData}
         type="submit"
       >
         Post Comment
@@ -48,4 +61,4 @@ const CreateComment = ({
   );
 };
 
-export default CreateComment;
+export default CreateEditComment;

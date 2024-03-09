@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import { useAuth } from "../../contexts/AuthContext";
 import { MoreDropdown } from "../MoreDropdown";
-import EditComment from "./EditComment";
+import CreateEditComment from "./CreateEditComment";
 
 const Comment = ({
   id,
@@ -14,11 +14,17 @@ const Comment = ({
   profileImage,
   content,
   updatedOn,
+  onCommentEdit,
   onCommentDelete,
 }) => {
-  const [showEditForm, setShowEditForm] = useState(false);
+  const [editComment, setEditComment] = useState(false);
   const { currentUser } = useAuth();
   const isOwner = currentUser?.username === owner;
+
+  const handleEdit = async (commentId, editCommentData) => {
+    await onCommentEdit(commentId, editCommentData);
+    setEditComment(false);
+  };
 
   return (
     <div>
@@ -31,13 +37,13 @@ const Comment = ({
           <div className="align-self-center ms-2">
             <span className={styles.Owner}>{owner}</span>
             <span className={styles.Date}>{updatedOn}</span>
-            {showEditForm ? (
-              <EditComment
-                id={id}
-                profile_id={profileId}
-                content={content}
+            {editComment ? (
+              <CreateEditComment
+                onCommentEdit={handleEdit}
+                commentId={id}
+                profileId={profileId}
                 profileImage={profileImage}
-                setShowEditForm={setShowEditForm}
+                defaultContent={content}
               />
             ) : (
               <p>{content}</p>
@@ -46,7 +52,7 @@ const Comment = ({
           {isOwner && (
             <div className="ms-auto">
               <MoreDropdown
-                onEdit={() => setShowEditForm(true)}
+                onEdit={() => setEditComment(true)}
                 onDelete={() => {
                   onCommentDelete(id);
                 }}

@@ -17,24 +17,30 @@ const transformCommentData = (comment) => {
 };
 
 export const getComments = async (postId) => {
-  const { data: commentsData } = await axiosReq.get(
-    `/comments/?post=${postId}`,
-  );
+  const { data } = await axiosReq.get(`/comments/?post=${postId}`);
 
   return {
-    hasMorePages: commentsData.next ? true : false,
-    results: commentsData.results.map((comment) => {
+    hasMorePages: data.next ? true : false,
+    results: data.results.map((comment) => {
       return transformCommentData(comment);
     }),
   };
 };
 
-export const createComment = async (content, postId) => {
+export const createComment = async (postId, newCommentData) => {
   const { data: newComment } = await axiosReq.post("/comments/", {
-    content: content,
     post: postId,
+    ...newCommentData,
   });
-  return newComment;
+  return transformCommentData(newComment);
+};
+
+export const editComment = async (commentId, editCommentData) => {
+  const { data: editedComment } = await axiosReq.put(
+    `/comments/${commentId}/`,
+    editCommentData,
+  );
+  return transformCommentData(editedComment);
 };
 
 export const deleteComment = async (commentId) => {

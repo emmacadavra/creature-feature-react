@@ -56,18 +56,18 @@ const CreateEditPost = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const newPostData = new FormData();
+    const formData = new FormData();
 
-    newPostData.append("title", title);
-    newPostData.append("content", content);
+    formData.append("title", title);
+    formData.append("content", content);
     if (imageInput.current.files.length > 0) {
-      newPostData.append("image", imageInput.current.files[0]);
+      formData.append("image", imageInput.current.files[0]);
     }
-    newPostData.append("category", category);
+    formData.append("category", category);
     if (postId) {
-      onPostEdit(postId, newPostData);
+      onPostEdit(postId, formData);
     } else {
-      onPostCreate(newPostData);
+      onPostCreate(formData);
     }
   };
 
