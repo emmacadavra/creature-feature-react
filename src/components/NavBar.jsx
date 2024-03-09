@@ -76,7 +76,7 @@ const NavBar = () => {
       fixed="top"
       className={styles.NavBar}
     >
-      <NavLink to="/">
+      <NavLink end to="/">
         <Navbar.Brand className={styles.NavBrand}>
           <img src={cfLogoSmall} alt="Logo" height="60" />
         </Navbar.Brand>
