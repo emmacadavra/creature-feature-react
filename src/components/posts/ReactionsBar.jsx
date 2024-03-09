@@ -10,7 +10,11 @@ import loveDefault from "../../assets/love.png";
 import loveGreyscale from "../../assets/love_greyscale.png";
 import loveHighlight from "../../assets/love_highlight.png";
 import { Overlay } from "react-bootstrap";
-import { createReaction } from "../../api/reactions";
+import {
+  createReaction,
+  deleteReaction,
+  editReaction,
+} from "../../api/reactions";
 import { useAuth } from "../../contexts/AuthContext";
 
 const getReactionsSrc = (postOwner, currentUserReaction) => {
@@ -59,18 +63,55 @@ const ReactionsBar = ({
   postId,
   isOwner,
   currentUserReaction,
-  crownCount,
-  goodCount,
-  loveCount,
+  crownCount: crownCountDefault,
+  goodCount: goodCountDefault,
+  loveCount: loveCountDefault,
 }) => {
   const { currentUser } = useAuth();
   const userId = currentUser?.pk;
   const [show, setShow] = useState(false);
+  const [userReaction, setUserReaction] = useState(currentUserReaction);
+  const [counts, setCounts] = useState({
+    crownCount: crownCountDefault,
+    goodCount: goodCountDefault,
+    loveCount: loveCountDefault,
+  });
   const target = useRef(null);
 
-  const handleReaction = (reaction) => {
-    if (currentUser && isOwner === false) {
-      createReaction(userId, postId, reaction);
+  const handleReaction = async (reaction) => {
+    if (userReaction && userReaction.reactionType === reaction) {
+      await deleteReaction(userReaction.reactionId);
+      setUserReaction(null);
+      const countField = reactionTypeToCountField(reaction);
+      setCounts({ ...counts, [countField]: counts[countField] - 1 });
+    } else if (userReaction && userReaction.reactionType !== reaction) {
+      const editedReaction = await editReaction(
+        userId,
+        postId,
+        userReaction.reactionId,
+        reaction,
+      );
+      setUserReaction({
+        reactionId: editedReaction.id,
+        reactionType: editedReaction.reactionType,
+      });
+      const countFieldToDecrement = reactionTypeToCountField(
+        userReaction.reactionType,
+      );
+      const countFieldToIncrement = reactionTypeToCountField(reaction);
+      setCounts({
+        ...counts,
+        [countFieldToDecrement]: counts[countFieldToDecrement] - 1,
+        [countFieldToIncrement]: counts[countFieldToIncrement] + 1,
+      });
+    } else if (currentUser && isOwner === false) {
+      const newReaction = await createReaction(userId, postId, reaction);
+      setUserReaction({
+        reactionId: newReaction.id,
+        reactionType: newReaction.reactionType,
+      });
+      const countField = reactionTypeToCountField(reaction);
+      setCounts({ ...counts, [countField]: counts[countField] + 1 });
     } else {
       setShow(!show);
     }
@@ -80,7 +121,7 @@ const ReactionsBar = ({
 
   const { crownSrc, goodSrc, loveSrc } = getReactionsSrc(
     postOwner,
-    currentUserReaction,
+    userReaction,
   );
 
   return (
@@ -113,7 +154,7 @@ const ReactionsBar = ({
             }}
             className={styles.ReactionImg}
           />
-          {crownCount}
+          {counts.crownCount}
         </div>
         <div className={styles.Reaction}>
           <img
@@ -123,7 +164,7 @@ const ReactionsBar = ({
             }}
             className={styles.ReactionImg}
           />
-          {goodCount}
+          {counts.goodCount}
         </div>
         <div className={styles.Reaction}>
           <img
@@ -133,11 +174,23 @@ const ReactionsBar = ({
             }}
             className={styles.ReactionImg}
           />
-          {loveCount}
+          {counts.loveCount}
         </div>
       </div>
     </>
   );
+};
+
+const reactionTypeToCountField = (reactionType) => {
+  if (reactionType === "CROWN") {
+    return "crownCount";
+  }
+  if (reactionType === "GOOD") {
+    return "goodCount";
+  }
+  if (reactionType === "LOVE") {
+    return "loveCount";
+  }
 };
 
 export default ReactionsBar;
