@@ -23,8 +23,9 @@ export const getProfiles = async () => {
   return transformProfileData(allProfilesData);
 };
 
-export const getUserProfile = async (id) => {
-  const { data: profileData } = await axiosReq.get(`/profiles/${id}`);
+export const getUserProfile = async (profileId) => {
+  const { data: profileData } = await axiosReq.get(`/profiles/${profileId}/`);
+  console.log("profileData from profiles.js:", profileData);
   return transformProfileData(profileData);
 };
 
