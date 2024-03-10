@@ -9,6 +9,7 @@ import Asset from "../../components/Asset";
 import PopularProfiles from "../../components/profiles/PopularProfiles";
 import UserProfile from "./UserProfile";
 import UserProfilePosts from "./UserProfilePosts";
+// import { createFollow } from "../../api/followers";
 
 const ProfilePage = () => {
   const [profileLoaded, setProfileLoaded] = useState(false);
@@ -33,6 +34,14 @@ const ProfilePage = () => {
     fetchProfile();
     setProfileLoaded(false);
   }, [profileId, setProfileData]);
+
+  // const handleFollow = async (profileToFollowId) => {
+  //   try {
+  //     const newFollow = await createFollow(profileToFollowId);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   return (
     <Row>
