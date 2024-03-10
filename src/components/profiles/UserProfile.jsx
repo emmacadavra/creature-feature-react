@@ -2,21 +2,19 @@ import React from "react";
 import { Button, Col, Image, Row } from "react-bootstrap";
 import styles from "./UserProfile.module.css";
 
-const UserProfile = (props) => {
-  const {
-    image,
-    profileOwner,
-    postsCount,
-    followersCount,
-    followingCount,
-    followingId,
-    profileContent,
-    currentUser,
-    isOwner,
-    onFollow,
-    onUnfollow,
-  } = props;
-
+const UserProfile = ({
+  image,
+  profileOwner,
+  postsCount,
+  followersCount,
+  followingCount,
+  followingId,
+  profileContent,
+  currentUser,
+  isOwner,
+  onFollow,
+  onUnfollow,
+}) => {
   return (
     <>
       <Row className="px-3 text-center">

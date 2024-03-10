@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import { Button } from "react-bootstrap";
 
-const MiniProfile = (props) => {
-  const { profile, mobile, imageSize = 55 } = props;
+const MiniProfile = ({ profile, mobile, imageSize = 55 }) => {
   const { id, followingId, image, owner } = profile;
   const { currentUser } = useAuth();
   const isOwner = currentUser?.username === owner;

@@ -10,26 +10,24 @@ import commentsImg from "../../assets/comments.png";
 import Comments from "../comments/Comments";
 import CreateEditPost from "./CreateEditPost";
 
-const Post = (props) => {
-  const {
-    id,
-    owner,
-    profileId,
-    profileImage,
-    title,
-    content,
-    image,
-    category,
-    currentUserReaction,
-    crownCount,
-    goodCount,
-    loveCount,
-    commentCount,
-    updatedOn,
-    onPostEdit,
-    onPostDelete,
-  } = props;
-
+const Post = ({
+  id,
+  owner,
+  profileId,
+  profileImage,
+  title,
+  content,
+  image,
+  category,
+  currentUserReaction,
+  crownCount,
+  goodCount,
+  loveCount,
+  commentCount,
+  updatedOn,
+  onPostEdit,
+  onPostDelete,
+}) => {
   const { currentUser } = useAuth();
 
   const [showComments, setShowComments] = useState(false);
