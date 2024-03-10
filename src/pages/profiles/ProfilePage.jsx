@@ -4,7 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import appStyles from "../../App.module.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { useParams } from "react-router-dom";
-import { getUserProfile } from "../../api/profiles";
+import { editProfile, getUserProfile } from "../../api/profiles";
 import Asset from "../../components/Asset";
 import PopularProfiles from "../../components/profiles/PopularProfiles";
 import UserProfile from "../../components/profiles/UserProfile";
@@ -34,6 +34,15 @@ const ProfilePage = () => {
     setProfileLoaded(false);
   }, [profileId, setProfileData]);
 
+  const handleEdit = async (profileId, editProfileData) => {
+    try {
+      const editedProfile = await editProfile(profileId, editProfileData);
+      setProfileData({ ...editedProfile });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // const handleFollow = async (profileToFollowId) => {
   //   try {
   //     const newFollow = await createFollow(profileToFollowId);
@@ -50,17 +59,20 @@ const ProfilePage = () => {
           {profileLoaded ? (
             <>
               <UserProfile
-                image={profileData?.image}
                 profileOwner={profileData?.owner}
+                profileId={profileData.id}
+                name={profileData?.name}
+                content={profileData?.content}
+                image={profileData?.image}
                 postsCount={profileData?.postsCount}
                 followersCount={profileData?.followersCount}
                 followingCount={profileData?.followingCount}
                 followingId={profileData?.followingId}
-                profileContent={profileData?.content}
                 currentUser={currentUser}
                 isOwner={isOwner}
                 onFollow={() => {}}
                 onUnfollow={() => {}}
+                onProfileEdit={handleEdit}
               />
               <Posts
                 getPostsParams={{ owner__profile: profileId }}

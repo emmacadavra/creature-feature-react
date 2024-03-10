@@ -30,6 +30,17 @@ export const getUserProfile = async (profileId) => {
   return transformProfileData(userProfileData);
 };
 
+export const editProfile = async (profileId, editProfileData) => {
+  if (!(editProfileData instanceof FormData)) {
+    throw new Error("editProfileData must be an instance of FormData");
+  }
+  const { data: editedPost } = await axiosReq.put(
+    `/profiles/${profileId}/`,
+    editProfileData,
+  );
+  return transformProfileData(editedPost);
+};
+
 export const getPopularProfiles = async () => {
   const { data: popularProfiles } = await axiosReq.get(
     "/profiles/?ordering=-followers_count",
