@@ -18,13 +18,13 @@ const transformProfileData = (profile) => {
 };
 
 // TODO: figure out if necessary (probably not?)
-export const getAllProfiles = async () => {
+export const getProfiles = async () => {
   const { data: allProfilesData } = await axiosReq.get("/profiles/");
   return transformProfileData(allProfilesData);
 };
 
-export const getProfile = async (profileId) => {
-  const { data: profileData } = await axiosReq.get(`/profiles/${profileId}`);
+export const getUserProfile = async (id) => {
+  const { data: profileData } = await axiosReq.get(`/profiles/${id}`);
   return transformProfileData(profileData);
 };
 

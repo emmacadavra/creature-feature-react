@@ -6,7 +6,8 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import { AuthProvider } from "./contexts/AuthContext";
-import Homepage from "./pages/Homepage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import ProfilePage from "./pages/profiles/ProfilePage.jsx";
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
         <NavBar />
         <Container className={styles.Main}>
           <Routes>
-            <Route path="/" element={<Homepage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/signin" element={<SignInForm />} />
             <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/profiles/:id" element={<ProfilePage />} />
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
         </Container>
