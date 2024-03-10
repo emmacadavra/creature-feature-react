@@ -30,10 +30,12 @@ export const getUserProfile = async (profileId) => {
 };
 
 export const getPopularProfiles = async () => {
-  const { data } = await axiosReq.get("/profiles/?ordering=-followers_count");
+  const { data: popularProfiles } = await axiosReq.get(
+    "/profiles/?ordering=-followers_count",
+  );
 
   return {
-    results: data.results.map((profile) => {
+    results: popularProfiles.results.map((profile) => {
       return transformProfileData(profile);
     }),
   };
