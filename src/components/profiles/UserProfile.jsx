@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, Image, Row } from "react-bootstrap";
 import styles from "./UserProfile.module.css";
 import EditProfile from "../../pages/profiles/EditProfile";
-import { MoreDropdown } from "../MoreDropdown";
+import { ProfileEditDropdown } from "../MoreDropdown";
 
 const UserProfile = ({
   profileOwner,
@@ -44,7 +44,8 @@ const UserProfile = ({
         <>
           <div className="text-end m-2">
             {isOwner && (
-              <MoreDropdown
+              <ProfileEditDropdown
+                profileId={profileId}
                 onEdit={() => {
                   setEditProfile(true);
                 }}

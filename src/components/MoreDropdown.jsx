@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Dropdown } from "react-bootstrap";
 import styles from "./MoreDropdown.module.css";
 import threeDots from "../assets/three_dots.png";
+import { useNavigate } from "react-router-dom";
 
 const ThreeDotsMeatballs = React.forwardRef(({ onClick }, ref) => (
   <Button
@@ -40,6 +41,42 @@ export const MoreDropdown = ({ onEdit, onDelete }) => {
           aria-label="Delete post"
         >
           BIN
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+};
+
+export const ProfileEditDropdown = ({ id, onEdit }) => {
+  const navigate = useNavigate();
+  return (
+    <Dropdown className="ms-auto" drop="down">
+      <Dropdown.Toggle as={ThreeDotsMeatballs} />
+
+      <Dropdown.Menu>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={onEdit}
+          aria-label="Edit profile"
+        >
+          <span>icon</span>
+          Edit profile
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={() => navigate(`/profiles/${id}/edit/username`)}
+          aria-label="Change username"
+        >
+          <span>icon</span>
+          Change username
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={() => navigate(`/profiles/${id}/edit/password`)}
+          aria-label="Change password"
+        >
+          <span>icon</span>
+          Change password
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
