@@ -14,7 +14,7 @@ import Post from "./Post";
 import { createPost } from "../../api/posts.js";
 import { useSearchParams } from "react-router-dom";
 
-const Posts = () => {
+const Posts = ({ hideCreatePost, hideFilters, getPostsParams = {} }) => {
   const { currentUser } = useAuth();
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [postsData, setPostsData] = useState([]);
@@ -29,7 +29,11 @@ const Posts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const data = await getPosts({ ...searchParamsObj, page });
+        const data = await getPosts({
+          ...searchParamsObj,
+          ...getPostsParams,
+          page,
+        });
         setPostsData(
           appendPosts ? [...postsData, ...data.results] : data.results,
         );
@@ -86,35 +90,39 @@ const Posts = () => {
 
   return (
     <Container className="d-flex flex-column justify-content-center">
-      <Row>
-        <Col className="d-flex flex-column justify-content-center">
-          {currentUser && (
-            <Button
-              onClick={toggleShowCreatePost}
-              className={`${appStyles.IconLink} ${styles.CreateButton}`}
-            >
-              <img
-                src={newPost}
-                alt="Create new post"
-                height="38"
-                className={appStyles.Icon}
+      {!hideCreatePost && (
+        <Row>
+          <Col className="d-flex flex-column justify-content-center">
+            {currentUser && (
+              <Button
+                onClick={toggleShowCreatePost}
+                className={`${appStyles.IconLink} ${styles.CreateButton}`}
+              >
+                <img
+                  src={newPost}
+                  alt="Create new post"
+                  height="38"
+                  className={appStyles.Icon}
+                />
+                Create Post
+              </Button>
+            )}
+            {showCreatePost && (
+              <CreateEditPost
+                onPostCreate={handleCreate}
+                onPostCancel={toggleShowCreatePost}
               />
-              Create Post
-            </Button>
-          )}
-          {showCreatePost && (
-            <CreateEditPost
-              onPostCreate={handleCreate}
-              onPostCancel={toggleShowCreatePost}
-            />
-          )}
-        </Col>
-      </Row>
-      <Row>
-        <Col className="d-flex flex-column justify-content-center">
-          {currentUser && <PostFilters />}
-        </Col>
-      </Row>
+            )}
+          </Col>
+        </Row>
+      )}
+      {!hideFilters && (
+        <Row>
+          <Col className="d-flex flex-column justify-content-center">
+            {currentUser && <PostFilters />}
+          </Col>
+        </Row>
+      )}
       <Row>
         <Col className="d-flex flex-column justify-content-center">
           <Container>
@@ -150,7 +158,6 @@ const Posts = () => {
                               commentCount={post.commentCount}
                               updatedOn={post.updatedOn}
                               key={post.id}
-                              setPostsData={setPostsData}
                               onPostEdit={handleEdit}
                               onPostDelete={handleDelete}
                             />

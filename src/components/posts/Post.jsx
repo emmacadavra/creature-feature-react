@@ -105,7 +105,7 @@ const Post = (props) => {
             >
               <img src={commentsImg} />
             </Button>
-            {commentCount}
+            {commentCount} comments
           </div>
           {showComments && <Comments postId={id} />}
         </Card>

@@ -7,8 +7,9 @@ import { useParams } from "react-router-dom";
 import { getUserProfile } from "../../api/profiles";
 import Asset from "../../components/Asset";
 import PopularProfiles from "../../components/profiles/PopularProfiles";
-import UserProfile from "./UserProfile";
-import UserProfilePosts from "./UserProfilePosts";
+import UserProfile from "../../components/profiles/UserProfile";
+// import UserProfilePosts from "./UserProfilePosts";
+import Posts from "../../components/posts/Posts";
 // import { createFollow } from "../../api/followers";
 
 const ProfilePage = () => {
@@ -17,8 +18,6 @@ const ProfilePage = () => {
   const { currentUser } = useAuth();
   const { id: profileId } = useParams();
   const isOwner = currentUser?.username === profileData.owner;
-
-  console.log(isOwner);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -52,7 +51,7 @@ const ProfilePage = () => {
             <>
               <UserProfile
                 image={profileData?.image}
-                owner={profileData?.owner}
+                profileOwner={profileData?.owner}
                 postsCount={profileData?.postsCount}
                 followersCount={profileData?.followersCount}
                 followingCount={profileData?.followingCount}
@@ -63,7 +62,11 @@ const ProfilePage = () => {
                 onFollow={() => {}}
                 onUnfollow={() => {}}
               />
-              <UserProfilePosts />
+              <Posts
+                getPostsParams={{ owner__profile: profileId }}
+                hideFilters={true}
+                hideCreatePost={!isOwner}
+              />
             </>
           ) : (
             <Asset spinner />

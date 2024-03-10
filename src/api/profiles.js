@@ -24,16 +24,16 @@ export const getProfiles = async () => {
 };
 
 export const getUserProfile = async (profileId) => {
-  const { data: profileData } = await axiosReq.get(`/profiles/${profileId}/`);
-  console.log("profileData from profiles.js:", profileData);
-  return transformProfileData(profileData);
+  const { data: userProfileData } = await axiosReq.get(
+    `/profiles/${profileId}/`,
+  );
+  return transformProfileData(userProfileData);
 };
 
 export const getPopularProfiles = async () => {
   const { data: popularProfiles } = await axiosReq.get(
     "/profiles/?ordering=-followers_count",
   );
-
   return {
     results: popularProfiles.results.map((profile) => {
       return transformProfileData(profile);

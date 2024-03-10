@@ -5,7 +5,7 @@ import styles from "./UserProfile.module.css";
 const UserProfile = (props) => {
   const {
     image,
-    owner,
+    profileOwner,
     postsCount,
     followersCount,
     followingCount,
@@ -24,7 +24,7 @@ const UserProfile = (props) => {
           <Image className={styles.ProfileImage} roundedCircle src={image} />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{owner}</h3>
+          <h3 className="m-2">{profileOwner}</h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{postsCount}</div>
