@@ -9,7 +9,7 @@ import goodHighlight from "../../assets/good_highlight.png";
 import loveDefault from "../../assets/love.png";
 import loveGreyscale from "../../assets/love_greyscale.png";
 import loveHighlight from "../../assets/love_highlight.png";
-import { Overlay } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import {
   createReaction,
   deleteReaction,
@@ -126,57 +126,49 @@ const ReactionsBar = ({
 
   return (
     <>
-      <Overlay target={target.current} show={show} placement="right">
-        {(props) => (
-          <div
-            {...props}
-            style={{
-              position: "absolute",
-              backgroundColor: "rgba(255, 100, 100, 0.85)",
-              padding: "2px 10px",
-              color: "white",
-              borderRadius: 3,
-              ...props.style,
-            }}
-          >
+      <OverlayTrigger
+        overlay={
+          <Tooltip>
             {currentUser
               ? "You can't react to your own posts!"
               : "Please log in to react to posts!"}
+          </Tooltip>
+        }
+        placement="bottom"
+      >
+        <div ref={target} className={styles.ReactionsContainer}>
+          <div className={styles.Reaction}>
+            <img
+              src={crownSrc}
+              onClick={() => {
+                handleReaction("CROWN");
+              }}
+              className={styles.ReactionImg}
+            />
+            {counts.crownCount}
           </div>
-        )}
-      </Overlay>
-      <div ref={target} className={styles.ReactionsContainer}>
-        <div className={styles.Reaction}>
-          <img
-            src={crownSrc}
-            onClick={() => {
-              handleReaction("CROWN");
-            }}
-            className={styles.ReactionImg}
-          />
-          {counts.crownCount}
+          <div className={styles.Reaction}>
+            <img
+              src={goodSrc}
+              onClick={() => {
+                handleReaction("GOOD");
+              }}
+              className={styles.ReactionImg}
+            />
+            {counts.goodCount}
+          </div>
+          <div className={styles.Reaction}>
+            <img
+              src={loveSrc}
+              onClick={() => {
+                handleReaction("LOVE");
+              }}
+              className={styles.ReactionImg}
+            />
+            {counts.loveCount}
+          </div>
         </div>
-        <div className={styles.Reaction}>
-          <img
-            src={goodSrc}
-            onClick={() => {
-              handleReaction("GOOD");
-            }}
-            className={styles.ReactionImg}
-          />
-          {counts.goodCount}
-        </div>
-        <div className={styles.Reaction}>
-          <img
-            src={loveSrc}
-            onClick={() => {
-              handleReaction("LOVE");
-            }}
-            className={styles.ReactionImg}
-          />
-          {counts.loveCount}
-        </div>
-      </div>
+      </OverlayTrigger>
     </>
   );
 };

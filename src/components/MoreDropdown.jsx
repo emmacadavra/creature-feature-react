@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 const ThreeDotsMeatballs = React.forwardRef(({ onClick }, ref) => (
   <Button
     ref={ref}
-    onClick={(e) => {
-      e.preventDefault();
-      onClick(e);
+    onClick={(event) => {
+      event.preventDefault();
+      onClick(event);
+      console.log(event);
     }}
     className={styles.Meatballs}
   >
@@ -26,6 +27,7 @@ export const MoreDropdown = ({ onEdit, onDelete }) => {
 
       <Dropdown.Menu
         className="text-center"
+        show={false}
         popperConfig={{ strategy: "fixed" }}
       >
         <Dropdown.Item

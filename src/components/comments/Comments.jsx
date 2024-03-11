@@ -76,6 +76,7 @@ const Comments = ({ postId }) => {
                   profileImage={comment.profileImage}
                   content={comment.content}
                   likeId={comment.likeId}
+                  likesCount={comment.likesCount}
                   updatedOn={comment.updatedOn}
                   onCommentEdit={handleEdit}
                   onCommentDelete={handleDelete}
