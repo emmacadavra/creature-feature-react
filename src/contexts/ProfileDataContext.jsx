@@ -19,6 +19,12 @@ export const ProfilesProvider = ({ children }) => {
   const [currentProfileLoading, setCurrentProfileLoading] = useState(false);
 
   const { currentUser } = useAuth();
+  const currentUserProfileId = currentUser?.profile_id;
+
+  const currentProfile = getProfileById(currentProfiles, currentProfileId);
+  // const currentProfileIsCurrentUser = Boolean(
+  //   currentProfile && currentProfile.owner === currentUser?.username,
+  // );
 
   useEffect(() => {
     const handleMount = async () => {
@@ -39,12 +45,10 @@ export const ProfilesProvider = ({ children }) => {
     setCurrentProfileId(profileId);
 
     // Find the index of the requested profileId if it is already in currentProfiles
-    const currentProfileIndex = currentProfiles?.findIndex(
-      (currentProfile) => currentProfile.id === profileId,
-    );
+    const currentProfile = getProfileById(currentProfiles, profileId);
 
     // If the requested prodileId is already in currentProfiles we don't need to get it again
-    if (currentProfileIndex >= 0) {
+    if (currentProfile) {
       return;
     }
 
@@ -58,42 +62,62 @@ export const ProfilesProvider = ({ children }) => {
   const editCurrentProfile = async (editProfileData) => {
     const editedProfile = await editProfile(currentProfileId, editProfileData);
 
-    const currentProfileIndex = currentProfiles.findIndex(
-      (currentProfile) => currentProfile.id === currentProfileId,
+    const updatedCurrentProfiles = updateProfileById(
+      currentProfiles,
+      currentProfileId,
+      editedProfile,
     );
-    currentProfiles[currentProfileIndex] = editedProfile;
-    setCurrentProfiles([...currentProfiles]);
+    setCurrentProfiles(updatedCurrentProfiles);
   };
 
   const addFollow = async (profileId) => {
     const newFollow = await createFollow(profileId);
-
-    const currentProfileIndex = currentProfiles.findIndex(
-      (currentProfile) => currentProfile.id === profileId,
+    const targetProfile = getProfileById(currentProfiles, profileId);
+    const currentUserProfile = getProfileById(
+      currentProfiles,
+      currentUserProfileId,
     );
-    currentProfiles[currentProfileIndex] = {
-      ...currentProfiles[currentProfileIndex],
+
+    let updatedCurrentProfiles = updateProfileById(currentProfiles, profileId, {
       followingId: newFollow.id,
-    };
-    setCurrentProfiles([...currentProfiles]);
+      followersCount: targetProfile.followersCount + 1,
+    });
+
+    updatedCurrentProfiles = updateProfileById(
+      currentProfiles,
+      currentUserProfileId,
+      {
+        followingCount: currentUserProfile.followingCount + 1,
+      },
+    );
+
+    setCurrentProfiles(updatedCurrentProfiles);
   };
 
   const removeFollow = async (profileId) => {
-    const currentProfileIndex = currentProfiles.findIndex(
-      (currentProfile) => currentProfile.id === profileId,
+    const targetProfile = getProfileById(currentProfiles, profileId);
+    const currentUserProfile = getProfileById(
+      currentProfiles,
+      currentUserProfileId,
     );
 
-    await deleteFollow(currentProfiles[currentProfileIndex].followingId);
-    currentProfiles[currentProfileIndex] = {
-      ...currentProfiles[currentProfileIndex],
-      followingId: null,
-    };
-    setCurrentProfiles([...currentProfiles]);
-  };
+    await deleteFollow(targetProfile.followingId);
 
-  const currentProfile = currentProfiles.find(
-    (profile) => profile.id === currentProfileId,
-  );
+    let updatedCurrentProfiles = updateProfileById(currentProfiles, profileId, {
+      followingId: null,
+      followersCount: targetProfile.followersCount - 1,
+    });
+
+    updatedCurrentProfiles = updateProfileById(
+      currentProfiles,
+      currentUserProfileId,
+      {
+        followingCount: currentUserProfile.followingCount - 1,
+      },
+    );
+
+    setCurrentProfiles(updatedCurrentProfiles);
+  };
 
   return (
     <ProfilesContext.Provider
@@ -114,6 +138,20 @@ export const ProfilesProvider = ({ children }) => {
       {children}
     </ProfilesContext.Provider>
   );
+};
+
+const getProfileById = (profiles, id) =>
+  profiles.find((profile) => profile.id === id);
+
+const updateProfileById = (profiles, id, data) => {
+  const profileIndex = profiles.findIndex((profile) => profile.id === id);
+
+  if (profileIndex >= 0) {
+    profiles[profileIndex] = { ...profiles[profileIndex], ...data };
+    return [...profiles];
+  }
+
+  return profiles;
 };
 
 export const useProfiles = (profileId) => {

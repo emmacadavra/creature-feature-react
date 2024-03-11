@@ -52,7 +52,7 @@ const ProfilePage = () => {
               <Posts
                 getPostsParams={getPostParams}
                 hideFilters={true}
-                hideCreatePost={false}
+                hideCreatePost={!isProfileOwner}
               />
             </>
           ) : (
