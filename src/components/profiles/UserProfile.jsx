@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Button, Col, Image, Row } from "react-bootstrap";
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import styles from "./UserProfile.module.css";
+import appStyles from "../../App.module.css";
 import EditProfile from "../../pages/profiles/EditProfile";
 import { ProfileEditDropdown } from "../MoreDropdown";
+import { Link } from "react-router-dom";
 
 const UserProfile = ({
   profileOwner,
@@ -19,6 +21,7 @@ const UserProfile = ({
   onFollow,
   onUnfollow,
   onProfileEdit,
+  homepage,
 }) => {
   const [editProfile, setEditProfile] = useState(false);
 
@@ -29,7 +32,48 @@ const UserProfile = ({
 
   return (
     <>
-      {editProfile ? (
+      {homepage ? (
+        <Container
+          className={`d-none d-lg-block d-flex flex-column align-items-center justify-content-center ${appStyles.Content}`}
+        >
+          <Row className="justify-content-center">
+            <Link
+              to={`/profiles/${profileId}`}
+              className={`${appStyles.PageLink} text-center`}
+            >
+              <Image
+                className={styles.ProfileImageHomepage}
+                roundedCircle
+                src={image}
+              />
+            </Link>
+          </Row>
+          <Row className="text-center">
+            <Link to={`/profiles/${profileId}`} className={appStyles.PageLink}>
+              <h4 className="m-2">{name}</h4>
+            </Link>
+            <Link to={`/profiles/${profileId}`} className={appStyles.PageLink}>
+              <h6>{profileOwner}</h6>
+            </Link>
+          </Row>
+          <Row className="text-center">
+            <Col className="d-flex flex-column align-items-center justify-content-center">
+              <div className="text-center">
+                <div>{followersCount}</div>
+                <div>followers</div>
+              </div>
+              <div className="text-center">
+                <div>{followingCount}</div>
+                <div>following</div>
+              </div>
+              <div className="text-center">
+                <div>{postsCount}</div>
+                <div>posts</div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      ) : editProfile ? (
         <EditProfile
           onProfileEdit={handleEdit}
           onEditCancel={() => {
