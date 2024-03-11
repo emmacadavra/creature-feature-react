@@ -17,32 +17,48 @@ const transformCommentData = (comment) => {
 };
 
 export const getComments = async (postId) => {
-  const { data } = await axiosReq.get(`/comments/?post=${postId}`);
+  try {
+    const { data } = await axiosReq.get(`/comments/?post=${postId}`);
 
-  return {
-    hasMorePages: data.next ? true : false,
-    results: data.results.map((comment) => {
-      return transformCommentData(comment);
-    }),
-  };
+    return {
+      hasMorePages: data.next ? true : false,
+      results: data.results.map((comment) => {
+        return transformCommentData(comment);
+      }),
+    };
+  } catch (error) {
+    throw new Error(`Failed to getComments(): ${error}`);
+  }
 };
 
 export const createComment = async (postId, newCommentData) => {
-  const { data: newComment } = await axiosReq.post("/comments/", {
-    post: postId,
-    ...newCommentData,
-  });
-  return transformCommentData(newComment);
+  try {
+    const { data: newComment } = await axiosReq.post("/comments/", {
+      post: postId,
+      ...newCommentData,
+    });
+    return transformCommentData(newComment);
+  } catch (error) {
+    throw new Error(`Failed to createComment(): ${error}`);
+  }
 };
 
 export const editComment = async (commentId, editCommentData) => {
-  const { data: editedComment } = await axiosReq.put(
-    `/comments/${commentId}/`,
-    editCommentData,
-  );
-  return transformCommentData(editedComment);
+  try {
+    const { data: editedComment } = await axiosReq.put(
+      `/comments/${commentId}/`,
+      editCommentData,
+    );
+    return transformCommentData(editedComment);
+  } catch (error) {
+    throw new Error(`Failed to editComment(): ${error}`);
+  }
 };
 
 export const deleteComment = async (commentId) => {
-  return axiosReq.delete(`comments/${commentId}/`);
+  try {
+    return axiosReq.delete(`comments/${commentId}/`);
+  } catch (error) {
+    throw new Error(`Failed to deleteComment(): ${error}`);
+  }
 };

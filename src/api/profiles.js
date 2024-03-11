@@ -17,31 +17,42 @@ const transformProfileData = (profile) => {
   };
 };
 
-// TODO: figure out if necessary (probably not?)
 export const getProfiles = async (params) => {
-  const { data: allProfilesData } = await axiosReq.get("/profiles/", {
-    params: params,
-  });
+  try {
+    const { data: allProfilesData } = await axiosReq.get("/profiles/", {
+      params: params,
+    });
 
-  return allProfilesData.results.map((profile) => {
-    return transformProfileData(profile);
-  });
+    return allProfilesData.results.map((profile) => {
+      return transformProfileData(profile);
+    });
+  } catch (error) {
+    throw new Error(`Failed to getProfiles(): ${error}`);
+  }
 };
 
 export const getUserProfile = async (profileId) => {
-  const { data: userProfileData } = await axiosReq.get(
-    `/profiles/${profileId}/`,
-  );
-  return transformProfileData(userProfileData);
+  try {
+    const { data: userProfileData } = await axiosReq.get(
+      `/profiles/${profileId}/`,
+    );
+    return transformProfileData(userProfileData);
+  } catch (error) {
+    throw new Error(`Failed to getUserProfile(): ${error}`);
+  }
 };
 
 export const editProfile = async (profileId, editProfileData) => {
   if (!(editProfileData instanceof FormData)) {
     throw new Error("editProfileData must be an instance of FormData");
   }
-  const { data: editedPost } = await axiosReq.put(
-    `/profiles/${profileId}/`,
-    editProfileData,
-  );
-  return transformProfileData(editedPost);
+  try {
+    const { data: editedPost } = await axiosReq.put(
+      `/profiles/${profileId}/`,
+      editProfileData,
+    );
+    return transformProfileData(editedPost);
+  } catch (error) {
+    throw new Error(`Failed to editProfile(): ${error}`);
+  }
 };

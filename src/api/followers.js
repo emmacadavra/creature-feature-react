@@ -11,12 +11,20 @@ const transformFollowData = (followData) => {
 };
 
 export const createFollow = async (profileToFollowId) => {
-  const { data: newFollowData } = await axiosReq.post("/followers/", {
-    followed: profileToFollowId,
-  });
-  return transformFollowData(newFollowData);
+  try {
+    const { data: newFollowData } = await axiosReq.post("/followers/", {
+      followed: profileToFollowId,
+    });
+    return transformFollowData(newFollowData);
+  } catch (error) {
+    throw new Error(`Failed to createFollow(): ${error}`);
+  }
 };
 
 export const deleteFollow = async (profileToUnfollowId) => {
-  await axiosReq.delete(`/followers/${profileToUnfollowId}/`);
+  try {
+    await axiosReq.delete(`/followers/${profileToUnfollowId}/`);
+  } catch (error) {
+    throw new Error(`Failed to deleteFollow(): ${error}`);
+  }
 };

@@ -11,12 +11,16 @@ const transformReactionData = (reaction) => {
 };
 
 export const createReaction = async (userId, postId, reaction) => {
-  const { data: newReaction } = await axiosReq.post("/reactions/", {
-    owner: userId,
-    post: postId,
-    reaction: reaction,
-  });
-  return transformReactionData(newReaction);
+  try {
+    const { data: newReaction } = await axiosReq.post("/reactions/", {
+      owner: userId,
+      post: postId,
+      reaction: reaction,
+    });
+    return transformReactionData(newReaction);
+  } catch (error) {
+    throw new Error(`Failed to createReaction(): ${error}`);
+  }
 };
 
 export const editReaction = async (
@@ -25,13 +29,21 @@ export const editReaction = async (
   reactionId,
   reactionType,
 ) => {
-  const { data: editedReaction } = await axiosReq.put(
-    `/reactions/${reactionId}`,
-    { owner: userId, post: postId, id: reactionId, reaction: reactionType },
-  );
-  return transformReactionData(editedReaction);
+  try {
+    const { data: editedReaction } = await axiosReq.put(
+      `/reactions/${reactionId}`,
+      { owner: userId, post: postId, id: reactionId, reaction: reactionType },
+    );
+    return transformReactionData(editedReaction);
+  } catch (error) {
+    throw new Error(`Failed to editReaction(): ${error}`);
+  }
 };
 
 export const deleteReaction = async (reactionId) => {
-  await axiosReq.delete(`/reactions/${reactionId}`);
+  try {
+    await axiosReq.delete(`/reactions/${reactionId}`);
+  } catch (error) {
+    throw new Error(`Failed to deleteReaction(): ${error}`);
+  }
 };

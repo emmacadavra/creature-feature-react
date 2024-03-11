@@ -28,15 +28,11 @@ export const ProfilesProvider = ({ children }) => {
 
   useEffect(() => {
     const handleMount = async () => {
-      try {
-        const data = await getProfiles({ ordering: "-followers_count" });
-        setCurrentProfiles(
-          data.map((profile) => ({ ...profile, popular: true })),
-        );
-        setCurrentProfilesLoading(false);
-      } catch (err) {
-        console.error(err);
-      }
+      const data = await getProfiles({ ordering: "-followers_count" });
+      setCurrentProfiles(
+        data.map((profile) => ({ ...profile, popular: true })),
+      );
+      setCurrentProfilesLoading(false);
     };
     handleMount();
   }, []);

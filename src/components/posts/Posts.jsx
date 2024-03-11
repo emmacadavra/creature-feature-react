@@ -28,21 +28,17 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      try {
-        const data = await getPosts({
-          ...searchParamsObj,
-          ...(getPostsParams ? getPostsParams : {}),
-          page,
-        });
-        setPostsData(
-          appendPosts ? [...postsData, ...data.results] : data.results,
-        );
-        setHasMorePages(data.hasMorePages);
-        setPostsLoaded(true);
-        setAppendPosts(false);
-      } catch (err) {
-        console.error(err);
-      }
+      const data = await getPosts({
+        ...searchParamsObj,
+        ...(getPostsParams ? getPostsParams : {}),
+        page,
+      });
+      setPostsData(
+        appendPosts ? [...postsData, ...data.results] : data.results,
+      );
+      setHasMorePages(data.hasMorePages);
+      setPostsLoaded(true);
+      setAppendPosts(false);
     };
     setPostsLoaded(!appendPosts ? false : true);
     fetchPosts();
@@ -53,39 +49,27 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
   };
 
   const handleCreate = async (newPostData) => {
-    try {
-      const newPost = await createPost(newPostData);
-      setShowCreatePost(false);
-      setPostsData([newPost, ...postsData]);
-    } catch (err) {
-      console.error(err);
-      // if (err.response?.status !== 401) {
-      //   setErrors(err.response?.data);
-      // }
-      // TODO: REMINDER!!!!
-    }
+    const newPost = await createPost(newPostData);
+    setShowCreatePost(false);
+    setPostsData([newPost, ...postsData]);
+    // if (err.response?.status !== 401) {
+    //   setErrors(err.response?.data);
+    // }
+    // TODO: REMINDER!!!!
   };
 
   const handleEdit = async (postId, editPostData) => {
-    try {
-      const editedPost = await editPost(postId, editPostData);
-      const index = postsData.findIndex((post) => {
-        return post.id === postId;
-      });
-      postsData[index] = editedPost;
-      setPostsData([...postsData]);
-    } catch (err) {
-      console.error(err);
-    }
+    const editedPost = await editPost(postId, editPostData);
+    const index = postsData.findIndex((post) => {
+      return post.id === postId;
+    });
+    postsData[index] = editedPost;
+    setPostsData([...postsData]);
   };
 
   const handleDelete = async (postId) => {
-    try {
-      await deletePost(postId);
-      setPostsData(postsData.filter((post) => post.id !== postId));
-    } catch (err) {
-      console.error(err);
-    }
+    await deletePost(postId);
+    setPostsData(postsData.filter((post) => post.id !== postId));
   };
 
   return (

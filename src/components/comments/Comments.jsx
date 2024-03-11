@@ -23,52 +23,34 @@ const Comments = ({ postId }) => {
 
   useEffect(() => {
     const fetchComments = async () => {
-      try {
-        const data = await getComments(postId);
-        setCommentsData(
-          appendComments ? [...commentsData, ...data.results] : data.results,
-        );
-        setCommentsLoaded(true);
-        setAppendComments(false);
-      } catch (err) {
-        console.error(err);
-      }
+      const data = await getComments(postId);
+      setCommentsData(
+        appendComments ? [...commentsData, ...data.results] : data.results,
+      );
+      setCommentsLoaded(true);
+      setAppendComments(false);
     };
     setCommentsLoaded(!appendComments ? false : true);
     fetchComments();
   }, [postId]);
 
   const handleCreate = async (postId, commentData) => {
-    try {
-      const newComment = await createComment(postId, commentData);
-      setCommentsData([newComment, ...commentsData]);
-    } catch (err) {
-      console.error(err);
-    }
+    const newComment = await createComment(postId, commentData);
+    setCommentsData([newComment, ...commentsData]);
   };
 
   const handleEdit = async (commentId, commentData) => {
-    try {
-      const editedComment = await editComment(commentId, commentData);
-      const index = commentsData.findIndex((comment) => {
-        return comment.id === commentId;
-      });
-      commentsData[index] = editedComment;
-      setCommentsData([...commentsData]);
-    } catch (err) {
-      console.error(err);
-    }
+    const editedComment = await editComment(commentId, commentData);
+    const index = commentsData.findIndex((comment) => {
+      return comment.id === commentId;
+    });
+    commentsData[index] = editedComment;
+    setCommentsData([...commentsData]);
   };
 
   const handleDelete = async (commentId) => {
-    try {
-      await deleteComment(commentId);
-      setCommentsData(
-        commentsData.filter((comment) => comment.id !== commentId),
-      );
-    } catch (err) {
-      console.error(err);
-    }
+    await deleteComment(commentId);
+    setCommentsData(commentsData.filter((comment) => comment.id !== commentId));
   };
 
   return (
