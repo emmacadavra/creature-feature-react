@@ -68,7 +68,7 @@ const ReactionsBar = ({
   loveCount: loveCountDefault,
 }) => {
   const { currentUser } = useAuth();
-  const userId = currentUser?.pk;
+  const userId = currentUser?.profile_id;
   const [show, setShow] = useState(false);
   const [userReaction, setUserReaction] = useState(currentUserReaction);
   const [counts, setCounts] = useState({
