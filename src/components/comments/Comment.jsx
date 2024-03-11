@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Comment.module.css";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import { useAuth } from "../../contexts/AuthContext";
 import { MoreDropdown } from "../MoreDropdown";
 import CreateEditComment from "./CreateEditComment";
+import { createLikeComment, deleteLikeComment } from "../../api/likeComments";
 
 const Comment = ({
   id,
@@ -13,17 +14,36 @@ const Comment = ({
   profileId,
   profileImage,
   content,
+  likeId,
   updatedOn,
   onCommentEdit,
   onCommentDelete,
 }) => {
+  const [commentLiked, setCommentLiked] = useState(likeId);
+  const [likeCommentCount, setLikeCommentCount] = useState();
   const [editComment, setEditComment] = useState(false);
   const { currentUser } = useAuth();
+  const userId = currentUser?.profile_id;
   const isOwner = currentUser?.username === owner;
 
   const handleEdit = async (commentId, editCommentData) => {
     await onCommentEdit(commentId, editCommentData);
     setEditComment(false);
+  };
+
+  const handleLikeComment = async () => {
+    if (commentLiked) {
+      await deleteLikeComment(likeId);
+      setCommentLiked(null);
+      setLikeCommentCount(...(likeCommentCount - 1));
+    } else if (currentUser && isOwner === false) {
+      const newLikeComment = await createLikeComment(userId, id);
+      setCommentLiked(newLikeComment);
+      setLikeCommentCount(...(likeCommentCount - 1));
+    }
+    // else {
+    //   setShow(!show);
+    // }
   };
 
   return (
@@ -59,6 +79,7 @@ const Comment = ({
               />
             </div>
           )}
+          <Button onClick={handleLikeComment}>LIKE</Button>
         </Card.Body>
       </Card>
     </div>
