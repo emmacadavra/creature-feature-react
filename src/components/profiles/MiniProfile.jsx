@@ -4,11 +4,13 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import { Button } from "react-bootstrap";
+import { useProfiles } from "../../contexts/ProfileDataContext";
 
 const MiniProfile = ({ profile, mobile, imageSize = 55 }) => {
   const { id, followingId, image, owner } = profile;
   const { currentUser } = useAuth();
   const isOwner = currentUser?.username === owner;
+  const { addFollow, removeFollow } = useProfiles();
 
   return (
     <div
@@ -27,11 +29,21 @@ const MiniProfile = ({ profile, mobile, imageSize = 55 }) => {
           currentUser &&
           !isOwner &&
           (followingId ? (
-            <Button variant="info" onClick={() => {}}>
+            <Button
+              variant="info"
+              onClick={() => {
+                removeFollow(id);
+              }}
+            >
               Unfollow
             </Button>
           ) : (
-            <Button variant="dark" onClick={() => {}}>
+            <Button
+              variant="dark"
+              onClick={() => {
+                addFollow(id);
+              }}
+            >
               Follow
             </Button>
           ))}
