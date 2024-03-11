@@ -1,83 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 // import styles from "./ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { useParams } from "react-router-dom";
-import { editProfile, getUserProfile } from "../../api/profiles";
 import Asset from "../../components/Asset";
 import PopularProfiles from "../../components/profiles/PopularProfiles";
 import UserProfile from "../../components/profiles/UserProfile";
-// import UserProfilePosts from "./UserProfilePosts";
 import Posts from "../../components/posts/Posts";
-// import { createFollow } from "../../api/followers";
+import { useProfiles } from "../../contexts/ProfileDataContext";
 
 const ProfilePage = () => {
-  const [profileLoaded, setProfileLoaded] = useState(false);
-  const [profileData, setProfileData] = useState({});
   const { currentUser } = useAuth();
-  const { id: profileId } = useParams();
-  const isOwner = currentUser?.username === profileData.owner;
+  const { id } = useParams();
+  const profileId = Number(id);
+  const { currentProfile, addFollow, removeFollow, isProfileOwner } =
+    useProfiles(profileId);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const userProfileData = await getUserProfile(profileId);
-        const newProfileData = { ...profileData, ...userProfileData };
-        setProfileData(newProfileData);
-        setProfileLoaded(true);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchProfile();
-    setProfileLoaded(false);
-  }, [profileId, setProfileData]);
-
-  const handleEdit = async (profileId, editProfileData) => {
-    try {
-      const editedProfile = await editProfile(profileId, editProfileData);
-      setProfileData({ ...editedProfile });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // const handleFollow = async (profileToFollowId) => {
-  //   try {
-  //     const newFollow = await createFollow(profileToFollowId);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  const getPostParams = useMemo(
+    () => ({ owner__profile: profileId }),
+    [profileId],
+  );
 
   return (
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={9}>
         <PopularProfiles mobile />
         <Container className={appStyles.Content}>
-          {profileLoaded ? (
+          {currentProfile ? (
             <>
               <UserProfile
-                profileOwner={profileData?.owner}
-                profileId={profileData.id}
-                name={profileData?.name}
-                content={profileData?.content}
-                image={profileData?.image}
-                postsCount={profileData?.postsCount}
-                followersCount={profileData?.followersCount}
-                followingCount={profileData?.followingCount}
-                followingId={profileData?.followingId}
+                profileOwner={currentProfile?.owner}
+                profileId={currentProfile.id}
+                name={currentProfile?.name}
+                content={currentProfile?.content}
+                image={currentProfile?.image}
+                postsCount={currentProfile?.postsCount}
+                followersCount={currentProfile?.followersCount}
+                followingCount={currentProfile?.followingCount}
+                followingId={currentProfile?.followingId}
                 currentUser={currentUser}
-                isOwner={isOwner}
-                onFollow={() => {}}
-                onUnfollow={() => {}}
-                onProfileEdit={handleEdit}
+                isOwner={isProfileOwner}
+                onFollow={() => {
+                  addFollow(profileId);
+                }}
+                onUnfollow={() => {
+                  removeFollow(profileId);
+                }}
+                onProfileEdit={() => {}}
               />
               <Posts
-                getPostsParams={{ owner__profile: profileId }}
+                getPostsParams={getPostParams}
                 hideFilters={true}
-                hideCreatePost={!isOwner}
+                hideCreatePost={false}
               />
             </>
           ) : (
@@ -91,29 +66,5 @@ const ProfilePage = () => {
     </Row>
   );
 };
-
-// const ProfilePage = () => {
-
-//   useEffect(() => {
-
-{
-  /* <Container>
-{profileLoaded ? (
-  <>
-    <Row>
-      <Col>
-        <UserProfile />
-      </Col>
-    </Row>
-    <Row>
-      <UserPosts />
-    </Row>
-  </>
-) : (
-  <Asset spinner />
-)}
-</Container>
-); */
-}
 
 export default ProfilePage;

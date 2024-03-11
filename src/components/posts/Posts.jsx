@@ -14,7 +14,7 @@ import Post from "./Post";
 import { createPost } from "../../api/posts.js";
 import { useSearchParams } from "react-router-dom";
 
-const Posts = ({ hideCreatePost, hideFilters, getPostsParams = {} }) => {
+const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
   const { currentUser } = useAuth();
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [postsData, setPostsData] = useState([]);
@@ -31,7 +31,7 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = {} }) => {
       try {
         const data = await getPosts({
           ...searchParamsObj,
-          ...getPostsParams,
+          ...(getPostsParams ? getPostsParams : {}),
           page,
         });
         setPostsData(
@@ -46,7 +46,7 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = {} }) => {
     };
     setPostsLoaded(!appendPosts ? false : true);
     fetchPosts();
-  }, [searchParams, page]);
+  }, [searchParams, page, getPostsParams]);
 
   const toggleShowCreatePost = () => {
     setShowCreatePost(!showCreatePost);

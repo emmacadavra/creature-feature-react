@@ -18,9 +18,14 @@ const transformProfileData = (profile) => {
 };
 
 // TODO: figure out if necessary (probably not?)
-export const getProfiles = async () => {
-  const { data: allProfilesData } = await axiosReq.get("/profiles/");
-  return transformProfileData(allProfilesData);
+export const getProfiles = async (params) => {
+  const { data: allProfilesData } = await axiosReq.get("/profiles/", {
+    params: params,
+  });
+
+  return allProfilesData.results.map((profile) => {
+    return transformProfileData(profile);
+  });
 };
 
 export const getUserProfile = async (profileId) => {
@@ -39,15 +44,4 @@ export const editProfile = async (profileId, editProfileData) => {
     editProfileData,
   );
   return transformProfileData(editedPost);
-};
-
-export const getPopularProfiles = async () => {
-  const { data: popularProfiles } = await axiosReq.get(
-    "/profiles/?ordering=-followers_count",
-  );
-  return {
-    results: popularProfiles.results.map((profile) => {
-      return transformProfileData(profile);
-    }),
-  };
 };
