@@ -9,7 +9,7 @@ import goodHighlight from "../../assets/good_highlight.png";
 import loveDefault from "../../assets/love.png";
 import loveGreyscale from "../../assets/love_greyscale.png";
 import loveHighlight from "../../assets/love_highlight.png";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import {
   createReaction,
   deleteReaction,
@@ -124,51 +124,72 @@ const ReactionsBar = ({
     userReaction,
   );
 
+  const ReactionsBarContent = (
+    <div ref={target} className={styles.ReactionsContainer}>
+      <div
+        className={`d-flex flex-column align-items-center ${styles.Reaction}`}
+      >
+        <Button className={styles.ReactionButton}>
+          <img
+            src={crownSrc}
+            onClick={() => {
+              handleReaction("CROWN");
+            }}
+            className={styles.ReactionImg}
+          />
+        </Button>
+        {counts.crownCount}
+      </div>
+      <div
+        className={`d-flex flex-column align-items-center ${styles.Reaction}`}
+      >
+        <Button className={styles.ReactionButton}>
+          <img
+            src={goodSrc}
+            onClick={() => {
+              handleReaction("GOOD");
+            }}
+            className={styles.ReactionImg}
+          />
+        </Button>
+        {counts.goodCount}
+      </div>
+      <div
+        className={`d-flex flex-column align-items-center ${styles.Reaction}`}
+      >
+        <Button className={styles.ReactionButton}>
+          <img
+            src={loveSrc}
+            onClick={() => {
+              handleReaction("LOVE");
+            }}
+            className={styles.ReactionImg}
+          />
+        </Button>
+        {counts.loveCount}
+      </div>
+    </div>
+  );
+
   return (
     <>
-      <OverlayTrigger
-        overlay={
-          <Tooltip>
-            {currentUser
-              ? "You can't react to your own posts!"
-              : "Please log in to react to posts!"}
-          </Tooltip>
-        }
-        placement="bottom"
-      >
-        <div ref={target} className={styles.ReactionsContainer}>
-          <div className={styles.Reaction}>
-            <img
-              src={crownSrc}
-              onClick={() => {
-                handleReaction("CROWN");
-              }}
-              className={styles.ReactionImg}
-            />
-            {counts.crownCount}
-          </div>
-          <div className={styles.Reaction}>
-            <img
-              src={goodSrc}
-              onClick={() => {
-                handleReaction("GOOD");
-              }}
-              className={styles.ReactionImg}
-            />
-            {counts.goodCount}
-          </div>
-          <div className={styles.Reaction}>
-            <img
-              src={loveSrc}
-              onClick={() => {
-                handleReaction("LOVE");
-              }}
-              className={styles.ReactionImg}
-            />
-            {counts.loveCount}
-          </div>
-        </div>
-      </OverlayTrigger>
+      {!currentUser ? (
+        <OverlayTrigger
+          placement="bottom"
+          overlay={<Tooltip>Please log in to react to posts!</Tooltip>}
+        >
+          {ReactionsBarContent}
+        </OverlayTrigger>
+      ) : postOwner ? (
+        <OverlayTrigger
+          placement="bottom"
+          overlay={<Tooltip>You can&apos;t react to your own posts!</Tooltip>}
+        >
+          {ReactionsBarContent}
+        </OverlayTrigger>
+      ) : (
+        <>{ReactionsBarContent}</>
+      )}
     </>
   );
 };

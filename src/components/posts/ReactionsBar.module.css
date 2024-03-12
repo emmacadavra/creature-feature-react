@@ -1,3 +1,11 @@
+.ReactionsOverlay {
+  position: absolute;
+  background-color: rgba(250, 76, 192, 0.85);
+  padding: 2px 10px;
+  color: white;
+  border-radius: 3px;
+}
+
 .ReactionsContainer {
   display: flex;
   justify-content: center;
@@ -12,9 +20,38 @@
 .ReactionImg {
   cursor: pointer;
   width: 100%;
+  max-width: 128px;
+  min-width: 44px;
 }
 
 .ReactionImg:hover {
   transform: translateY(0.1rem);
   transition: transform 150ms;
+}
+
+.ReactionButton {
+  background-color: #fffcf0;
+  border: none;
+}
+
+.ReactionButton:hover {
+  background-color: #fffcf0;
+  border: none;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+.ReactionButton:hover:active {
+  background-color: #fffcf0;
+  border: none;
+}
+
+.ReactionButton:active {
+  background-color: #fffcf0;
+  border: none;
+}
+
+.ReactionButton:focus {
+  background-color: #fffcf0;
+  border: none;
 }
