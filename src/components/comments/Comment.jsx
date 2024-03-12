@@ -41,7 +41,7 @@ const Comment = ({
       setLikeCommentCount(likeCommentCount - 1);
     } else if (currentUser && isOwner === false) {
       const newLikeComment = await createLikeComment(userId, id);
-      setCommentLiked(newLikeComment);
+      setCommentLiked(newLikeComment.id);
       setLikeCommentCount(likeCommentCount + 1);
     }
   };
@@ -124,13 +124,13 @@ const Comment = ({
                 aria-label="Like comment"
                 className={styles.LikeCommentButton}
               >
-                {likeId ? (
+                {commentLiked ? (
                   <img src={likeCommentHighlight} />
                 ) : (
                   <img src={likeCommentDefault} />
                 )}
               </Button>
-              {likesCount}
+              {likeCommentCount}
             </div>
           )}
         </Card.Body>

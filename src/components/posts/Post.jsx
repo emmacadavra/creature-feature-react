@@ -24,7 +24,7 @@ const Post = ({
   crownCount,
   goodCount,
   loveCount,
-  commentCount,
+  commentCount: commentCountDefault,
   updatedOn,
   onPostEdit,
   onPostDelete,
@@ -32,6 +32,7 @@ const Post = ({
   const { currentUser } = useAuth();
 
   const [showComments, setShowComments] = useState(false);
+  const [commentCount, setCommentCount] = useState(commentCountDefault);
   const [editPost, setEditPost] = useState(false);
   const isOwner = currentUser?.username === owner;
 
@@ -136,7 +137,17 @@ const Post = ({
               <img src={commentsImg} className={styles.CommentsButtonImg} />
             </Button>
           </div>
-          {showComments && <Comments postId={id} />}
+          {showComments && (
+            <Comments
+              postId={id}
+              onCommentCreated={() => {
+                setCommentCount(commentCount + 1);
+              }}
+              onCommentDeleted={() => {
+                setCommentCount(commentCount - 1);
+              }}
+            />
+          )}
         </Card>
       )}
     </>

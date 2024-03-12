@@ -11,7 +11,7 @@ import {
   getComments,
 } from "../../api/comments";
 
-const Comments = ({ postId }) => {
+const Comments = ({ postId, onCommentCreated, onCommentDeleted }) => {
   const { currentUser } = useAuth();
   const [commentsData, setCommentsData] = useState([]);
   const [commentsLoading, setCommentsLoading] = useState(true);
@@ -36,6 +36,7 @@ const Comments = ({ postId }) => {
   const handleCreate = async (postId, commentData) => {
     const newComment = await createComment(postId, commentData);
     setCommentsData([newComment, ...commentsData]);
+    onCommentCreated();
   };
 
   const handleEdit = async (commentId, commentData) => {
@@ -50,6 +51,7 @@ const Comments = ({ postId }) => {
   const handleDelete = async (commentId) => {
     await deleteComment(commentId);
     setCommentsData(commentsData.filter((comment) => comment.id !== commentId));
+    onCommentDeleted();
   };
 
   return (
