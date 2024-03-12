@@ -34,7 +34,7 @@ const UserProfile = ({
     <>
       {homepage ? (
         <Container
-          className={`d-none d-lg-block d-flex flex-column align-items-center justify-content-center ${appStyles.Content}`}
+          className={`d-none d-lg-block d-flex flex-column align-items-center justify-content-center ${appStyles.Content} ${styles.HomepageContent}`}
         >
           <Row className="justify-content-center">
             <Link
