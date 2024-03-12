@@ -8,6 +8,11 @@
   color: #494949;
 }
 
+.LikeCommentImg {
+  height: 44px;
+  width: 44px;
+}
+
 .LikeCommentButton,
 .LikeCommentButton:hover,
 .LikeCommentButton:hover:active,

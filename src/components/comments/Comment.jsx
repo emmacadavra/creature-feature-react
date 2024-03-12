@@ -50,89 +50,111 @@ const Comment = ({
     <div>
       <hr />
       <Card>
-        <Card.Body className="d-flex justify-content-between">
-          <div className="align-self-center">
-            <Link to={`/profiles/${profileId}`}>
-              <Avatar src={profileImage} height={44} />
-            </Link>
+        <Card.Body>
+          <div className="text-end">
+            <MoreDropdown
+              onEdit={() => setEditComment(true)}
+              onDelete={() => {
+                onCommentDelete(id);
+              }}
+            />
           </div>
-          <div className="align-self-center ms-2">
-            <span className={styles.Owner}>{owner}</span>
-            <span className={styles.Date}>{updatedOn}</span>
-            {editComment ? (
-              <CreateEditComment
-                onCommentEdit={handleEdit}
-                commentId={id}
-                profileId={profileId}
-                profileImage={profileImage}
-                defaultContent={content}
-              />
-            ) : (
-              <p>{content}</p>
-            )}
-          </div>
-
-          {!currentUser ? (
+          <div className="d-flex">
             <div className="align-self-center">
-              <OverlayTrigger
-                overlay={<Tooltip>Please log in to like a comment!</Tooltip>}
-                placement="left"
-              >
-                <div>
+              <Link to={`/profiles/${profileId}`}>
+                <Avatar src={profileImage} height={44} />
+              </Link>
+            </div>
+            <div className="align-self-center flex-grow-1 ms-2">
+              <span className={styles.Owner}>{owner}</span>
+              <span className={styles.Date}>{updatedOn}</span>
+              {editComment ? (
+                <CreateEditComment
+                  onCommentEdit={handleEdit}
+                  commentId={id}
+                  profileId={profileId}
+                  profileImage={profileImage}
+                  defaultContent={content}
+                />
+              ) : (
+                <p>{content}</p>
+              )}
+            </div>
+
+            <div className="align-self-end">
+              {!currentUser ? (
+                <>
+                  <OverlayTrigger
+                    overlay={
+                      <Tooltip>Please log in to like a comment!</Tooltip>
+                    }
+                    placement="left"
+                  >
+                    <div className="d-flex no-wrap align-items-center">
+                      <Button
+                        aria-label="Like comment"
+                        className={styles.LikeCommentButton}
+                      >
+                        <img
+                          src={likeCommentDefault}
+                          className={styles.LikeCommentImg}
+                        />
+                      </Button>
+                      {likesCount}
+                    </div>
+                  </OverlayTrigger>
+                </>
+              ) : isOwner ? (
+                <>
+                  <div>
+                    <OverlayTrigger
+                      overlay={
+                        <Tooltip>
+                          You can&apos;t like your own comments!
+                        </Tooltip>
+                      }
+                      placement="left"
+                    >
+                      <div className="d-flex no-wrap align-items-center">
+                        <Button
+                          onClick={handleLikeComment}
+                          aria-label="Like comment"
+                          className={styles.LikeCommentButton}
+                        >
+                          <img
+                            src={likeCommentDefault}
+                            className={styles.LikeCommentImg}
+                          />
+                        </Button>
+                        {likesCount}
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </>
+              ) : (
+                <div className="d-flex no-wrap align-items-center">
                   <Button
+                    onClick={handleLikeComment}
                     aria-label="Like comment"
                     className={styles.LikeCommentButton}
                   >
-                    <img src={likeCommentDefault} />
+                    {commentLiked ? (
+                      <img
+                        src={likeCommentHighlight}
+                        className={styles.LikeCommentImg}
+                      />
+                    ) : (
+                      <img
+                        src={likeCommentDefault}
+                        className={styles.LikeCommentImg}
+                      />
+                    )}
                   </Button>
-                  {likesCount}
+                  {likeCommentCount}
                 </div>
-              </OverlayTrigger>
+              )}
             </div>
-          ) : isOwner ? (
-            <>
-              <div className="text-end">
-                <MoreDropdown
-                  onEdit={() => setEditComment(true)}
-                  onDelete={() => {
-                    onCommentDelete(id);
-                  }}
-                />
-                <OverlayTrigger
-                  overlay={
-                    <Tooltip>You can&apos;t like your own comments!</Tooltip>
-                  }
-                  placement="left"
-                >
-                  <div>
-                    <Button
-                      onClick={handleLikeComment}
-                      aria-label="Like comment"
-                      className={styles.LikeCommentButton}
-                    >
-                      <img src={likeCommentDefault} />
-                    </Button>
-                    {likesCount}
-                  </div>
-                </OverlayTrigger>
-              </div>
-            </>
-          ) : (
-            <div>
-              <Button
-                onClick={handleLikeComment}
-                aria-label="Like comment"
-                className={styles.LikeCommentButton}
-              >
-                {commentLiked ? (
-                  <img src={likeCommentHighlight} />
-                ) : (
-                  <img src={likeCommentDefault} />
-                )}
-              </Button>
-              {likeCommentCount}
-            </div>
-          )}
+          </div>
         </Card.Body>
       </Card>
     </div>
