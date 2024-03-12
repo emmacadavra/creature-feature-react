@@ -11,7 +11,7 @@ import {
 import uploadImage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
 import Asset from "../Asset.jsx";
-import styles from "./CreateEditPost.module.css";
+// import styles from "./CreateEditPost.module.css";
 import appStyles from "../../App.module.css";
 
 const CreateEditPost = ({
@@ -121,10 +121,16 @@ const CreateEditPost = ({
         </Alert>
       ))}
       <div className="text-center">
-        <Button type="submit" className={`${appStyles.Button}`}>
+        <Button
+          type="submit"
+          className={`${appStyles.Button} ${appStyles.TurquoiseButton}`}
+        >
           Post Me!
         </Button>
-        <Button onClick={onPostCancel} className={`${styles.Button}`}>
+        <Button
+          onClick={onPostCancel}
+          className={`${appStyles.Button} ${appStyles.PinkButton}`}
+        >
           Cancel
         </Button>
       </div>

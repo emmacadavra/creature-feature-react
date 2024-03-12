@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, InputGroup } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import Avatar from "../Avatar";
-import styles from "./CreateEditComment.module.css";
+import appStyles from "../../App.module.css";
 
 const CreateEditComment = ({
   onCommentCreate,
@@ -37,9 +37,11 @@ const CreateEditComment = ({
     <Form className="mt-2" onSubmit={handleSubmit}>
       <Form.Group>
         <InputGroup>
-          <Link to={`/profiles/${profileId}`}>
-            <Avatar src={profileImage} height={32} />
-          </Link>
+          <div className="m-2">
+            <Link to={`/profiles/${profileId}`}>
+              <Avatar src={profileImage} height={48} />
+            </Link>
+          </div>
           <Form.Control
             placeholder="Leave a comment..."
             as="textarea"
@@ -50,13 +52,13 @@ const CreateEditComment = ({
           />
         </InputGroup>
       </Form.Group>
-      <button
-        className={`${styles.Button} btn d-block ml-auto`}
+      <Button
+        className={`${appStyles.Button} ${appStyles.TurquoiseButton} d-block ms-auto`}
         disabled={!commentData}
         type="submit"
       >
         Post Comment
-      </button>
+      </Button>
     </Form>
   );
 };

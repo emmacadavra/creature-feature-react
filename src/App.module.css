@@ -59,29 +59,38 @@
   align-self: center;
   margin: 10px;
   padding: 5px 10px;
-  background-color: #88d8c1;
-  color: rgb(0, 0, 0, 0.75);
-  border: 2px solid #5ea591;
+  border: 2px solid;
   font-weight: 500;
 }
 
-.Button:hover {
-  opacity: 0.8;
+.TurquoiseButton {
+  background-color: #88d8c1;
+  color: rgb(0, 0, 0, 0.75);
+  border-color: #5ea591;
+}
+
+.TurquoiseButton:hover,
+.TurquoiseButton:hover:active,
+.TurquoiseButton:active,
+.TurquoiseButton:focus {
+  color: rgb(0, 0, 0, 0.75);
   background-color: #4db497;
   border-color: transparent;
 }
 
-.Button:hover:active {
-  background-color: #4db497;
+.PinkButton {
+  background-color: #e1a2f5;
+  color: rgb(0, 0, 0, 0.75);
+  border-color: #d062f1;
+}
+
+.PinkButton:hover,
+.PinkButton:hover:active,
+.PinkButton:active,
+.PinkButton:focus {
+  background-color: #d062f1;
+  color: #242a3d;
   border-color: transparent;
-}
-
-.Button:active {
-  background-color: #4db497;
-}
-
-.Button:focus {
-  background-color: #4db497;
 }
 
 .Large {

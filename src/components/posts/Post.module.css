@@ -33,3 +33,36 @@
   background-color: #fffcf0;
   border: none;
 }
+
+.CommentsButtonImg {
+  width: 64px;
+  height: auto;
+}
+
+.FluffyCategory {
+  background-color: #e1a2f5;
+  border: 1px solid #d062f1;
+  border-radius: 10px;
+}
+
+.ScalyCategory {
+  background-color: #88d8c1;
+  border: 1px solid #5ea591;
+  border-radius: 10px;
+}
+
+.FeatheredCategory {
+  background-color: #b2a2eb;
+  border: 1px solid #8c76db;
+  border-radius: 10px;
+}
+
+.ReactionsBar {
+  flex-wrap: wrap-reverse;
+}
+
+@media screen and (min-width: 500px) {
+  .ReactionsBar {
+    flex-wrap: nowrap;
+  }
+}

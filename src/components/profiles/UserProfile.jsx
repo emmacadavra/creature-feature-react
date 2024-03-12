@@ -124,15 +124,19 @@ const UserProfile = ({
                 </Col>
               </Row>
               <Row>{content && <Col className="p-3">{content}</Col>}</Row>
-            </Col>
-            <Col lg={3} className="text-lg-right">
-              {currentUser &&
-                !isOwner &&
-                (followingId ? (
-                  <Button onClick={onUnfollow}>Unfollow</Button>
-                ) : (
-                  <Button onClick={onFollow}>Follow</Button>
-                ))}
+              <div className="text-center">
+                {currentUser &&
+                  !isOwner &&
+                  (followingId ? (
+                    <Button variant="dark" onClick={onUnfollow}>
+                      Unfollow
+                    </Button>
+                  ) : (
+                    <Button variant="info" onClick={onFollow}>
+                      Follow
+                    </Button>
+                  ))}
+              </div>
             </Col>
           </Row>
         </>

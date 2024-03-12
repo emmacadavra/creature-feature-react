@@ -45,7 +45,7 @@ export const PostFilters = () => {
                 owner__followed__owner__profile: profileId,
               });
             }}
-            className={`${styles.FilterButton}`}
+            className={`${appStyles.IconLink} ${styles.FilterButton}`}
           >
             <img
               src={myFeed}
@@ -64,7 +64,7 @@ export const PostFilters = () => {
                 ordering: "-reactions__created_on",
               });
             }}
-            className={`${styles.FilterButton}`}
+            className={`${appStyles.IconLink} ${styles.FilterButton}`}
           >
             <img
               src={myFaves}
@@ -85,8 +85,9 @@ export const PostFilters = () => {
                 category: "Facinorous Fluffballs",
               });
             }}
+            className={`${appStyles.IconLink} ${styles.CategoryFilterButton} ${styles.FluffyCategoryFilter}`}
           >
-            Facinorous Fluffballs
+            <small>Facinorous Fluffballs</small>
           </Button>
         </Col>
         <Col>
@@ -97,8 +98,9 @@ export const PostFilters = () => {
                 category: "Reptillian Villains",
               });
             }}
+            className={`${appStyles.IconLink} ${styles.CategoryFilterButton} ${styles.ScalyCategoryFilter}`}
           >
-            Reptillian Villains
+            <small>Reptillian Villains</small>
           </Button>
         </Col>
         <Col>
@@ -109,8 +111,9 @@ export const PostFilters = () => {
                 category: "Feathered Fiends",
               });
             }}
+            className={`${appStyles.IconLink} ${styles.CategoryFilterButton} ${styles.FeatheredCategoryFilter}`}
           >
-            Feathered Fiends
+            <small>Feathered Fiends</small>
           </Button>
         </Col>
       </Row>

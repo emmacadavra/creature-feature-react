@@ -24,7 +24,9 @@ const MiniProfile = ({ profile, mobile, imageSize = 55 }) => {
         >
           <Avatar src={image} height={imageSize} />
           <div className={`mx-2 ${styles.WordBreak}`}>
-            <strong>{owner}</strong>
+            <strong>
+              <small>{owner}</small>
+            </strong>
           </div>
         </Link>
       </div>
@@ -34,21 +36,22 @@ const MiniProfile = ({ profile, mobile, imageSize = 55 }) => {
           !isOwner &&
           (followingId ? (
             <Button
-              variant="info"
+              variant="dark"
               onClick={() => {
                 removeFollow(id);
               }}
+              className="px-1"
             >
-              Unfollow
+              <small>Unfollow</small>
             </Button>
           ) : (
             <Button
-              variant="dark"
+              variant="info"
               onClick={() => {
                 addFollow(id);
               }}
             >
-              Follow
+              <small>Follow</small>
             </Button>
           ))}
       </div>

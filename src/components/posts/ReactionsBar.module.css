@@ -41,16 +41,8 @@
   transition: transform 150ms;
 }
 
-.ReactionButton:hover:active {
-  background-color: #fffcf0;
-  border: none;
-}
-
-.ReactionButton:active {
-  background-color: #fffcf0;
-  border: none;
-}
-
+.ReactionButton:hover:active,
+.ReactionButton:active,
 .ReactionButton:focus {
   background-color: #fffcf0;
   border: none;

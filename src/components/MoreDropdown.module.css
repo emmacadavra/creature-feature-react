@@ -1,7 +1,18 @@
+.DropdownMenu {
+  min-width: 85px;
+}
+
 .DropdownItem {
   display: inline-block;
   max-width: 50%;
   padding: 0px;
+}
+
+.DropdownItem:hover,
+.DropdownItem:hover:active,
+.DropdownItem:active,
+.DropdownItem:focus {
+  background-color: transparent;
 }
 
 .Meatballs {
@@ -12,32 +23,16 @@
   margin: 0 0 0 3px;
 }
 
-.Meatballs:hover {
-  cursor: pointer;
-  background-color: #fffcf0;
-  border: none;
-}
-
-.Meatballs:hover:active {
-  cursor: pointer;
-  background-color: #fffcf0;
-  border: none;
-}
-
-.Meatballs:active {
-  cursor: pointer;
-  background-color: #fffcf0;
-  border: none;
-}
-
+.Meatballs:hover,
+.Meatballs:hover:active,
+.Meatballs:active,
 .Meatballs:focus {
   cursor: pointer;
   background-color: #fffcf0;
   border: none;
 }
 
-.Absolute {
-  position: absolute;
-  right: 0;
-  z-index: 99;
+.EditProfileIcon {
+  height: 44px;
+  width: auto;
 }

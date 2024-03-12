@@ -35,6 +35,34 @@ const Post = ({
   const [editPost, setEditPost] = useState(false);
   const isOwner = currentUser?.username === owner;
 
+  const getCategoryStyling = (category) => {
+    if (category === "Reptillian Villains") {
+      return (
+        <div
+          className={`${styles.CategoryTag} ${styles.ScalyCategory} text-center`}
+        >
+          {category}
+        </div>
+      );
+    } else if (category === "Feathered Fiends") {
+      return (
+        <div
+          className={`${styles.CategoryTag} ${styles.FeatheredCategory} text-center`}
+        >
+          {category}
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={`${styles.CategoryTag} ${styles.FluffyCategory} text-center`}
+        >
+          {category}
+        </div>
+      );
+    }
+  };
+
   const handleEdit = async (postId, editPostData) => {
     await onPostEdit(postId, editPostData);
     setEditPost(false);
@@ -93,22 +121,20 @@ const Post = ({
               goodCount={goodCount}
               loveCount={loveCount}
             />
-            {category && (
-              <Card.Text className="text-center">{category}</Card.Text>
-            )}
+            {category && getCategoryStyling(category)}
           </div>
           <Card.Body>
             {title && <Card.Title className="text-center">{title}</Card.Title>}
             {content && <Card.Text>{content}</Card.Text>}
           </Card.Body>
-          <div>
+          <div className="d-block ms-auto">
+            <small>{commentCount} comments</small>
             <Button
               onClick={toggleShowComments}
               className={styles.CommentsButton}
             >
-              <img src={commentsImg} />
+              <img src={commentsImg} className={styles.CommentsButtonImg} />
             </Button>
-            {commentCount} comments
           </div>
           {showComments && <Comments postId={id} />}
         </Card>
