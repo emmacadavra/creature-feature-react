@@ -16,7 +16,7 @@ const ThreeDotsMeatballs = React.forwardRef(({ onClick }, ref) => (
     }}
     className={styles.Meatballs}
   >
-    <img src={threeDots} />
+    <img src={threeDots} aria-label="Expand for more options" />
   </Button>
 ));
 

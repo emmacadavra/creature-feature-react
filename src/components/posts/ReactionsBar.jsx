@@ -125,7 +125,7 @@ const ReactionsBar = ({
   );
 
   const ReactionsBarContent = (
-    <div ref={target} className={styles.ReactionsContainer}>
+    <div ref={target} className={`d-flex ${styles.ReactionsContainer}`}>
       <div
         className={`d-flex flex-column align-items-center ${styles.Reaction}`}
       >
@@ -141,7 +141,7 @@ const ReactionsBar = ({
             className={styles.ReactionImg}
           />
         </Button>
-        {counts.crownCount}
+        <small>{counts.goodCount}</small>
       </div>
       <div
         className={`d-flex flex-column align-items-center ${styles.Reaction}`}
@@ -158,7 +158,7 @@ const ReactionsBar = ({
             className={styles.ReactionImg}
           />
         </Button>
-        {counts.goodCount}
+        <small>{counts.goodCount}</small>
       </div>
       <div
         className={`d-flex flex-column align-items-center ${styles.Reaction}`}
@@ -175,7 +175,7 @@ const ReactionsBar = ({
             className={styles.ReactionImg}
           />
         </Button>
-        {counts.loveCount}
+        <small>{counts.goodCount}</small>
       </div>
     </div>
   );

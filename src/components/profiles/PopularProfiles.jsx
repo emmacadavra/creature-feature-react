@@ -1,6 +1,5 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import appStyles from "../../App.module.css";
 import Asset from "../Asset";
 import MiniProfile from "./MiniProfile";
 import { useProfiles } from "../../contexts/ProfileDataContext";
@@ -17,9 +16,11 @@ const PopularProfiles = ({ mobile }) => {
       ) : (
         <>
           {mobile ? (
-            <div className={`${appStyles.Content}`}>
-              <div className="d-flex align-items-center justify-content-center">
-                <p>Popular profiles</p>
+            <div className={styles.PopularProfilesContent}>
+              <div
+                className={`${styles.TitleBadge} d-flex align-items-center justify-content-center`}
+              >
+                <strong className="text-center">Popular profiles</strong>
                 <img src={badge} />
               </div>
               <div className="d-flex justify-content-around">
@@ -29,9 +30,13 @@ const PopularProfiles = ({ mobile }) => {
               </div>
             </div>
           ) : (
-            <div className={`${appStyles.Content} ${styles.LargeScreen}`}>
-              <div className="d-flex align-items-center justify-content-center">
-                <p className="text-center">Popular profiles</p>
+            <div
+              className={`${styles.PopularProfilesContent} ${styles.LargeScreen}`}
+            >
+              <div
+                className={`${styles.TitleBadge} d-flex align-items-center justify-content-around`}
+              >
+                <strong className="text-center ps-2">Popular profiles</strong>
                 <img src={badge} />
               </div>
               {popularProfileData.map((profile) => (

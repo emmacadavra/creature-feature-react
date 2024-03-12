@@ -20,8 +20,8 @@
 
 .FilterButton {
   color: rgb(0, 0, 0, 0.75);
-  background-color: #bae3ff;
-  border: 2px solid #78b0d6;
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
   padding: 10px 13px 7px 10px;
   width: 100%;
   margin-bottom: 10px;
@@ -31,8 +31,8 @@
 .FilterButton:hover:active,
 .FilterButton:active,
 .FilterButton:focus {
-  background-color: #78b0d6;
-  border: 2px solid #78b0d6;
+  background-color: #fce59b;
+  border: 2px solid #fce59b;
   color: rgb(0, 0, 0, 0.9);
 }
 
@@ -46,22 +46,22 @@
 }
 
 .FluffyCategoryFilter {
-  background-color: #e1a2f5;
-  border-color: #d062f1;
+  background-color: #deceff;
+  border-color: #b996ff;
 }
 
 .FluffyCategoryFilter:hover,
 .FluffyCategoryFilter:hover:active,
 .FluffyCategoryFilter:active,
 .FluffyCategoryFilter:focus {
-  background-color: #d062f1;
+  background-color: #b996ff;
   color: #242a3d;
   border-color: transparent;
 }
 
 .ScalyCategoryFilter {
-  background-color: #88d8c1;
-  border-color: #5ea591;
+  background-color: #baf5ff;
+  border-color: #97e9f8;
 }
 
 .ScalyCategoryFilter:hover,
@@ -69,13 +69,13 @@
 .ScalyCategoryFilter:active,
 .ScalyCategoryFilter:focus {
   color: #242a3d;
-  background-color: #4db497;
+  background-color: #97e9f8;
   border-color: transparent;
 }
 
 .FeatheredCategoryFilter {
-  background-color: #b2a2eb;
-  border-color: #8c76db;
+  background-color: #c1f7b4;
+  border-color: #9fe78d;
 }
 
 .FeatheredCategoryFilter:hover,
@@ -83,6 +83,6 @@
 .FeatheredCategoryFilter:active,
 .FeatheredCategoryFilter:focus {
   color: #242a3d;
-  background-color: #8c76db;
+  background-color: #9fe78d;
   border-color: transparent;
 }

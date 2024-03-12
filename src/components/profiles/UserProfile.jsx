@@ -34,7 +34,7 @@ const UserProfile = ({
     <>
       {homepage ? (
         <Container
-          className={`d-none d-lg-block d-flex flex-column align-items-center justify-content-center ${appStyles.Content} ${styles.HomepageContent}`}
+          className={`d-none d-xl-block d-flex flex-column align-items-center justify-content-center ${appStyles.Content} ${styles.HomepageContent}`}
         >
           <Row className="justify-content-center">
             <Link
@@ -85,7 +85,7 @@ const UserProfile = ({
           defaultImage={image}
         />
       ) : (
-        <>
+        <Container>
           <div className="text-end m-2">
             {isOwner && (
               <ProfileEditDropdown
@@ -139,7 +139,7 @@ const UserProfile = ({
               </div>
             </Col>
           </Row>
-        </>
+        </Container>
       )}
     </>
   );

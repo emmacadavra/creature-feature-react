@@ -8,21 +8,11 @@
   color: #494949;
 }
 
-.LikeCommentButton {
-  background-color: #fffcf0;
-  border: none;
-}
-
-.LikeCommentButton:hover {
-  background-color: #fffcf0;
-  border: none;
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
-}
-
+.LikeCommentButton,
+.LikeCommentButton:hover,
 .LikeCommentButton:hover:active,
 .LikeCommentButton:active,
 .LikeCommentButton:focus {
-  background-color: #fffcf0;
+  background-color: transparent;
   border: none;
 }

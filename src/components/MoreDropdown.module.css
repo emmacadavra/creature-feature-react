@@ -36,3 +36,9 @@
   height: 44px;
   width: auto;
 }
+
+.Absolute {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+}

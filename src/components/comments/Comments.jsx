@@ -14,10 +14,9 @@ import {
 const Comments = ({ postId }) => {
   const { currentUser } = useAuth();
   const [commentsData, setCommentsData] = useState([]);
-  const [commentsLoaded, setCommentsLoaded] = useState(false);
+  const [commentsLoading, setCommentsLoading] = useState(true);
   const [appendComments, setAppendComments] = useState(false);
 
-  // TODO: update UseAuth to transform to camelCase
   const profileId = currentUser?.profile_id;
   const profileImage = currentUser?.profile_image;
 
@@ -27,10 +26,10 @@ const Comments = ({ postId }) => {
       setCommentsData(
         appendComments ? [...commentsData, ...data.results] : data.results,
       );
-      setCommentsLoaded(true);
+      setCommentsLoading(false);
       setAppendComments(false);
     };
-    setCommentsLoaded(!appendComments ? false : true);
+    setCommentsLoading(!appendComments ? true : false);
     fetchComments();
   }, [postId]);
 
@@ -63,7 +62,11 @@ const Comments = ({ postId }) => {
           onCommentCreate={handleCreate}
         />
       )}
-      {commentsLoaded ? (
+      {commentsLoading ? (
+        <Container>
+          <Asset spinner />
+        </Container>
+      ) : (
         <>
           {commentsData.length ? (
             commentsData.map((comment) => {
@@ -89,10 +92,6 @@ const Comments = ({ postId }) => {
             <span>No comments to display.</span>
           )}
         </>
-      ) : (
-        <Container>
-          <Asset spinner />
-        </Container>
       )}
     </div>
   );

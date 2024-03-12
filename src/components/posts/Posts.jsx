@@ -18,7 +18,7 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
   const { currentUser } = useAuth();
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [postsData, setPostsData] = useState([]);
-  const [postsLoaded, setPostsLoaded] = useState(false);
+  const [postsLoading, setPostsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMorePages, setHasMorePages] = useState(true);
   const [appendPosts, setAppendPosts] = useState(false);
@@ -37,10 +37,10 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
         appendPosts ? [...postsData, ...data.results] : data.results,
       );
       setHasMorePages(data.hasMorePages);
-      setPostsLoaded(true);
+      setPostsLoading(false);
       setAppendPosts(false);
     };
-    setPostsLoaded(!appendPosts ? false : true);
+    setPostsLoading(!appendPosts ? true : false);
     fetchPosts();
   }, [searchParams, page, getPostsParams]);
 
@@ -112,7 +112,11 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
           <Container>
             <Row>
               <Col>
-                {postsLoaded ? (
+                {postsLoading ? (
+                  <Container>
+                    <Asset spinner />
+                  </Container>
+                ) : (
                   <>
                     {postsData.length ? (
                       <InfiniteScroll
@@ -159,10 +163,6 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
                       </Container>
                     )}
                   </>
-                ) : (
-                  <Container>
-                    <Asset spinner />
-                  </Container>
                 )}
               </Col>
             </Row>

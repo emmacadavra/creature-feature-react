@@ -20,10 +20,12 @@ const MiniProfile = ({ profile, mobile, imageSize = 55 }) => {
       <div>
         <Link
           to={`/profiles/${id}`}
-          className={`${appStyles.PageLink} align-self-center`}
+          className={`d-flex align-self-center flex-column ${appStyles.PageLink}`}
         >
           <Avatar src={image} height={imageSize} />
-          <div className={`mx-2 ${styles.WordBreak}`}>
+          <div
+            className={`d-flex ${styles.WordBreak} ${styles.Username} ${!mobile && "ms-2"}`}
+          >
             <strong>
               <small>{owner}</small>
             </strong>

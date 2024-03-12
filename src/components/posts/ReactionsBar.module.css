@@ -19,6 +19,7 @@
 
 .ReactionImg {
   cursor: pointer;
+  max-height: 100%;
   width: 100%;
   max-width: 128px;
   min-width: 44px;
@@ -30,6 +31,7 @@
 }
 
 .ReactionButton {
+  height: 100%;
   background-color: #fffcf0;
   border: none;
 }

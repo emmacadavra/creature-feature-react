@@ -23,12 +23,14 @@ const ProfilePage = () => {
   );
 
   return (
-    <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={9}>
-        <PopularProfiles mobile />
-        <Container className={appStyles.Content}>
+    <Container>
+      <Row className="justify-content-around">
+        <Col className="d-lg-none py-2 p-0">
+          <PopularProfiles mobile />
+        </Col>
+        <Col lg={8} xl={7} className="py-2 px-2 p-0 p-lg-2">
           {currentProfile ? (
-            <>
+            <div className={appStyles.Content}>
               <UserProfile
                 profileOwner={currentProfile?.owner}
                 profileId={currentProfile.id}
@@ -49,21 +51,23 @@ const ProfilePage = () => {
                 }}
                 onProfileEdit={() => {}}
               />
-              <Posts
-                getPostsParams={getPostParams}
-                hideFilters={true}
-                hideCreatePost={!isProfileOwner}
-              />
-            </>
+              <Container>
+                <Posts
+                  getPostsParams={getPostParams}
+                  hideFilters={true}
+                  hideCreatePost={!isProfileOwner}
+                />
+              </Container>
+            </div>
           ) : (
             <Asset spinner />
           )}
-        </Container>
-      </Col>
-      <Col lg={3} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
-      </Col>
-    </Row>
+        </Col>
+        <Col lg={4} xl={3}>
+          <PopularProfiles />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

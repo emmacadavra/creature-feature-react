@@ -1,6 +1,6 @@
 .CreateButton {
-  background-color: #c1f7b4;
-  border: 2px solid #9fe78d;
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
   padding: 10px 13px 7px 10px;
   margin: 12px;
 }
@@ -9,7 +9,7 @@
 .CreateButton:hover:active,
 .CreateButton:active,
 .CreateButton:focus {
-  background-color: #9fe78d;
+  background-color: #fce59b;
   border-color: transparent;
   color: rgb(0, 0, 0, 0.9);
 }

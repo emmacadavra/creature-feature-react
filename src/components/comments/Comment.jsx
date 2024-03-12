@@ -7,7 +7,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import { MoreDropdown } from "../MoreDropdown";
 import CreateEditComment from "./CreateEditComment";
 import { createLikeComment, deleteLikeComment } from "../../api/likeComments";
-import likeComment from "../../assets/like.png";
+import likeCommentDefault from "../../assets/like.png";
+import likeCommentHighlight from "../../assets/like_highlight.png";
 
 const Comment = ({
   id,
@@ -49,10 +50,12 @@ const Comment = ({
     <div>
       <hr />
       <Card>
-        <Card.Body className="d-flex">
-          <Link to={`/profiles/${profileId}`}>
-            <Avatar src={profileImage} height={32} />
-          </Link>
+        <Card.Body className="d-flex justify-content-between">
+          <div className="align-self-center">
+            <Link to={`/profiles/${profileId}`}>
+              <Avatar src={profileImage} height={44} />
+            </Link>
+          </div>
           <div className="align-self-center ms-2">
             <span className={styles.Owner}>{owner}</span>
             <span className={styles.Date}>{updatedOn}</span>
@@ -68,39 +71,68 @@ const Comment = ({
               <p>{content}</p>
             )}
           </div>
-          <div className="ms-auto">
-            {isOwner && (
-              <div className="ms-auto">
+
+          {!currentUser ? (
+            <div className="align-self-center">
+              <OverlayTrigger
+                overlay={<Tooltip>Please log in to like a comment!</Tooltip>}
+                placement="left"
+              >
+                <div>
+                  <Button
+                    aria-label="Like comment"
+                    className={styles.LikeCommentButton}
+                  >
+                    <img src={likeCommentDefault} />
+                  </Button>
+                  {likesCount}
+                </div>
+              </OverlayTrigger>
+            </div>
+          ) : isOwner ? (
+            <>
+              <div className="text-end">
                 <MoreDropdown
                   onEdit={() => setEditComment(true)}
                   onDelete={() => {
                     onCommentDelete(id);
                   }}
                 />
-              </div>
-            )}
-            <OverlayTrigger
-              overlay={
-                <Tooltip>
-                  {currentUser
-                    ? "You can't like your own comments!"
-                    : "Please log in to like a comment!"}
-                </Tooltip>
-              }
-              placement="left"
-            >
-              <div>
-                <Button
-                  onClick={handleLikeComment}
-                  aria-label="Like comment"
-                  className={styles.LikeCommentButton}
+                <OverlayTrigger
+                  overlay={
+                    <Tooltip>You can&apos;t like your own comments!</Tooltip>
+                  }
+                  placement="left"
                 >
-                  <img src={likeComment} />
-                </Button>
-                {likesCount}
+                  <div>
+                    <Button
+                      onClick={handleLikeComment}
+                      aria-label="Like comment"
+                      className={styles.LikeCommentButton}
+                    >
+                      <img src={likeCommentDefault} />
+                    </Button>
+                    {likesCount}
+                  </div>
+                </OverlayTrigger>
               </div>
-            </OverlayTrigger>
-          </div>
+            </>
+          ) : (
+            <div>
+              <Button
+                onClick={handleLikeComment}
+                aria-label="Like comment"
+                className={styles.LikeCommentButton}
+              >
+                {likeId ? (
+                  <img src={likeCommentHighlight} />
+                ) : (
+                  <img src={likeCommentDefault} />
+                )}
+              </Button>
+              {likesCount}
+            </div>
+          )}
         </Card.Body>
       </Card>
     </div>

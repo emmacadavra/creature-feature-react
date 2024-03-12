@@ -1,3 +1,16 @@
 .LargeScreen {
   margin-top: 25%;
 }
+
+.TitleBadge {
+  background-color: #fce59b;
+  border: 2px solid #f8dd84;
+  border-radius: 10px;
+}
+
+.PopularProfilesContent {
+  background-color: #ffefba;
+  border: 2px solid #fce59b;
+  border-radius: 10px;
+  padding: 0.5rem;
+}

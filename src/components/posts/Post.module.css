@@ -7,6 +7,10 @@
   align-items: stretch;
 }
 
+.PostMeatballs {
+  margin: 0 0 10px 0;
+}
+
 .CommentsButton {
   background-color: #fffcf0;
   border: none;
@@ -39,26 +43,31 @@
   height: auto;
 }
 
+.CategoryTag {
+  padding: 7px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
 .FluffyCategory {
-  background-color: #e1a2f5;
-  border: 1px solid #d062f1;
-  border-radius: 10px;
+  background-color: #deceff;
+  border-radius: 5px;
 }
 
 .ScalyCategory {
-  background-color: #88d8c1;
-  border: 1px solid #5ea591;
-  border-radius: 10px;
+  background-color: #baf5ff;
+  border-radius: 5px;
 }
 
 .FeatheredCategory {
-  background-color: #b2a2eb;
-  border: 1px solid #8c76db;
-  border-radius: 10px;
+  background-color: #c1f7b4;
+  border-radius: 5px;
 }
 
 .ReactionsBar {
   flex-wrap: wrap-reverse;
+  height: auto;
 }
 
 @media screen and (min-width: 500px) {

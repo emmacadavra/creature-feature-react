@@ -14,7 +14,7 @@ const Homepage = () => {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col lg={0} xl={3}>
           <PopularProfiles mobile />
           {currentUser && (
             <UserProfile
@@ -30,10 +30,10 @@ const Homepage = () => {
             />
           )}
         </Col>
-        <Col className="py-2 p-0 p-lg-2" lg={6}>
+        <Col className="py-2 p-0 p-lg-2" lg={8} xl={6}>
           <Posts />
         </Col>
-        <Col lg={3}>
+        <Col lg={4} xl={3}>
           <PopularProfiles />
         </Col>
       </Row>

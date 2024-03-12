@@ -41,7 +41,7 @@ const Post = ({
         <div
           className={`${styles.CategoryTag} ${styles.ScalyCategory} text-center`}
         >
-          {category}
+          <small>{category}</small>
         </div>
       );
     } else if (category === "Feathered Fiends") {
@@ -49,7 +49,7 @@ const Post = ({
         <div
           className={`${styles.CategoryTag} ${styles.FeatheredCategory} text-center`}
         >
-          {category}
+          <small>{category}</small>
         </div>
       );
     } else {
@@ -57,7 +57,7 @@ const Post = ({
         <div
           className={`${styles.CategoryTag} ${styles.FluffyCategory} text-center`}
         >
-          {category}
+          <small>{category}</small>
         </div>
       );
     }
@@ -93,20 +93,20 @@ const Post = ({
               <Avatar src={profileImage} height={55} />
               {owner}
             </Link>
-            <div className="d-flex align-items-center">
-              <div>
-                <span>{updatedOn}</span>
-              </div>
+            <div className="d-flex flex-column justify-content-between">
               {isOwner && (
-                <MoreDropdown
-                  onEdit={() => {
-                    setEditPost(true);
-                  }}
-                  onDelete={() => {
-                    onPostDelete(id);
-                  }}
-                />
+                <div className={`${styles.PostMeatballs} text-end`}>
+                  <MoreDropdown
+                    onEdit={() => {
+                      setEditPost(true);
+                    }}
+                    onDelete={() => {
+                      onPostDelete(id);
+                    }}
+                  />
+                </div>
               )}
+              <div>{updatedOn}</div>
             </div>
           </Card.Body>
           <Card.Img src={image} alt={title} />
