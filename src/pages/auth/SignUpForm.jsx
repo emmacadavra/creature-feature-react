@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import styles from "./SignInUpForm.module.css";
 import appStyles from "../../App.module.css";
-import cf_text_logo from "../../assets/cf_text_logo.png";
+import cfTextLogo from "../../assets/cf_text_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -40,7 +40,7 @@ const SignUpForm = () => {
       <Col xs={12} m={8} lg={6}>
         <Container className={`text-center mt-3 ${appStyles.Content}`}>
           <img
-            src={cf_text_logo}
+            src={cfTextLogo}
             alt="Creature Feature"
             className={styles.SignInUpLogo}
           />

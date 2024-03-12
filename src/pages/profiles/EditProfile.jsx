@@ -95,10 +95,15 @@ const EditProfile = ({
         </Alert>
       ))}
       <div className="text-center">
-        <Button type="submit" className={`${appStyles.Button}`}>
-          Post Me!
+        <Button type="submit" className={`${appStyles.TurquoiseButton} m-2`}>
+          Update Me!
         </Button>
-        <Button onClick={onEditCancel}>Cancel</Button>
+        <Button
+          onClick={onEditCancel}
+          className={`${appStyles.PinkButton} m-2`}
+        >
+          Cancel
+        </Button>
       </div>
     </div>
   );

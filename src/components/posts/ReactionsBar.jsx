@@ -148,7 +148,9 @@ const ReactionsBar = ({
         </Overlay>
       )}
       <div ref={target} className={styles.ReactionsContainer}>
-        <div className={styles.Reaction}>
+        <div
+          className={`d-flex flex-column align-items-center ${styles.Reaction}`}
+        >
           <img
             src={crownSrc}
             onClick={() => {
@@ -158,7 +160,9 @@ const ReactionsBar = ({
           />
           {counts.crownCount}
         </div>
-        <div className={styles.Reaction}>
+        <div
+          className={`d-flex flex-column align-items-center ${styles.Reaction}`}
+        >
           <img
             src={goodSrc}
             onClick={() => {
@@ -168,7 +172,9 @@ const ReactionsBar = ({
           />
           {counts.goodCount}
         </div>
-        <div className={styles.Reaction}>
+        <div
+          className={`d-flex flex-column align-items-center ${styles.Reaction}`}
+        >
           <img
             src={loveSrc}
             onClick={() => {

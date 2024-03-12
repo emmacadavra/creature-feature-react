@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { editProfile, getProfiles, getUserProfile } from "../api/profiles";
+import {
+  editProfile as editProfileData,
+  getProfiles,
+  getUserProfile,
+} from "../api/profiles";
 import { createFollow, deleteFollow } from "../api/followers";
 import { useAuth } from "./AuthContext";
 
@@ -55,12 +59,12 @@ export const ProfilesProvider = ({ children }) => {
     setCurrentProfileLoading(false);
   };
 
-  const editCurrentProfile = async (editProfileData) => {
-    const editedProfile = await editProfile(currentProfileId, editProfileData);
+  const editProfile = async (profileId, profileData) => {
+    const editedProfile = await editProfileData(profileId, profileData);
 
     const updatedCurrentProfiles = updateProfileById(
       currentProfiles,
-      currentProfileId,
+      profileId,
       editedProfile,
     );
     setCurrentProfiles(updatedCurrentProfiles);
@@ -125,7 +129,7 @@ export const ProfilesProvider = ({ children }) => {
         currentProfile: currentProfile,
         currentProfileLoading,
         getProfile,
-        editCurrentProfile,
+        editProfile,
         addFollow,
         removeFollow,
         isProfileOwner: currentUser?.username === currentProfile?.owner,

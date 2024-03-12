@@ -51,6 +51,7 @@ export const editProfile = async (profileId, editProfileData) => {
       `/profiles/${profileId}/`,
       editProfileData,
     );
+
     return transformProfileData(editedPost);
   } catch (error) {
     throw new Error(`Failed to editProfile(): ${error}`);

@@ -14,8 +14,13 @@ const ProfilePage = () => {
   const { currentUser } = useAuth();
   const { id } = useParams();
   const profileId = Number(id);
-  const { currentProfile, addFollow, removeFollow, isProfileOwner } =
-    useProfiles(profileId);
+  const {
+    currentProfile,
+    addFollow,
+    removeFollow,
+    isProfileOwner,
+    editProfile,
+  } = useProfiles(profileId);
 
   const getPostParams = useMemo(
     () => ({ owner__profile: profileId }),
@@ -49,7 +54,7 @@ const ProfilePage = () => {
                 onUnfollow={() => {
                   removeFollow(profileId);
                 }}
-                onProfileEdit={() => {}}
+                onProfileEdit={editProfile}
               />
               <Container>
                 <Posts

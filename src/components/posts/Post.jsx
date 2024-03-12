@@ -112,7 +112,7 @@ const Post = ({
           </Card.Body>
           <Card.Img src={image} alt={title} />
           <div
-            className={`d-flex justify-content-center align-items-center ${styles.ReactionsBar}`}
+            className={`d-flex justify-content-around align-items-center ${styles.ReactionsBar}`}
           >
             <ReactionsBar
               postId={id}
