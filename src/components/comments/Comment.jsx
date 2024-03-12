@@ -36,7 +36,7 @@ const Comment = ({
 
   const handleLikeComment = async () => {
     if (commentLiked) {
-      await deleteLikeComment(likeId);
+      await deleteLikeComment(commentLiked);
       setCommentLiked(null);
       setLikeCommentCount(likeCommentCount - 1);
     } else if (currentUser && isOwner === false) {

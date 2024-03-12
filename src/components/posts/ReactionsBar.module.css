@@ -18,14 +18,17 @@
 }
 
 .ReactionImg {
-  cursor: pointer;
   max-height: 100%;
   width: 100%;
   max-width: 128px;
   min-width: 44px;
 }
 
-.ReactionImg:hover {
+.ReactionImgClickable {
+  cursor: pointer;
+}
+
+.ReactionImgClickable:hover {
   transform: translateY(0.1rem);
   transition: transform 150ms;
 }

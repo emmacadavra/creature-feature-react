@@ -9,7 +9,7 @@ import goodHighlight from "../../assets/good_highlight.png";
 import loveDefault from "../../assets/love.png";
 import loveGreyscale from "../../assets/love_greyscale.png";
 import loveHighlight from "../../assets/love_highlight.png";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Overlay } from "react-bootstrap";
 import {
   createReaction,
   deleteReaction,
@@ -124,81 +124,61 @@ const ReactionsBar = ({
     userReaction,
   );
 
-  const ReactionsBarContent = (
-    <div ref={target} className={`d-flex ${styles.ReactionsContainer}`}>
-      <div
-        className={`d-flex flex-column align-items-center ${styles.Reaction}`}
-      >
-        <Button
-          className={styles.ReactionButton}
-          aria-label="React: Your Highness!"
-        >
+  const isClickable = !currentUser || !postOwner;
+
+  return (
+    <>
+      {!currentUser && (
+        <Overlay target={target.current} show={show} placement="top">
+          {(props) => (
+            <div
+              {...props}
+              style={{
+                position: "absolute",
+                backgroundColor: "rgba(255, 100, 100, 0.85)",
+                padding: "2px 10px",
+                color: "white",
+                borderRadius: 3,
+                ...props.style,
+              }}
+            >
+              Please log in to react to posts!
+            </div>
+          )}
+        </Overlay>
+      )}
+      <div ref={target} className={styles.ReactionsContainer}>
+        <div className={styles.Reaction}>
           <img
             src={crownSrc}
             onClick={() => {
               handleReaction("CROWN");
             }}
-            className={styles.ReactionImg}
+            className={`${styles.ReactionImg} ${isClickable ? styles.ReactionImgClickable : ""}`}
           />
-        </Button>
-        <small>{counts.goodCount}</small>
-      </div>
-      <div
-        className={`d-flex flex-column align-items-center ${styles.Reaction}`}
-      >
-        <Button
-          className={styles.ReactionButton}
-          aria-label="React: Good Boy/Girl!"
-        >
+          {counts.crownCount}
+        </div>
+        <div className={styles.Reaction}>
           <img
             src={goodSrc}
             onClick={() => {
               handleReaction("GOOD");
             }}
-            className={styles.ReactionImg}
+            className={`${styles.ReactionImg} ${isClickable ? styles.ReactionImgClickable : ""}`}
           />
-        </Button>
-        <small>{counts.goodCount}</small>
-      </div>
-      <div
-        className={`d-flex flex-column align-items-center ${styles.Reaction}`}
-      >
-        <Button
-          className={styles.ReactionButton}
-          aria-label="React: I love you!"
-        >
+          {counts.goodCount}
+        </div>
+        <div className={styles.Reaction}>
           <img
             src={loveSrc}
             onClick={() => {
               handleReaction("LOVE");
             }}
-            className={styles.ReactionImg}
+            className={`${styles.ReactionImg} ${isClickable ? styles.ReactionImgClickable : ""}`}
           />
-        </Button>
-        <small>{counts.goodCount}</small>
+          {counts.loveCount}
+        </div>
       </div>
-    </div>
-  );
-
-  return (
-    <>
-      {!currentUser ? (
-        <OverlayTrigger
-          placement="bottom"
-          overlay={<Tooltip>Please log in to react to posts!</Tooltip>}
-        >
-          {ReactionsBarContent}
-        </OverlayTrigger>
-      ) : postOwner ? (
-        <OverlayTrigger
-          placement="bottom"
-          overlay={<Tooltip>You can&apos;t react to your own posts!</Tooltip>}
-        >
-          {ReactionsBarContent}
-        </OverlayTrigger>
-      ) : (
-        <>{ReactionsBarContent}</>
-      )}
     </>
   );
 };
