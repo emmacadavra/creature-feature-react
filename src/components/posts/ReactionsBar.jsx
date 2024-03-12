@@ -129,7 +129,10 @@ const ReactionsBar = ({
       <div
         className={`d-flex flex-column align-items-center ${styles.Reaction}`}
       >
-        <Button className={styles.ReactionButton}>
+        <Button
+          className={styles.ReactionButton}
+          aria-label="React: Your Highness!"
+        >
           <img
             src={crownSrc}
             onClick={() => {
@@ -143,7 +146,10 @@ const ReactionsBar = ({
       <div
         className={`d-flex flex-column align-items-center ${styles.Reaction}`}
       >
-        <Button className={styles.ReactionButton}>
+        <Button
+          className={styles.ReactionButton}
+          aria-label="React: Good Boy/Girl!"
+        >
           <img
             src={goodSrc}
             onClick={() => {
@@ -157,7 +163,10 @@ const ReactionsBar = ({
       <div
         className={`d-flex flex-column align-items-center ${styles.Reaction}`}
       >
-        <Button className={styles.ReactionButton}>
+        <Button
+          className={styles.ReactionButton}
+          aria-label="React: I love you!"
+        >
           <img
             src={loveSrc}
             onClick={() => {

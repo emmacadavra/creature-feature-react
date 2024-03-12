@@ -5,6 +5,7 @@ import Asset from "../Asset";
 import MiniProfile from "./MiniProfile";
 import { useProfiles } from "../../contexts/ProfileDataContext";
 import styles from "./PopularProfiles.module.css";
+import badge from "../../assets/badge.png";
 
 const PopularProfiles = ({ mobile }) => {
   const { popularProfileData, currentProfilesLoading } = useProfiles();
@@ -17,7 +18,10 @@ const PopularProfiles = ({ mobile }) => {
         <>
           {mobile ? (
             <div className={`${appStyles.Content}`}>
-              <p>Popular profiles</p>
+              <div className="d-flex align-items-center justify-content-center">
+                <p>Popular profiles</p>
+                <img src={badge} />
+              </div>
               <div className="d-flex justify-content-around">
                 {popularProfileData.slice(0, 4).map((profile) => (
                   <MiniProfile key={profile.id} profile={profile} mobile />
@@ -26,7 +30,10 @@ const PopularProfiles = ({ mobile }) => {
             </div>
           ) : (
             <div className={`${appStyles.Content} ${styles.LargeScreen}`}>
-              <p className="text-center">Popular profiles</p>
+              <div className="d-flex align-items-center justify-content-center">
+                <p className="text-center">Popular profiles</p>
+                <img src={badge} />
+              </div>
               {popularProfileData.map((profile) => (
                 <MiniProfile key={profile.id} profile={profile} />
               ))}

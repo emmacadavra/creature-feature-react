@@ -7,6 +7,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { MoreDropdown } from "../MoreDropdown";
 import CreateEditComment from "./CreateEditComment";
 import { createLikeComment, deleteLikeComment } from "../../api/likeComments";
+import likeComment from "../../assets/like.png";
 
 const Comment = ({
   id,
@@ -36,11 +37,11 @@ const Comment = ({
     if (commentLiked) {
       await deleteLikeComment(likeId);
       setCommentLiked(null);
-      setLikeCommentCount(...(likeCommentCount - 1));
+      setLikeCommentCount(likeCommentCount - 1);
     } else if (currentUser && isOwner === false) {
       const newLikeComment = await createLikeComment(userId, id);
       setCommentLiked(newLikeComment);
-      setLikeCommentCount(...(likeCommentCount + 1));
+      setLikeCommentCount(likeCommentCount + 1);
     }
   };
 
@@ -88,7 +89,16 @@ const Comment = ({
               }
               placement="left"
             >
-              <Button onClick={handleLikeComment}>LIKE</Button>
+              <div>
+                <Button
+                  onClick={handleLikeComment}
+                  aria-label="Like comment"
+                  className={styles.LikeCommentButton}
+                >
+                  <img src={likeComment} />
+                </Button>
+                {likesCount}
+              </div>
             </OverlayTrigger>
           </div>
         </Card.Body>
