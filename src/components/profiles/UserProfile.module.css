@@ -8,10 +8,6 @@
 .ProfileImageHomepage {
   object-fit: cover;
   height: 150px;
-  width: auto;
+  width: 150px;
   margin: 4px;
-}
-
-.HomepageContent {
-  margin-top: 50%;
 }
