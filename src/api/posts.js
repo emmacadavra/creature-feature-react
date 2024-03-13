@@ -48,8 +48,14 @@ export const createPost = async (newPostData) => {
   }
   try {
     const { data: newPost } = await axiosReq.post("/posts/", newPostData);
-    return transformPostData(newPost);
+    return {
+      data: transformPostData(newPost),
+    };
   } catch (error) {
+    if (error.response.status === 400) {
+      return { formErrors: error.response.data };
+    }
+
     throw new Error(`Failed to createPost(): ${error}`);
   }
 };
@@ -63,8 +69,14 @@ export const editPost = async (postId, editPostData) => {
       `/posts/${postId}/`,
       editPostData,
     );
-    return transformPostData(editedPost);
+    return {
+      data: transformPostData(editedPost),
+    };
   } catch (error) {
+    if (error.response.status === 400) {
+      return { formErrors: error.response.data };
+    }
+
     throw new Error(`Failed to editPost(): ${error}`);
   }
 };

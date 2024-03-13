@@ -12,7 +12,6 @@ const ThreeDotsMeatballs = React.forwardRef(({ onClick }, ref) => (
     onClick={(event) => {
       event.preventDefault();
       onClick(event);
-      console.log(event);
     }}
     className={styles.Meatballs}
   >

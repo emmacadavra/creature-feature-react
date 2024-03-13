@@ -1,13 +1,5 @@
 import React, { useRef, useState } from "react";
-import {
-  Form,
-  Button,
-  Col,
-  Row,
-  Container,
-  Image,
-  Alert,
-} from "react-bootstrap";
+import { Form, Button, Col, Row, Container, Image } from "react-bootstrap";
 import uploadImage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
 import Asset from "../Asset.jsx";
@@ -24,8 +16,7 @@ const CreateEditPost = ({
   defaultImage = "",
   defaultCategory = "",
 }) => {
-  const [errors] = useState({});
-
+  const [errors, setErrors] = useState(null);
   const [postData, setPostData] = useState({
     title: defaultTitle,
     content: defaultContent,
@@ -56,6 +47,7 @@ const CreateEditPost = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const formData = new FormData();
 
     formData.append("title", title);
@@ -65,29 +57,29 @@ const CreateEditPost = ({
     }
     formData.append("category", category);
     if (postId) {
-      onPostEdit(postId, formData);
+      const errors = await onPostEdit(postId, formData);
+      setErrors(errors);
     } else {
-      onPostCreate(formData);
+      const errors = await onPostCreate(formData);
+      setErrors(errors);
     }
   };
 
   const postFormFields = (
     <div>
-      <Form.Group className="text-center">
+      <Form.Group className="text-center" controlId="title">
         <Form.Label>Title</Form.Label>
         <Form.Control
           type="text"
           name="title"
           value={title ?? ""}
           onChange={handleChange}
-          required
+          isInvalid={Boolean(errors?.title)}
         />
+        <Form.Control.Feedback type="invalid">
+          {errors?.title?.[0]}
+        </Form.Control.Feedback>
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
-        <Alert variant="info" key={idx}>
-          {message}
-        </Alert>
-      ))}
       <Form.Group className="text-center mt-3">
         <Form.Label>Content</Form.Label>
         <Form.Control
@@ -98,11 +90,6 @@ const CreateEditPost = ({
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.content?.map((message, idx) => (
-        <Alert variant="info" key={idx}>
-          {message}
-        </Alert>
-      ))}
       <Form.Group className="text-center mt-3">
         <Form.Label>Creature Category</Form.Label>
         <Form.Select
@@ -115,11 +102,6 @@ const CreateEditPost = ({
           <option value="Feathered Fiends">Feathered Fiends</option>
         </Form.Select>
       </Form.Group>
-      {errors?.category?.map((message, idx) => (
-        <Alert variant="info" key={idx}>
-          {message}
-        </Alert>
-      ))}
       <div className="text-center">
         <Button
           type="submit"
@@ -138,7 +120,7 @@ const CreateEditPost = ({
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} noValidate>
       <Row>
         <Col>
           <Container
@@ -176,13 +158,12 @@ const CreateEditPost = ({
                 accept="image/*"
                 onChange={handleChangeImage}
                 className="d-none"
+                isInvalid={Boolean(errors?.image)}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors?.image?.[0]}
+              </Form.Control.Feedback>
             </Form.Group>
-            {errors?.image?.map((message, idx) => (
-              <Alert variant="info" key={idx}>
-                {message}
-              </Alert>
-            ))}
             <div>{postFormFields}</div>
           </Container>
         </Col>

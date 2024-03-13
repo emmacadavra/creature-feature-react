@@ -49,17 +49,26 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
   };
 
   const handleCreate = async (newPostData) => {
-    const newPost = await createPost(newPostData);
+    const { data: newPost, formErrors } = await createPost(newPostData);
+
+    if (formErrors) {
+      return formErrors;
+    }
+
     setShowCreatePost(false);
     setPostsData([newPost, ...postsData]);
-    // if (err.response?.status !== 401) {
-    //   setErrors(err.response?.data);
-    // }
-    // TODO: REMINDER!!!!
   };
 
   const handleEdit = async (postId, editPostData) => {
-    const editedPost = await editPost(postId, editPostData);
+    const { data: editedPost, formErrors } = await editPost(
+      postId,
+      editPostData,
+    );
+
+    if (formErrors) {
+      return formErrors;
+    }
+
     const index = postsData.findIndex((post) => {
       return post.id === postId;
     });

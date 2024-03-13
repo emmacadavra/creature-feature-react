@@ -65,7 +65,12 @@ const Post = ({
   };
 
   const handleEdit = async (postId, editPostData) => {
-    await onPostEdit(postId, editPostData);
+    const errors = await onPostEdit(postId, editPostData);
+
+    if (errors) {
+      return errors;
+    }
+
     setEditPost(false);
   };
 
@@ -86,6 +91,7 @@ const Post = ({
           defaultContent={content}
           defaultImage={image}
           defaultCategory={category}
+          formErrors={formErrors}
         />
       ) : (
         <Card className={styles.Post}>
