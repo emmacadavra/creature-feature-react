@@ -26,9 +26,6 @@ export const ProfilesProvider = ({ children }) => {
   const currentUserProfileId = currentUser?.profile_id;
 
   const currentProfile = getProfileById(currentProfiles, currentProfileId);
-  // const currentProfileIsCurrentUser = Boolean(
-  //   currentProfile && currentProfile.owner === currentUser?.username,
-  // );
 
   useEffect(() => {
     const handleMount = async () => {
@@ -44,15 +41,12 @@ export const ProfilesProvider = ({ children }) => {
   const getProfile = async (profileId) => {
     setCurrentProfileId(profileId);
 
-    // Find the index of the requested profileId if it is already in currentProfiles
     const currentProfile = getProfileById(currentProfiles, profileId);
 
-    // If the requested prodileId is already in currentProfiles we don't need to get it again
     if (currentProfile) {
       return;
     }
 
-    // Get profile from backend and append it to currentProfiles
     setCurrentProfileLoading(true);
     const currentProfileData = await getUserProfile(profileId);
     setCurrentProfiles([...currentProfiles, currentProfileData]);

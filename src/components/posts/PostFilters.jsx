@@ -15,7 +15,6 @@ export const PostFilters = () => {
   const searchParamsObj = Object.fromEntries(searchParams.entries());
   const profileId = currentUser?.profile_id || "";
 
-  // Keep the search input field in sync with the URL
   const inputRef = useRef(null);
   useEffect(() => {
     if (!inputRef.current) {
