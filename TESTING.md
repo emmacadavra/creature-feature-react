@@ -10,3 +10,5 @@
    - [**Responsive Design and Functionality**](#responsive-design-and-functionality)
    - [**Site Validation**](#site-validation)
    - [**Unresolved Bugs**](#unresolved-bugs)
+
+## **Testing Throughout Development**
