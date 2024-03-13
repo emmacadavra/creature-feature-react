@@ -119,7 +119,7 @@ export const PostFilters = () => {
       </Row>
       <Row>
         <Col>
-          <Image src={search} className={styles.SearchIcon} />
+          <Image src={search} className={styles.SearchIcon} alt="Search" />
           <Form
             onSubmit={(event) => event.preventDefault()}
             className={styles.SearchBar}

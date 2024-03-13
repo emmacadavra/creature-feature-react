@@ -98,6 +98,7 @@ const Comment = ({
                         <img
                           src={likeCommentDefault}
                           className={styles.LikeCommentImg}
+                          alt="Like comment"
                         />
                       </Button>
                       {likesCount}
@@ -124,6 +125,7 @@ const Comment = ({
                           <img
                             src={likeCommentDefault}
                             className={styles.LikeCommentImg}
+                            alt="Like comment"
                           />
                         </Button>
                         {likesCount}
@@ -142,11 +144,13 @@ const Comment = ({
                       <img
                         src={likeCommentHighlight}
                         className={styles.LikeCommentImg}
+                        alt="Like comment"
                       />
                     ) : (
                       <img
                         src={likeCommentDefault}
                         className={styles.LikeCommentImg}
+                        alt="Like comment"
                       />
                     )}
                   </Button>

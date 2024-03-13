@@ -138,8 +138,13 @@ const Post = ({
             <Button
               onClick={toggleShowComments}
               className={styles.CommentsButton}
+              aria-label="Comments"
             >
-              <img src={commentsImg} className={styles.CommentsButtonImg} />
+              <img
+                src={commentsImg}
+                className={styles.CommentsButtonImg}
+                alt="Comments"
+              />
             </Button>
           </div>
           {showComments && (

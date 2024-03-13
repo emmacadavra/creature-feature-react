@@ -129,7 +129,12 @@ const CreateEditPost = ({
               {image ? (
                 <>
                   <figure>
-                    <Image src={image} rounded className={appStyles.Image} />
+                    <Image
+                      src={image}
+                      rounded
+                      className={appStyles.Image}
+                      alt="Profile image"
+                    />
                   </figure>
                   <div>
                     <Form.Label htmlFor="upload-image">

@@ -36,14 +36,14 @@ export const MoreDropdown = ({ onEdit, onDelete }) => {
           onClick={onEdit}
           aria-label="Edit post"
         >
-          <img src={editPostOrComment} />
+          <img src={editPostOrComment} alt="Edit" />
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={onDelete}
           aria-label="Delete post"
         >
-          <img src={deletePostOrComment} />
+          <img src={deletePostOrComment} alt="Delete" />
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
@@ -61,7 +61,11 @@ export const ProfileEditDropdown = ({ onEdit }) => {
           onClick={onEdit}
           aria-label="Edit profile"
         >
-          <img src={editProfile} className={`${styles.EditProfileIcon}`} />
+          <img
+            src={editProfile}
+            className={`${styles.EditProfileIcon}`}
+            alt="Edit profile"
+          />
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>

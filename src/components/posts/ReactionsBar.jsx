@@ -153,6 +153,7 @@ const ReactionsBar = ({
         >
           <img
             src={crownSrc}
+            alt="Crown"
             onClick={() => {
               handleReaction("CROWN");
             }}
@@ -165,6 +166,7 @@ const ReactionsBar = ({
         >
           <img
             src={goodSrc}
+            alt="Crown"
             onClick={() => {
               handleReaction("GOOD");
             }}
@@ -177,6 +179,7 @@ const ReactionsBar = ({
         >
           <img
             src={loveSrc}
+            alt="Crown"
             onClick={() => {
               handleReaction("LOVE");
             }}

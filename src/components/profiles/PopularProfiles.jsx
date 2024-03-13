@@ -21,7 +21,7 @@ const PopularProfiles = ({ mobile }) => {
                 className={`${styles.TitleBadge} d-flex align-items-center justify-content-center`}
               >
                 <strong className="text-center">Popular profiles</strong>
-                <img src={badge} />
+                <img src={badge} alt="Profile badge" />
               </div>
               <div className="d-flex justify-content-around">
                 {popularProfileData.slice(0, 4).map((profile) => (
@@ -30,14 +30,12 @@ const PopularProfiles = ({ mobile }) => {
               </div>
             </div>
           ) : (
-            <div
-              className={`${styles.PopularProfilesContent} ${styles.LargeScreen}`}
-            >
+            <div className={`${styles.PopularProfilesContent} mt-3`}>
               <div
                 className={`${styles.TitleBadge} d-flex align-items-center justify-content-around`}
               >
                 <strong className="text-center ps-2">Popular profiles</strong>
-                <img src={badge} />
+                <img src={badge} alt="Profile badge" />
               </div>
               {popularProfileData.map((profile) => (
                 <MiniProfile key={profile.id} profile={profile} />

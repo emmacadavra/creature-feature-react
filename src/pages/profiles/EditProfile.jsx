@@ -119,7 +119,12 @@ const EditProfile = ({
               {image ? (
                 <>
                   <figure>
-                    <Image src={image} rounded className={appStyles.Image} />
+                    <Image
+                      src={image}
+                      rounded
+                      className={appStyles.Image}
+                      alt="Profile Image"
+                    />
                   </figure>
                   <div>
                     <Form.Label htmlFor="upload-image">
