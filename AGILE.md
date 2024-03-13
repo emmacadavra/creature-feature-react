@@ -171,7 +171,7 @@ These are the User Stories I covered in this sprint:
 
 #### **7th - 13th Mar 2024**
 
-This was the last sprint of the project - just shy of a week - during which I added the remaining functionality (profiles, and liking comments). Unfortunately, despite being the shortest sprint, I found that I came up against the largest amount of frustration during this sprint as I realised there were some core concepts I hadn't really understood. In particular, I struggled immensely with the context needed for the profiles, and wish I had anticipated this. However, I was able to get this done eventually and it turned into something I am very proud of, despite it resulting in me fitting in a huge amount of work in a very short time.
+This was the last sprint of the project - just shy of a week - during which I added the remaining functionality (profiles, and liking comments). Unfortunately, despite being the shortest sprint, I found that I came up against the largest amount of frustration during this sprint as I realised there were some core concepts I hadn't really understood. In particular, I struggled immensely with the context needed for the profiles, and wish I had anticipated this. However, I was able to get this done eventually and it turned into something I am very proud of, despite it resulting in me fitting in a huge amount of work in a very short time. This wa also the sprint in which I revisited errow handling.
 
 The User Stories I covered in this sprint are:
 
@@ -197,14 +197,4 @@ The User Stories I covered in this sprint are:
 - View all posts by a specific user: As a user I can view all the posts by a specific user so that I can catch up on their latest posts, or decide I want to follow them
 - Edit profile: As a logged in user I can edit my profile so that I can change my profile picture and bio
 
-## **User Story Notes**
-
-### **User Stories Still To Do**
-
-**Reactions:**
-
-- Reactions filter (viewing posts): As a logged in user, I can filter my favourite posts by reaction type so that I can revisit the posts I enjoyed with each reaction
-
-**Profiles:**
-
-- Update username and password: As a logged in user I can update my username and password so that I can change my display name and keep my profile secure
+Please click the following link to return to the [**_README.md_**](README.md) document.

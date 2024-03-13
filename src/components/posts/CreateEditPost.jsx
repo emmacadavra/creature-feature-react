@@ -3,7 +3,6 @@ import { Form, Button, Col, Row, Container, Image } from "react-bootstrap";
 import uploadImage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
 import Asset from "../Asset.jsx";
-// import styles from "./CreateEditPost.module.css";
 import appStyles from "../../App.module.css";
 
 const CreateEditPost = ({

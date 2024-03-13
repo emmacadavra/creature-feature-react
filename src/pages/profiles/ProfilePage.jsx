@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-// import styles from "./ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { useParams } from "react-router-dom";
