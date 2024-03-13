@@ -43,7 +43,6 @@ To view the deployed Creature Feature back-end API, [**_please follow this link_
 1. [**Authentication Pages**](#authentication-pages)
    - [**Register**](#register)
    - [**Log In**](#log-in)
-   - [**Log Out**](#log-out)
 1. [**Resuable Components**](#reusable-components)
 1. [**Contexts**](#contexts)
 1. [**Technologies and Dependencies**](#technologies-and-dependencies)
@@ -239,13 +238,35 @@ Similar to editing posts and comments, when the owner of a profile wants to edit
 
 ### **Popular Profiles**
 
+The PopularProfiles component is used in two places - the homepage, and the profile page.
+
+It contains a list of the 10 most followed users at the time the user renders the page.
+
+As it is important to maintain the correct information for profiles (such as updating follows/unfollows), it is not governed by the Profiles page specifically, but by the ProfileDataContext file. This context file means that, if a user is viewing their own profile but decides to follow a user showing in the Popular Profiles list, their 'following' count will update in real time despite the components being entirely separate.
+
 ### **Authentication Pages**
 
 #### **Register**
 
+A custom Sign Up page has been created that displays the main text brand for the site:
+
+![Sign up page](docs/images/signuppage.png)
+
+Form validation is used to make sure that users can't register with invalid information:
+
+![Signup error 1](docs/images/invalidsignup1.png)
+
+![Signup error 2](docs/images/invalidsignup2.png)
+
 #### **Log In**
 
-#### **Log Out**
+A custom Sign In page has been created that displays the main text brand for the site:
+
+![Sign in page](docs/images/signinpage.png)
+
+As with the Sign Up page, form validation ensures users can't log in with invalid information:
+
+![Signin error](docs/images/invalidcredentials.png)
 
 ## **Reusable Components**
 
