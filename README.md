@@ -124,7 +124,7 @@ Desktop view (logged in):
 
 ![Homepage](docs/images/homepage.png)
 
-It contains three main sections: first, for logged in users, it displays a summary of their profile information on the left. This is the MyProfile component.
+It contains three main sections: first, for logged in users, it displays a summary of their profile information on the left. This is the MyProfile component. Logged out users see a default profile image and a prompt for them to sign in/register an account.
 
 The second (and main) section is the [**_Posts_**](#posts) section. Posts contains several smaller components, including the CreateEditPost form and PostFilters, and of course the list of Posts. The CreateEditPost button and PostFilters are not visible to logged out users:
 
@@ -270,19 +270,38 @@ As with the Sign Up page, form validation ensures users can't log in with invali
 
 ## **Reusable Components**
 
-## **Contexts**
+The following components in this app are completely reusable and reused throughout the project:
+
+- Asset is used for the spinner animation which displays when data of any kind of being gathered (posts, comments, profiles), and also used to add the Avatar component into the Navbar.
+- Avatar is used in every instance which requires a user's profile picture to be displayed.
+- MoreDropdown is used for every instance where the owner of a post, comment or profile can edit or delete it.
+- Posts is used on both the homepage and profile page, also containing the Post component which is of course reused constantly, therefore making its children reusable:
+  - ReactionsBar
+  - Comments, which includes Comment and CreateEditComment
+- CreateEditPost is used in the Posts component, and in the Post component itself.
+- Although it is not currently reused in the project, PostFilters is a reusable component as it can be inserted into any page.
+- PopularProfiles is reused on the homepage and profile page, and contains MiniProfile which is reused throughout PopularProfiles
+
+The AuthContext and ProfileDataContext providers are also reuseable by nature and the functions within them are utilised frequently in the project.
 
 ## **Technologies and Dependencies**
 
-### **Frameworks**
+This project is written using React, a JavaScript Framework, and was created using [**_Create React App_**]. Below is a list of all the additional technologies used to develop this project:
 
-### **Libraries**
+- React-Bootstrap (and by extension, Bootstrap 5) - used for responsive styling and for certain components such as overlays.
+- React Router Dom - handles the app's routing and navigation between pages.
+- Axios - handles the calls made to the API from the front-end to retrieve, post, update and delete data.
+- Debounce - prevents user searches from happening on every keystroke (and therefore causing the data to 'flash' on the screen with every key press).
+- Cloudinary - handles the static files and images by storing them on the cloud rather than directly in this project's database.
+- Heroku - providing a platform in which to host the deployed project.
 
 ## **Testing**
 
 A separate file has been created for information about testing. Please click the following link to access it: [**_TESTING.md_**](TESTING.md)
 
 ## **Deployment**
+
+Please see below for the deployment instructions provided by Create React App:
 
 ### Getting Started with Create React App
 
