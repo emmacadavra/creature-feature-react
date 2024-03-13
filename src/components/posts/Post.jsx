@@ -91,7 +91,6 @@ const Post = ({
           defaultContent={content}
           defaultImage={image}
           defaultCategory={category}
-          formErrors={formErrors}
         />
       ) : (
         <Card className={styles.Post}>
