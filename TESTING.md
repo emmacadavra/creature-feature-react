@@ -3,11 +3,21 @@
 ## **Table of Contents (Testing):**
 
 1. [**Testing Overview**](#testing-overview)
-1. [**Testing and Quality Control Tools**](#testing-and-quality-control-tools)
+1. [**Testing Throughout Development**](#testing-throughout-development)
    - [**Manual Testing**](#manual-testing)
+   - [**Testing and Quality Control Tools**](#testing-and-quality-control-tools)
    - [**Noteworthy Bugs During Development**](#noteworthy-bugs-during-development)
+1. [**Post Development Testing**]
+   - [**Code Validation**](#code-validation)
+     - [**_Lighthouse Scores_**](#lighthouse-scores)
    - [**Unresolved Bugs**](#unresolved-bugs)
-   - [**Lighthouse Results**](#lighthouse-results)
+1. [**User Story Testing**](#user-story-testing)
+   - [**Navigation & Authentication**](#user-stories-navigation--authentication)
+   - [**Creating & Editing Posts**](#user-stories-creating--editing-posts)
+   - [**Viewing Posts**](#user-stories-viewing-posts)
+   - [**Reactions**](#user-stories-reactions)
+   - [**Comments**](#user-stories-comments)
+   - [**Profiles**](#user-stories-profiles)
 
 ## **Testing Overview**
 
@@ -49,25 +59,121 @@ I did leverage the following tools to help with my code quality during this proj
 - When creating the CreateEditPost component, at first the form was not rendering and throwing the error “Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined”. I realised this was due to me following the course content, which used an earlier version of React Bootstrap. I replaced “Form.File” with “Form.Control” with type= “file”, which fixed the issue.
 - In the PostFilters component, `useNavigate` was not working correctly, as users do not navigate to different pages on the homepage. The initial solution was to keep the query in the URL in sync with the text field by using useSearchParams. However, this caused the search bar to either not allow being typed into (if `value={query}`), or it was keeping the searched keywords in the search bar after clicking Home (if `defaultValue={query}`). Additionally, by making it a controlled form, debounce was no longer working. The solution I used for this is to manually keep the text field in sync by getting the element from the DOM directly, and updating it that way.
 
-### **Unresolved Bugs**
+## Post Development Testing
 
-- The back end would return a '500 Server Error' when uploading a certain image when creating a post. It appears it was due to a comma being used in the file name, but I can't be entirely certain of this due to the vague error that came back from the database. Even after implementing error handling, that specific file creates the same vague error so I am not able to confidently say what the source of the bug is.
-- When a logged in user clicks the three dots menu icon (to edit/delete content), which uses React Bootstrap's Dropdown component, the user has to click on it three times in order for it to activate (but only the first time they do so in each instance). I and my mentor are both still unclear as to what causes this to happen.
+### **Code Validation**
 
-### **Lighthouse Results**
+CODE VALIDATION
+
+#### **Lighthouse Scores**
 
 Below are the Lighthouse testing results for the two main pages - he Homepage and Profile page.
 
 The performance score in particular is much lower than I would like, as given the nature of the site, it is at the whim of the images uploaded by other uses. I would like to add more work around image optimisation if I had more time to improve on that. Additionally, the best practice score is not ideal, but this is due to recent changes in the way Lighthouse operates in regards to third-party cookies. The way that the back-end API is set up with Django AllAuth and Django Rest Auth means that cookies are always created, which brought the score down.
 
-#### **Homepage scores:**
+##### **Homepage scores:**
 
 ![Homepage Lighthouse score desktop](docs/images/homelighthousedesktop.png)
 
 ![Homepage Lighthouse score mobile](docs/images/homelighthousemobile.png)
 
-#### **Profile page scores:**
+##### **Profile page scores:**
 
 ![Profile Lighthouse score desktop](docs/images/profilelighthousedesktop.png)
 
 ![Profile Lighthouse score mobile](docs/images/profilelighthousemobile.png)
+
+### **Unresolved Bugs**
+
+- The back end would return a '500 Server Error' when uploading a certain image when creating a post. It appears it was due to a comma being used in the file name, but I can't be entirely certain of this due to the vague error that came back from the database. Even after implementing error handling, that specific file creates the same vague error so I am not able to confidently say what the source of the bug is.
+- When a logged in user clicks the three dots menu icon (to edit/delete content), which uses React Bootstrap's Dropdown component, the user has to click on it three times in order for it to activate (but only the first time they do so in each instance). I and my mentor are both still unclear as to what causes this to happen.
+
+## **User Story Testing**
+
+My User Stories can be found by following this link to [**_this repository’s project board_**](https://github.com/users/emmacadavra/projects/5). Further information on these User Stories can be found in the separate [**_AGILE.md_**](AGILE.md) document found in this repository. Below, I have detailed how I tested the User Stories through the front-end.
+
+### **User Stories: Navigation & Authentication**
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+### **User Stories: Creating & Editing Posts**
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+### **User Stories: Viewing Posts**
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+### **User Stories: Reactions**
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+### **User Stories: Comments**
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+### **User Stories: Profiles**
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+| **_USER STORY_** | **Complete?** |
+| :--------------- | :-----------: |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+| TEST             |    &check;    |
+
+Please click the following link to return to the [**_README.md_**](README.md) document.
