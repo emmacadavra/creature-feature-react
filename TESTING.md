@@ -165,41 +165,55 @@ My User Stories can be found by following this link to [**_this repository’s p
 
 ### **User Stories: Viewing Posts**
 
-| **As a user I can view all the most recent posts, ordered by most recently created first so that I am up to date with the newest content** | **Complete?** |
-| :----------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                       |    &check;    |
-| TEST                                                                                                                                       |    &check;    |
-| TEST                                                                                                                                       |    &check;    |
+| **As a user I can view all the most recent posts, ordered by most recently created first so that I am up to date with the newest content**                                                                   | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Upon site load, for both logged in and logged out users, the Home page feed renders a list of posts that are ordered by most recent first                                                                    |    &check;    |
+| Posts by individuals on their profile page are also displayed in date descending order                                                                                                                       |    &check;    |
+| When a user edits a post they have made, that post does not get bumped to the top of the list, as the posts display in date descending order based on the time and date they were created on, not updated on |    &check;    |
 
-| **As a user, I can search for posts with keywords, so that I can find the posts and user profiles I am interested in** | **Complete?** |
-| :--------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                   |    &check;    |
-| TEST                                                                                                                   |    &check;    |
-| TEST                                                                                                                   |    &check;    |
+| **As a user, I can search for posts with keywords, so that I can find the posts and user profiles I am interested in**                                                                                                                       | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Logged in users can clearly see a search bar above their content feed, below the post filters, that allows them to type search terms to find posts                                                                                           |    &check;    |
+| The search bar searches post titles, categories and usernames for the search terms                                                                                                                                                           |    &check;    |
+| Users receive clear confirmation if they enter a search term that brings up no results                                                                                                                                                       |    &check;    |
+| Search terms are linked to the URL, enabling users to share specific searches by URL if they wanted to, and changing the search term in the URL updates the text in the search bar to match                                                  |    &check;    |
+| Upon clicking the 'Home' button or the Creature Feature logo in the navbar, the URL is cleared and this also clears the search bar to prevent errors and avoid confusion                                                                     |    &check;    |
+| The search bar has a delay before performing the search in order to prevent the post list flashing unpleasantly while the user types                                                                                                         |    &check;    |
+| Entering in a search term while there are additional filters that are applied does not remove those filters and works harmoniously with them                                                                                                 |    &check;    |
+| Logged out users are unable to see the search bar, but the URL search terms will still display, enabling users to share searches with friends via URL - this encourages unregistered users to create an account if they want to search posts |    &check;    |
 
-| **As a logged in user, I can view the posts I have reacted to so that I can revisit the posts I enjoy the most** | **Complete?** |
-| :--------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                             |    &check;    |
-| TEST                                                                                                             |    &check;    |
-| TEST                                                                                                             |    &check;    |
+| **As a logged in user, I can view the posts I have reacted to so that I can revisit the posts I enjoy the most**                                                                                                    | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| Logged in users can clearly see the 'My Faves' button above their content feed on the Home page                                                                                                                     |    &check;    |
+| The 'My Faves' filter will always display posts with the most recently reacted to first, regardless of how new or old the post is, for a better overall user experience                                             |    &check;    |
+| When viewing the 'My Faves' feed, users can use additional search terms to search through the posts they have reacted to by typing into the search bar, as well as clicking a category button to filter by category |    &check;    |
+| The 'My Faves' feed, like other post filters, is only available on the Home page and cannot be used to filter individual profiles' posts to prevent confusion                                                       |    &check;    |
+| Logged out users are unable to see the option to filter posts by reaction, as a logged in profile ID must be used to determine which posts should be displayed                                                      |    &check;    |
 
-| **As a logged in user I can view content filtered by users I follow so that I can keep up to date with what they are posting about** | **Complete?** |
-| :----------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                 |    &check;    |
-| TEST                                                                                                                                 |    &check;    |
-| TEST                                                                                                                                 |    &check;    |
+| **As a logged in user I can view content filtered by users I follow so that I can keep up to date with what they are posting about**                                                                                | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| Logged in users can clearly see the 'My Feed' button above their content feed on the Home page                                                                                                                      |    &check;    |
+| The 'My Feed' filter will always display posts with the most recently posted first, in continuity with the main feed                                                                                                |    &check;    |
+| When viewing the 'My Feed' feed, users can use additional search terms to search through posts made by users they follow by typing into the search bar, as well as clicking a category button to filter by category |    &check;    |
+| The 'My Feed' feed, like other post filters, is only available on the Home page and cannot be used to filter individual profiles' posts to prevent confusion                                                        |    &check;    |
+| Logged out users are unable to see the option to filter posts by followed users, as a logged in profile ID must be used to determine which posts should be displayed                                                |    &check;    |
 
-| **As a user, I can filter posts by category so that I can view posts featuring specific types of creature** | **Complete?** |
-| :---------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                        |    &check;    |
-| TEST                                                                                                        |    &check;    |
-| TEST                                                                                                        |    &check;    |
+| **As a user, I can filter posts by category so that I can view posts featuring specific types of creature**                                                                                                                       | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Logged in users can clearly see the three category buttons above their content feed on the Home page                                                                                                                              |    &check;    |
+| The colours assigned to these buttons remain consistent with the colour of the corresponding 'tags' displayed on each post to show which category the post falls into                                                             |    &check;    |
+| When a user clicks a category button, only posts in that category are displayed, in date descending order (newest first) to remain consistent with the main feeds                                                                 |    &check;    |
+| When viewing individual category feeds, users can use additional search terms to search through posts in these categories by typing into the search bar - they can also be used in tandem with the 'My Faves' and 'My Feed' feeds |    &check;    |
+| The individual category feeds, like other post filters, are only available on the Home page and cannot be used to filter individual profiles' posts to prevent confusion                                                          |    &check;    |
+| Logged out users are unable to see the option to filter posts by category                                                                                                                                                         |    &check;    |
 
-| **As a user I can keep scrolling through the images on the site, that are loaded for me automatically so that I don't have to click on "next page" etc.** | **Complete?** |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                                      |    &check;    |
-| TEST                                                                                                                                                      |    &check;    |
-| TEST                                                                                                                                                      |    &check;    |
+| **As a user I can keep scrolling through the images on the site, that are loaded for me automatically so that I don't have to click on "next page" etc.**                                                                                                                                                    | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Only 10 posts are loaded at a time to improve site performance                                                                                                                                                                                                                                               |    &check;    |
+| When a user scrolls to the 'bottom' of the page, the API fetches the next 10 posts and displays them beneath the first 10                                                                                                                                                                                    |    &check;    |
+| When a user scrolls to the 'next' page, a loading spinner appears briefly as the data is being fetched, but the page does not refresh for a better user experience                                                                                                                                           |    &check;    |
+| When a user scrolls to the 'next' page, but more posts have been created in the time between them loading the page and scrolling to the 'bottom' (causing the posts that were on page 1 to now show on page 2, for example), the API removes any "duplicate" posts so the user experience is not interrupted |    &check;    |
+| This behaviour is the same on the posts section of individual profile pages                                                                                                                                                                                                                                  |    &check;    |
 
 ### **User Stories: Reactions**
 
