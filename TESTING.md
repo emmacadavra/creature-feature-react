@@ -60,6 +60,7 @@ As mentioned above, I found that I came across significantly more bugs in my fro
 - In the MoreDropdown component, I was getting the eslint error "Component definition is missing display name" when trying to use React Bootstrap’s custom dropdown code. To fix this, I added `ThreeDotsMeatballs.displayName = "ThreeDotsMeatballs"` below the code.
 - When creating the CreateEditPost component, at first the form was not rendering, and throwing the error “Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined”. I realised this was due to me following the course content, which used an earlier version of React Bootstrap. I replaced “Form.File” with “Form.Control” with type= “file”, which fixed the issue.
 - In the PostFilters component, `useNavigate` was not working correctly, as users do not navigate to different pages on the homepage. The initial solution was to keep the query in the URL in sync with the text field by using useSearchParams. However, this caused the search bar to either not allow being typed into (if `value={query}`), or it was keeping the searched keywords in the search bar after clicking Home (if `defaultValue={query}`). Additionally, by making it a controlled form, debounce was no longer working. The solution I used for this is to manually keep the text field in sync by getting the element from the DOM directly, and updating it that way.
+- Unfortunately extremely late in development, I realised I had made a huge oversight in regards to editing comments, as I had forgotton to include an 'isOwner' rule to the MoreDropdown component displayed in the Comment component. This meant that users were given the option to edit other users' comments, and although upon trying to do so the site would throw an error as this is not allowed through the API, it still contributes to bad user experience. This issue was fixed with a simple 'isOwner' conditional statement that was sadly overlooked in initial development.
 
 ## Post Development Testing
 
@@ -229,59 +230,69 @@ My User Stories can be found by following this link to [**_this repository’s p
 | When a logged in user reacts to a post, the two reactions they did not select update to a slightly pink greyscale, indicating clearly to the user that only one reaction can be chosen per post                                       |    &check;    |
 | When a logged in user creates a post, the reactions beneath the post will always show as the default styling to them, and if they try to react to their own post, an overlay will pop up explaining that they are not able to do this |    &check;    |
 | When a logged in user reacts to a post, this post will be added to the top of their 'My Faves' feed                                                                                                                                   |    &check;    |
+| Styled indicators of user reactions are only displayed to the user who has reacted to the post - other users are not able to see the reaction styling that is applied by other users' reactions                                       |    &check;    |
 
-| **As a logged in user, I can click/tap again on a reaction to undo it, with clear visual feedback that I have done so, so that I can choose a different reaction if I change my mind**                                                                                                                                                      | **Complete?** |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
-| When a logged in user reacts to a post, and then clicks again on the same reaction, this 'deletes' the reaction, descreasing the number below it by 1 and restoring the styling of the stickers to their default state                                                                                                                      |    &check;    |
-| When a logged in user 'deletes' their reaction to a post, that post will no longer appear in their 'My Faves' feed                                                                                                                                                                                                                          |    &check;    |
-| When a logged in user reacts to a post, and then clicks a different reaction on the same post, their first choice is undone (the total below it decreasing again by 1), and their new choice becomes highlighted, increasing that reaction's total by 1 and greying out the other two - this can be done ad infinitum if the user so wishes |    &check;    |
-| When a logged in user changes their reaction to a post, that post will display at the top of their 'My Faves' feed, but only once, and with the most recent reaction they have chosen                                                                                                                                                       |    &check;    |
+| **As a logged in user, I can click/tap again on a reaction to undo it, with clear visual feedback that I have done so, so that I can choose a different reaction if I change my mind**                                                                                                                                                                       | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| When a logged in user reacts to a post, and then clicks again on the same reaction, this 'deletes' the reaction, descreasing the number below it by 1 and restoring the styling of the stickers to their default state                                                                                                                                       |    &check;    |
+| When a logged in user 'deletes' their reaction to a post, that post will no longer appear in their 'My Faves' feed                                                                                                                                                                                                                                           |    &check;    |
+| When a logged in user reacts to a post, and then clicks a different reaction on the same post, their first choice is undone (the total below it decreasing again by 1), and their new choice becomes highlighted, increasing that reaction's total by 1 and greying out the other two - this can be done ad infinitum if the user so wishes                  |    &check;    |
+| When a logged in user changes their reaction to a post, that post will display at the top of their 'My Faves' feed, but only once, and with the most recent reaction they have chosen (unless they are already viewing their 'My Faves' feed, in which case the post will remain in place until the user navigates away from that feed and comes back later) |    &check;    |
 
 ### **User Stories: Comments**
 
-| **As a logged in user, I can click to expand and read the comments under posts so that I can read what other users think about the posts** | **Complete?** |
-| :----------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                       |    &check;    |
-| TEST                                                                                                                                       |    &check;    |
-| TEST                                                                                                                                       |    &check;    |
+| **As a logged in user, I can click to expand and read the comments under posts so that I can read what other users think about the posts**                                                                                                                                               | **Complete?** |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Each post displays a sticker in the bottom-right corner, next to some text that tells the user how many comments that post has                                                                                                                                                           |    &check;    |
+| Users can click the sticker to expand the post's comments below the post, and click it again to collapse them - this removes the need to navigate to a separate post page just to read comments, causing the user to lose the place they had scrolled to                                 |    &check;    |
+| Logged out users can only see the comments left on posts and are never shown the option to leave a comment                                                                                                                                                                               |    &check;    |
+| After clicking the button to toggle displaying the comments, logged in users will see a text box above the comments that prompts them to leave a comment if they want to                                                                                                                 |    &check;    |
+| If a logged in user clicks the button to toggle displaying the comments on a post that has no comments, a message is displayed to confirm that there are no comments, and invites them to be the first                                                                                   |    &check;    |
+| If a logged out user clicks the button to toggle displaying the comments on a post that has no comments, a message is displayed to confirm that there are no comments to display, but does not invite them to be the first as they are not logged in and therefore cannot leave comments |    &check;    |
 
-| **As a logged in user I can add comments to a post so that I can share my thoughts about the post** | **Complete?** |
-| :-------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                |    &check;    |
-| TEST                                                                                                |    &check;    |
-| TEST                                                                                                |    &check;    |
+| **As a logged in user I can add comments to a post so that I can share my thoughts about the post**                                                                                                                                           | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| When a logged in user posts a comment, the comment section of the post is re-rendered and their comment is displayed at the top (comments are displayed newest first, as with posts)                                                          |    &check;    |
+| When a logged in user comments on a post, the text displaying how many comments the post has increases by 1 as additional confirmation that the comment has been posted, and to let other users know that there are more comments on the post |    &check;    |
+| Check error handling is working correctly by trying to leave a comment that is blank - site will not allow it                                                                                                                                 |    &check;    |
 
-| **As a user I can see how long ago a comment was made so that I know how old a comment is** | **Complete?** |
-| :------------------------------------------------------------------------------------------ | :-----------: |
-| TEST                                                                                        |    &check;    |
-| TEST                                                                                        |    &check;    |
-| TEST                                                                                        |    &check;    |
+| **As a user I can see how long ago a comment was made so that I know how old a comment is**                                                                                                                                             | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Logged in users who leave a comment can see immediate confirmation that their comment has been posted due to the re-rendering, and the time stamp next to their username that says 'now', indicating their comment has just been posted |    &check;    |
+| All comments display when the comment was posted next to the username of the user who posted it, in a human-friendly format (ie, "1 week ago" rather than the exact date and time in a computer's preferred datetime format)            |    &check;    |
+| When the owner of an existing comment edits their comment, the time next to their username updates to 'now'                                                                                                                             |    &check;    |
 
-| **As a logged in owner of a comment I can edit my comment so that I can fix or update my existing comment** | **Complete?** |
-| :---------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                        |    &check;    |
-| TEST                                                                                                        |    &check;    |
-| TEST                                                                                                        |    &check;    |
+| **As a logged in owner of a comment I can edit my comment so that I can fix or update my existing comment**                                                                                         | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Logged in users who own a comment on a post can click on the pink three dots icon displayed in the top-right corner of their comment, and then on the 'Edit' icon to edit their comment             |    &check;    |
+| When the owner of a comment clicks the 'Edit' icon, the create comment form is rendered in place of the comment, pre-populated with the comment's existing content for a convenient user experience |    &check;    |
+| When the owner of an existing comment edits that comment, the time next to their username updates to 'now' so that they can be sure they have successfully updated the comment                      |    &check;    |
+| Check error handling is working correctly by trying to edit an existing comment to be blank - site will not allow it                                                                                |    &check;    |
+| Users cannot see the three dots on comments they do not own, and therefore cannot edit or delete them                                                                                               |    &check;    |
 
-| **As a logged in owner of a comment I can delete my comment so that I can control removal of my comment from the application** | **Complete?** |
-| :----------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                           |    &check;    |
-| TEST                                                                                                                           |    &check;    |
-| TEST                                                                                                                           |    &check;    |
+| **As a logged in owner of a comment I can delete my comment so that I can control removal of my comment from the application**                                                              | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| Logged in users who own a comment on a post can click on the pink three dots icon displayed in the top-right corner of their comment, and then on the 'Delete' icon to delete their comment |    &check;    |
+| When the owner of an existing comment deletes that comment, the comments list re-renders so that users have instant confirmation that their comment has been deleted                        |    &check;    |
+| Users cannot see the three dots on comments they do not own, and therefore cannot edit or delete them                                                                                       |    &check;    |
 
-| **As a logged in user I can like the comments of other users so that I can show support or agreement as to what other users have to say** | **Complete?** |
-| :---------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                      |    &check;    |
-| TEST                                                                                                                                      |    &check;    |
-| TEST                                                                                                                                      |    &check;    |
+| **As a logged in user I can like the comments of other users so that I can show support or agreement as to what other users have to say**                                                                                 | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| On the far right-hand side of each comment, a heart-shapes sticker is clearly visible, with a number total next to it, indicating the total number of likes that comment has                                              |    &check;    |
+| Logged out users can only ever see the default sticker styling with the total next to it, and trying to like a comment brings up an overlay explaining that you must be logged into like comments                         |    &check;    |
+| When a logged in user likes a comment, the sticker updates to a more contrasted/saturated image and the count next it increases by 1                                                                                      |    &check;    |
+| When a logged in user creates a comment, the like sticker will always show as the default styling to them, and if they try to like their own comment, an overlay will pop up explaining that they are not able to do this |    &check;    |
+| Styled indicators of whether a user has liked a comment are only displayed to the user who has liked the comment - other users are not able to see the styling that is applied by other users' likes                      |    &check;    |
+| When a logged in user likes a comment, and then clicks/taps again on the like icon, this 'deletes' the like, descreasing the number next to it by 1 and restoring the styling of the sticker to its default state         |    &check;    |
 
 ### **User Stories: Profiles**
 
-| **As a user I can view user's avatars so that I can easily identify users of the application and their posts** | **Complete?** |
-| :------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                           |    &check;    |
-| TEST                                                                                                           |    &check;    |
-| TEST                                                                                                           |    &check;    |
+| **As a user I can view user's avatars so that I can easily identify users of the application and their posts**                                               | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| The Avatar component always displays next to the respective users' username so that users can easily identify which profile picture belongs to which profile |    &check;    |
+| The Avatar component always uses the profile image of the owner of the post / comment / profile respectively                                                 |    &check;    |
+| Users who have not uploaded a profile picture are provided with a specified default image to ensure that this data is always provided to the API             |    &check;    |
+| When a user updates their profile picture, all instances of that user's Avatar update along with it                                                          |    &check;    |
 
 | **As a user I can see a list of the most followed profiles so that I can see which profiles are popular** | **Complete?** |
 | :-------------------------------------------------------------------------------------------------------- | :-----------: |
