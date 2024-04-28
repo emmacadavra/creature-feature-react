@@ -48,6 +48,8 @@ To view the deployed Creature Feature back-end API, [**_please follow this link_
 1. [**Technologies and Dependencies**](#technologies-and-dependencies)
 1. [**Testing**](#testing)
 1. [**Deployment**](#deployment)
+   - [**Project Deployment**](#project-deployment)
+   - [**Create React App**](#create-react-app)
 1. [**Credits**](#credits)
    - [**Honourable Mentions**](#honourable-mentions)
    - [**Code and Content References**](#code-and-content-references)
@@ -301,17 +303,58 @@ A separate file has been created for information about testing. Please click the
 
 ## **Deployment**
 
-Please see below for the deployment instructions provided by Create React App:
+### **Project Deployment**
 
-### Getting Started with Create React App
+In this section I will explain the steps I took in order to deploy this project, so that they can be followed if you wish to clone this project and work on it yourself.
+
+#### **Cloning/Forking**
+
+If you wish to create a clone of this project to use on your local machine or virtual IDE environment such as Gitpod, first navigate to [this project's GitHub Repository](https://github.com/emmacadavra/creature-feature-react), and follow [GitHub's instructions on how to clone a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+
+#### **Project Setup**
+
+In the console of your chosen code editor, enter the command `npm install`, which will install all the required dependencies for this project from the package.json file. The package.json file also contains the scripts for this project, for example the build script which can be run by typing `npm run build` into the console. However, if you are using Heroku for deployment as I have, this will be done automatically once deployed.
+
+#### **Deployment to Heroku**
+
+This project is hosted on [**_Heroku_**](https://www.heroku.com/). Below are the steps I took to deploy this front-end part of the Creature Feature project, and assumes that the instructions on deploying the back-end have already been followed and that the back-end project is already deployed on Heroku. Please see the [**_'Deployment' section of the back-end README.md file for more information on this_**](https://github.com/emmacadavra/creature-feature-drf-api/blob/main/README.md#deployment):
+
+1. On the Heroku Dashboard, create a new app. The app name must be unique and should be related to the React project name.
+1. Set location as appropriate and create the project.
+1. Navigate to the 'Deploy' tab, and select 'Github' under the 'Deployment Method' section.
+1. Enter the name of your Github repository, click 'Connect', and once connected click 'Deploy Branch' to make the first deployment.
+
+I chose to do this as early into development as possible, to ensure that there were no issues later down the line.
+
+#### **Connecting to the API**
+
+To connect the deployed front and back-end projects, the following Config Vars need to be added to the back-end project on Heroku, under the 'Settings' tab:
+| Key: | Value: |
+| :--------------------------- | :----------- |
+| CLIENT_ORIGIN | https://creature-feature-react-fb85071d4bc2.herokuapp.com\* |
+| CLIENT_ORIGIN_DEV | http://localhost:3000\*\* |
+
+\*_this needs to be the URL for the deployed front-end project - here, I have used mine_
+
+\*\*_if you are using a cloud-based IDE, you will need to replace this with the link to your cloud IDE workspace_
+
+Please note that it is important to remove trailing slashes from these URLs.
+
+If you have not already done so, install Axios in the React app, and in the 'axiosDefaults.js' file inside the API folder, set the baseURL to your deployed back-end API URL, remembering to import the 'axiosDefaults.js' file in 'App.js'.
+
+### **Create React App**
+
+Please also see below for the helpful deployment instructions provided by Create React App:
+
+#### Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Available Scripts
+#### Available Scripts
 
 In the project directory, you can run:
 
-#### `npm start`
+##### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -319,12 +362,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-#### `npm test`
+##### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#### `npm run build`
+##### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -334,7 +377,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-#### `npm run eject`
+##### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
@@ -344,33 +387,33 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-### Learn More
+#### Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-#### Code Splitting
+##### Code Splitting
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-#### Analyzing the Bundle Size
+##### Analyzing the Bundle Size
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-#### Making a Progressive Web App
+##### Making a Progressive Web App
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-#### Advanced Configuration
+##### Advanced Configuration
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-#### Deployment
+##### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-#### `npm run build` fails to minify
+##### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
