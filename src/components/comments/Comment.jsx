@@ -51,14 +51,16 @@ const Comment = ({
       <hr />
       <Card>
         <Card.Body>
-          <div className="text-end">
-            <MoreDropdown
-              onEdit={() => setEditComment(true)}
-              onDelete={() => {
-                onCommentDelete(id);
-              }}
-            />
-          </div>
+          {isOwner && (
+            <div className="text-end">
+              <MoreDropdown
+                onEdit={() => setEditComment(true)}
+                onDelete={() => {
+                  onCommentDelete(id);
+                }}
+              />
+            </div>
+          )}
           <div className="d-flex">
             <div className="align-self-center">
               <Link to={`/profiles/${profileId}`}>
