@@ -43,7 +43,7 @@ To view the deployed Creature Feature back-end API, [**_please follow this link_
 1. [**Authentication Pages**](#authentication-pages)
    - [**Register**](#register)
    - [**Log In**](#log-in)
-1. [**Resuable Components**](#reusable-components)
+1. [**Reusable Components**](#reusable-components)
 1. [**Contexts**](#contexts)
 1. [**Technologies and Dependencies**](#technologies-and-dependencies)
 1. [**Testing**](#testing)
@@ -166,11 +166,11 @@ The PostFilters component enables users to control the content they see on the h
 
 #### **My Faves**
 
-'My Faves' only shows posts that the currently logged in user has reacted to, in order of most recent reactionfirst (as opposed to most recently uploaded post first).
+'My Faves' only shows posts that the currently logged in user has reacted to, in order of most recent reaction first (as opposed to most recently uploaded post first).
 
 #### **Category Search**
 
-The categorory search buttons only show posts that are tagged with that specific category. The three categories to choose from are "Facinorous Fluffballs"(ie, all fluffy animals!), "Reptillian Villains" (for reptiles and the like), and "Feathered Fiends" for birds.
+The category search buttons only show posts that are tagged with that specific category. The three categories to choose from are "Facinorous Fluffballs"(ie, all fluffy animals!), "Reptillian Villains" (for reptiles and the like), and "Feathered Fiends" for birds.
 
 #### **Search Bar**
 
@@ -200,7 +200,7 @@ If a user is not logged in and tries to react to a post, an overlay pops up to t
 
 ### **Infinite Scroll**
 
-The [**_React Infinite Scroll Component_**](https://www.npmjs.com/package/react-infinite-scroll-component) was used to allow pposts on the homepage to infinitely load, 10 posts at a time (the default page limit set in the back-end). This improves user experience by allowing them to keep scrolling rather than deal with 'next' and 'previous' buttons.
+The [**_React Infinite Scroll Component_**](https://www.npmjs.com/package/react-infinite-scroll-component) was used to allow posts on the homepage to 'infinitely' load 10 posts at a time (the default page limit set in the back-end). This improves user experience by allowing them to keep scrolling rather than deal with 'next' and 'previous' buttons.
 
 ### **Comments**
 
@@ -228,7 +228,7 @@ Logged out users see an overlay that tells them they need to sign in to like com
 
 When a user creates an account, a new profile is created for them which they can edit. A user's profile contains their profile information and all posts made by that user:
 
-![Usr profile page](docs/images/profilepage.png)
+![User profile page](docs/images/profilepage.png)
 
 It displays the number of posts that user has made, the number of accounts they are following, and the number of followers they currently have.
 
@@ -268,13 +268,13 @@ A custom Sign In page has been created that displays the main text brand for the
 
 As with the Sign Up page, form validation ensures users can't log in with invalid information:
 
-![Signin error](docs/images/invalidcredentials.png)
+![Sign in error](docs/images/invalidcredentials.png)
 
 ## **Reusable Components**
 
 The following components in this app are completely reusable and reused throughout the project:
 
-- Asset is used for the spinner animation which displays when data of any kind of being gathered (posts, comments, profiles), and also used to add the Avatar component into the Navbar.
+- Asset is used for the spinner animation which displays when data of any kind is being gathered (posts, comments, profiles), and also used to add the Avatar component into the Navbar.
 - Avatar is used in every instance which requires a user's profile picture to be displayed.
 - MoreDropdown is used for every instance where the owner of a post, comment or profile can edit or delete it.
 - Posts is used on both the homepage and profile page, also containing the Post component which is of course reused constantly, therefore making its children reusable:
@@ -284,7 +284,7 @@ The following components in this app are completely reusable and reused througho
 - Although it is not currently reused in the project, PostFilters is a reusable component as it can be inserted into any page.
 - PopularProfiles is reused on the homepage and profile page, and contains MiniProfile which is reused throughout PopularProfiles
 
-The AuthContext and ProfileDataContext providers are also reuseable by nature and the functions within them are utilised frequently in the project.
+The AuthContext and ProfileDataContext providers are also reusable by nature and the functions within them are utilised frequently in the project.
 
 ## **Technologies and Dependencies**
 
@@ -317,7 +317,7 @@ In the console of your chosen code editor, enter the command `npm install`, whic
 
 #### **Deployment to Heroku**
 
-This project is hosted on [**_Heroku_**](https://www.heroku.com/). Below are the steps I took to deploy this front-end part of the Creature Feature project, and assumes that the instructions on deploying the back-end have already been followed and that the back-end project is already deployed on Heroku. Please see the [**_'Deployment' section of the back-end README.md file for more information on this_**](https://github.com/emmacadavra/creature-feature-drf-api/blob/main/README.md#deployment):
+This project is hosted on [**_Heroku_**](https://www.heroku.com/). Below (in this section and in the following **'Connecting to the API'** section) are the steps I took to deploy this front-end part of the Creature Feature project. They are written under the assumption that the instructions on deploying the back-end have already been followed and that the back-end project is already deployed on Heroku. Please see the [**_'Deployment' section of the back-end README.md file for more information on this_**](https://github.com/emmacadavra/creature-feature-drf-api/blob/main/README.md#deployment):
 
 1. On the Heroku Dashboard, create a new app. The app name must be unique and should be related to the React project name.
 1. Set location as appropriate and create the project.

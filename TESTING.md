@@ -21,9 +21,9 @@
 
 ## **Testing Overview**
 
-Below I have documented the testing undertaken throughout development for this respository's code.
+Below I have documented the testing undertaken throughout development for this repository's code.
 
-For information on back-end testing, please follow the link to this project's [**_back end respository's TESTING.md document_**](https://github.com/emmacadavra/creature-feature-drf-api/blob/main/TESTING.md).
+For information on back-end testing, please follow the link to this project's [**_back end repository's TESTING.md document_**](https://github.com/emmacadavra/creature-feature-drf-api/blob/main/TESTING.md).
 
 ## **Testing Throughout Development**
 
@@ -34,15 +34,15 @@ A lot of testing work was undertaken throughout this project in both the back an
 I did enlist the help of several friends to try and use all of the functionality within the site to not only validate it but to also 'break it' to try to find bugs. That included:
 
 - Interacting with elements in ways that I didn't necessarily expect.
-- Some attempting to inject HTML/Javascript snippets into form posts.
+- Attempting to inject HTML/Javascript snippets into form posts.
 - Entering other unusual information into forms, such as just white spaces.
-- More tech-savvy friends testing security by trying to e.g. create posts masquerading as another users by sending requests directly to the backend (outside of the UI).
+- More tech-savvy friends testing security by trying to e.g. create posts masquerading as another user by sending requests directly to the backend (outside of the UI).
 
 ### **Testing and Quality Control Tools**
 
 I used a variety of methods to test my code as I went along, in particular making frequent use of console logs (_a LOT of console logs_) to track the journey of data being passed between functions or components, and to identify where the code stops working if I encountered errors, bugs, or generally undesired results.
 
-I am aware of the debug tools available in VSCode that could allow me to add 'breakpoints' and step through code but I unfortunately did not have time to properly learn and utilise this to comfortable degree.
+I am aware of the debug tools available in VSCode that could allow me to add 'breakpoints' and step through code but I unfortunately did not have time to properly learn and utilise this to a comfortable degree.
 
 I did leverage the following tools to help with my code quality during this project:
 
@@ -60,19 +60,15 @@ As mentioned above, I found that I came across significantly more bugs in my fro
 - In the MoreDropdown component, I was getting the eslint error "Component definition is missing display name" when trying to use React Bootstrap’s custom dropdown code. To fix this, I added `ThreeDotsMeatballs.displayName = "ThreeDotsMeatballs"` below the code.
 - When creating the CreateEditPost component, at first the form was not rendering, and throwing the error “Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined”. I realised this was due to me following the course content, which used an earlier version of React Bootstrap. I replaced “Form.File” with “Form.Control” with type= “file”, which fixed the issue.
 - In the PostFilters component, `useNavigate` was not working correctly, as users do not navigate to different pages on the homepage. The initial solution was to keep the query in the URL in sync with the text field by using useSearchParams. However, this caused the search bar to either not allow being typed into (if `value={query}`), or it was keeping the searched keywords in the search bar after clicking Home (if `defaultValue={query}`). Additionally, by making it a controlled form, debounce was no longer working. The solution I used for this is to manually keep the text field in sync by getting the element from the DOM directly, and updating it that way.
-- Unfortunately extremely late in development, I realised I had made a huge oversight in regards to editing comments, as I had forgotton to include an 'isOwner' rule to the MoreDropdown component displayed in the Comment component. This meant that users were given the option to edit other users' comments, and although upon trying to do so the site would throw an error as this is not allowed through the API, it still contributes to bad user experience. This issue was fixed with a simple 'isOwner' conditional statement that was sadly overlooked in initial development.
+- Unfortunately, extremely late in development, I realised I had made a huge oversight in regards to editing comments, as I had forgotten to include an 'isOwner' rule to the MoreDropdown component displayed in the Comment component. This meant that users were given the option to edit other users' comments, and although upon trying to do so the site would throw an error as this is not allowed through the API, it still contributes to bad user experience. This issue was fixed with a simple 'isOwner' conditional statement that was sadly overlooked in initial development.
 
 ## Post Development Testing
 
-### **Code Validation**
-
-CODE VALIDATION
-
 #### **Lighthouse Scores**
 
-Below are the Lighthouse testing results for the two main pages - he Homepage and Profile page.
+Below are the Lighthouse testing results for the two main pages - the Home page and Profile page.
 
-The performance score in particular is much lower than I would like, as given the nature of the site, it is at the whim of the images uploaded by other uses. I would like to add more work around image optimisation if I had more time to improve on that. Additionally, the best practice score is not ideal, but this is due to recent changes in the way Lighthouse operates in regards to third-party cookies. The way that the back-end API is set up with Django AllAuth and Django Rest Auth means that cookies are always created, which brought the score down.
+The performance score in particular is much lower than I would like, as given the nature of the site, it is at the whim of the images uploaded by other users. I would like to add more work around image optimisation if I had more time to improve on that. Additionally, the best practice score is not ideal, but this is due to recent changes in the way Lighthouse operates in regards to third-party cookies. The way that the back-end API is set up with Django AllAuth and Django Rest Auth means that cookies are always created, which brought the score down.
 
 ##### **Homepage scores:**
 
@@ -234,7 +230,7 @@ My User Stories can be found by following this link to [**_this repository’s p
 
 | **As a logged in user, I can click/tap again on a reaction to undo it, with clear visual feedback that I have done so, so that I can choose a different reaction if I change my mind**                                                                                                                                                                       | **Complete?** |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| When a logged in user reacts to a post, and then clicks again on the same reaction, this 'deletes' the reaction, descreasing the number below it by 1 and restoring the styling of the stickers to their default state                                                                                                                                       |    &check;    |
+| When a logged in user reacts to a post, and then clicks again on the same reaction, this 'deletes' the reaction, decreasing the number below it by 1 and restoring the styling of the stickers to their default state                                                                                                                                        |    &check;    |
 | When a logged in user 'deletes' their reaction to a post, that post will no longer appear in their 'My Faves' feed                                                                                                                                                                                                                                           |    &check;    |
 | When a logged in user reacts to a post, and then clicks a different reaction on the same post, their first choice is undone (the total below it decreasing again by 1), and their new choice becomes highlighted, increasing that reaction's total by 1 and greying out the other two - this can be done ad infinitum if the user so wishes                  |    &check;    |
 | When a logged in user changes their reaction to a post, that post will display at the top of their 'My Faves' feed, but only once, and with the most recent reaction they have chosen (unless they are already viewing their 'My Faves' feed, in which case the post will remain in place until the user navigates away from that feed and comes back later) |    &check;    |
@@ -283,7 +279,7 @@ My User Stories can be found by following this link to [**_this repository’s p
 | When a logged in user likes a comment, the sticker updates to a more contrasted/saturated image and the count next it increases by 1                                                                                      |    &check;    |
 | When a logged in user creates a comment, the like sticker will always show as the default styling to them, and if they try to like their own comment, an overlay will pop up explaining that they are not able to do this |    &check;    |
 | Styled indicators of whether a user has liked a comment are only displayed to the user who has liked the comment - other users are not able to see the styling that is applied by other users' likes                      |    &check;    |
-| When a logged in user likes a comment, and then clicks/taps again on the like icon, this 'deletes' the like, descreasing the number next to it by 1 and restoring the styling of the sticker to its default state         |    &check;    |
+| When a logged in user likes a comment, and then clicks/taps again on the like icon, this 'deletes' the like, decreasing the number next to it by 1 and restoring the styling of the sticker to its default state          |    &check;    |
 
 ### **User Stories: Profiles**
 
