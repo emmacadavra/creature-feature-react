@@ -138,29 +138,30 @@ My User Stories can be found by following this link to [**_this repository’s p
 
 ### **User Stories: Creating & Editing Posts**
 
-| **As a logged in user I can clearly see the button to add a post** | **Complete?** |
-| :----------------------------------------------------------------- | :-----------: |
-| TEST                                                               |    &check;    |
-| TEST                                                               |    &check;    |
-| TEST                                                               |    &check;    |
+| **As a logged in user I can clearly see the button to add a post**                                                                                                                           | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Check to see that logged in users are able to see the 'Create Post' button on the Home and Profile page (if the profile belongs to the logged in user) - consistently appears on all devices |    &check;    |
+| Test to check that logged out users are unable to see this button - consistently hidden for all logged out users on all devices tested                                                       |    &check;    |
 
-| **As a logged in user I can create posts so that I can feature my creatures!** | **Complete?** |
-| :----------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                           |    &check;    |
-| TEST                                                                           |    &check;    |
-| TEST                                                                           |    &check;    |
+| **As a logged in user I can create posts so that I can feature my creatures!**                                                                                                                                         | **Complete?** |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| When a logged in user clicks on the 'Create Post' button, the create post form opens on the same page, without redirecting the user or refreshing                                                                      |    &check;    |
+| Test that all fields marked as required are functioning correctly and that error handling shows the correct error messages by attempting to create a post with no data, then no data in each required field one by one |    &check;    |
+| Test that, if a post is uploaded with no image, the specified default image is used by default so that the field is populated on the back-end, preventing errors                                                       |    &check;    |
+| When a user creates a post, the create post form automatically closes itself and the post is added to the top of the user's content feed seamlessly without needing to refresh the whole page                          |    &check;    |
 
-| **As a logged in user, I can choose a category for my post so that users know which kind of creature I’m featuring!** | **Complete?** |
-| :-------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                  |    &check;    |
-| TEST                                                                                                                  |    &check;    |
-| TEST                                                                                                                  |    &check;    |
+| **As a logged in user, I can choose a category for my post so that users know which kind of creature I’m featuring!**                                                              | **Complete?** |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| When a logged in user opens the create post form, the categories can clearly be seen above the 'Post Me!' button, and it is automatically populated with the first one on the list |    &check;    |
+| Upon creating a post, a colourful 'tag' is clearly visible in the post description that matches the colours for the category filters for easy recognition                          |    &check;    |
+| If a user decides to change the category of a post when editing it, the new category is recorded and the original category tag is removed                                          |    &check;    |
 
-| **As a logged in post owner I can edit my post title and description so that I can make corrections or update my post after it was created** | **Complete?** |
-| :------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                         |    &check;    |
-| TEST                                                                                                                                         |    &check;    |
-| TEST                                                                                                                                         |    &check;    |
+| **As a logged in post owner I can edit my post title and description so that I can make corrections or update my post after it was created**                                                                                      | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| When a logged in post owner decides they want to edit a post, the create post form appears in place of the original post, pre-populated with the data from the post for a positive user experience that avoids reloading the page |    &check;    |
+| Test that all fields marked as required are functioning correctly and that error handling shows the correct error messages by attempting to edit a post to contain no data, then no data in each required field one by one        |    &check;    |
+| Test that, if a user wants to update the text content of their post but not the image, the original image they uploaded remains rather than being replaced by the default                                                         |    &check;    |
+| Accounts can only edit posts they own - tested across various accounts, the three pink dots are only every visible to post owners, and posts cannot be edited using their ID in the URL                                           |    &check;    |
 
 ### **User Stories: Viewing Posts**
 
