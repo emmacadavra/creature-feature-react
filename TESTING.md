@@ -218,23 +218,24 @@ My User Stories can be found by following this link to [**_this repository’s p
 
 ### **User Stories: Reactions**
 
-| **As a user, I can clearly see the reaction choices for posts with how many of each reaction next to them, so that I can see what other users think about posts** | **Complete?** |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                                              |    &check;    |
-| TEST                                                                                                                                                              |    &check;    |
-| TEST                                                                                                                                                              |    &check;    |
+| **As a user, I can clearly see the reaction choices for posts with how many of each reaction next to them, so that I can see what other users think about posts**                              | **Complete?** |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Below the image but above the title of each post, the three reaction stickers are clearly visible, with a number total beneath each one, indicating the total number of each reaction per post |    &check;    |
 
-| **As a logged in user, I can react to a post with clear visual feedback that I have done so, so that I know how I have reacted and understand I can only pick one** | **Complete?** |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
-| TEST                                                                                                                                                                |    &check;    |
-| TEST                                                                                                                                                                |    &check;    |
-| TEST                                                                                                                                                                |    &check;    |
+| **As a logged in user, I can react to a post with clear visual feedback that I have done so, so that I know how I have reacted and understand I can only pick one**                                                                   | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| Logged out users can only ever see the default sticker styling with the totals beneath, and trying to react to a post brings up an overlay explaining that you must be logged into react to posts                                     |    &check;    |
+| When a logged in user reacts to a post, the reaction they select updates to a more contrasted/saturated image and the count beneath it increases by 1                                                                                 |    &check;    |
+| When a logged in user reacts to a post, the two reactions they did not select update to a slightly pink greyscale, indicating clearly to the user that only one reaction can be chosen per post                                       |    &check;    |
+| When a logged in user creates a post, the reactions beneath the post will always show as the default styling to them, and if they try to react to their own post, an overlay will pop up explaining that they are not able to do this |    &check;    |
+| When a logged in user reacts to a post, this post will be added to the top of their 'My Faves' feed                                                                                                                                   |    &check;    |
 
-| **As a logged in user, I can click/tap again on a reaction to undo it, with clear visual feedback that I have done so, so that I can choose a different reaction if I change my mind** | **Complete?** |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                                                                   |    &check;    |
-| TEST                                                                                                                                                                                   |    &check;    |
-| TEST                                                                                                                                                                                   |    &check;    |
+| **As a logged in user, I can click/tap again on a reaction to undo it, with clear visual feedback that I have done so, so that I can choose a different reaction if I change my mind**                                                                                                                                                      | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| When a logged in user reacts to a post, and then clicks again on the same reaction, this 'deletes' the reaction, descreasing the number below it by 1 and restoring the styling of the stickers to their default state                                                                                                                      |    &check;    |
+| When a logged in user 'deletes' their reaction to a post, that post will no longer appear in their 'My Faves' feed                                                                                                                                                                                                                          |    &check;    |
+| When a logged in user reacts to a post, and then clicks a different reaction on the same post, their first choice is undone (the total below it decreasing again by 1), and their new choice becomes highlighted, increasing that reaction's total by 1 and greying out the other two - this can be done ad infinitum if the user so wishes |    &check;    |
+| When a logged in user changes their reaction to a post, that post will display at the top of their 'My Faves' feed, but only once, and with the most recent reaction they have chosen                                                                                                                                                       |    &check;    |
 
 ### **User Stories: Comments**
 
