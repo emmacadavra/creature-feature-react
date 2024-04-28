@@ -90,90 +90,216 @@ The performance score in particular is much lower than I would like, as given th
 
 ## **User Story Testing**
 
-My User Stories can be found by following this link to [**_this repository’s project board_**](https://github.com/users/emmacadavra/projects/5). Further information on these User Stories can be found in the separate [**_AGILE.md_**](AGILE.md) document found in this repository. Below, I have detailed how I tested the User Stories through the front-end.
+My User Stories can be found by following this link to [**_this repository’s project board_**](https://github.com/users/emmacadavra/projects/5). Further information on these User Stories can be found in the separate [**_AGILE.md_**](AGILE.md) document found in this repository. Below, I have detailed how I tested the User Stories through the front-end. Testing for these User Stories relating to the back-end can be found in the [**_back-end repository's TESTING.md document_**](https://github.com/emmacadavra/creature-feature-drf-api/blob/main/TESTING.md).
 
 ### **User Stories: Navigation & Authentication**
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a user I can view the navbar from every page so that I can easily navigate between pages** | **Complete?** |
+| :---------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                            |    &check;    |
+| TEST                                                                                            |    &check;    |
+| TEST                                                                                            |    &check;    |
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a user I can navigate through pages quickly so that I can view content seamlessly without page refresh** | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------ | :-----------: |
+| TEST                                                                                                          |    &check;    |
+| TEST                                                                                                          |    &check;    |
+| TEST                                                                                                          |    &check;    |
+
+| **As a user I can create a new account so that I can access all the features for signed up users** | **Complete?** |
+| :------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                               |    &check;    |
+| TEST                                                                                               |    &check;    |
+| TEST                                                                                               |    &check;    |
+
+| **As a user I can sign in to the app so that I can access functionality for logged in users** | **Complete?** |
+| :-------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                          |    &check;    |
+| TEST                                                                                          |    &check;    |
+| TEST                                                                                          |    &check;    |
+
+| **As a user I can clearly see if I am logged in or not so that I can log in if I need to, or log out if I want to** | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| TEST                                                                                                                |    &check;    |
+| TEST                                                                                                                |    &check;    |
+| TEST                                                                                                                |    &check;    |
+
+| **As a user I can maintain my logged-in status until I choose to log out so that my user experience is not compromised** | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                     |    &check;    |
+| TEST                                                                                                                     |    &check;    |
+| TEST                                                                                                                     |    &check;    |
+
+| **As a logged out user I can see sign in and sign up options so that I can sign in/sign up** | **Complete?** |
+| :------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                         |    &check;    |
+| TEST                                                                                         |    &check;    |
+| TEST                                                                                         |    &check;    |
 
 ### **User Stories: Creating & Editing Posts**
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a logged in user I can clearly see the button to add a post** | **Complete?** |
+| :----------------------------------------------------------------- | :-----------: |
+| TEST                                                               |    &check;    |
+| TEST                                                               |    &check;    |
+| TEST                                                               |    &check;    |
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a logged in user I can create posts so that I can feature my creatures!** | **Complete?** |
+| :----------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                           |    &check;    |
+| TEST                                                                           |    &check;    |
+| TEST                                                                           |    &check;    |
+
+| **As a logged in user, I can choose a category for my post so that users know which kind of creature I’m featuring!** | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                  |    &check;    |
+| TEST                                                                                                                  |    &check;    |
+| TEST                                                                                                                  |    &check;    |
+
+| **As a logged in post owner I can edit my post title and description so that I can make corrections or update my post after it was created** | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                         |    &check;    |
+| TEST                                                                                                                                         |    &check;    |
+| TEST                                                                                                                                         |    &check;    |
 
 ### **User Stories: Viewing Posts**
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a user I can view all the most recent posts, ordered by most recently created first so that I am up to date with the newest content** | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                       |    &check;    |
+| TEST                                                                                                                                       |    &check;    |
+| TEST                                                                                                                                       |    &check;    |
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a user, I can search for posts with keywords, so that I can find the posts and user profiles I am interested in** | **Complete?** |
+| :--------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                   |    &check;    |
+| TEST                                                                                                                   |    &check;    |
+| TEST                                                                                                                   |    &check;    |
+
+| **As a logged in user, I can view the posts I have reacted to so that I can revisit the posts I enjoy the most** | **Complete?** |
+| :--------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                             |    &check;    |
+| TEST                                                                                                             |    &check;    |
+| TEST                                                                                                             |    &check;    |
+
+| **As a logged in user I can view content filtered by users I follow so that I can keep up to date with what they are posting about** | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                 |    &check;    |
+| TEST                                                                                                                                 |    &check;    |
+| TEST                                                                                                                                 |    &check;    |
+
+| **As a user, I can filter posts by category so that I can view posts featuring specific types of creature** | **Complete?** |
+| :---------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                        |    &check;    |
+| TEST                                                                                                        |    &check;    |
+| TEST                                                                                                        |    &check;    |
+
+| **As a user I can keep scrolling through the images on the site, that are loaded for me automatically so that I don't have to click on "next page" etc.** | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                                      |    &check;    |
+| TEST                                                                                                                                                      |    &check;    |
+| TEST                                                                                                                                                      |    &check;    |
 
 ### **User Stories: Reactions**
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a user, I can clearly see the reaction choices for posts with how many of each reaction next to them, so that I can see what other users think about posts** | **Complete?** |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                                              |    &check;    |
+| TEST                                                                                                                                                              |    &check;    |
+| TEST                                                                                                                                                              |    &check;    |
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a logged in user, I can react to a post with clear visual feedback that I have done so, so that I know how I have reacted and understand I can only pick one** | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| TEST                                                                                                                                                                |    &check;    |
+| TEST                                                                                                                                                                |    &check;    |
+| TEST                                                                                                                                                                |    &check;    |
+
+| **As a logged in user, I can click/tap again on a reaction to undo it, with clear visual feedback that I have done so, so that I can choose a different reaction if I change my mind** | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                                                                   |    &check;    |
+| TEST                                                                                                                                                                                   |    &check;    |
+| TEST                                                                                                                                                                                   |    &check;    |
 
 ### **User Stories: Comments**
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a logged in user, I can click to expand and read the comments under posts so that I can read what other users think about the posts** | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                       |    &check;    |
+| TEST                                                                                                                                       |    &check;    |
+| TEST                                                                                                                                       |    &check;    |
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a logged in user I can add comments to a post so that I can share my thoughts about the post** | **Complete?** |
+| :-------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                |    &check;    |
+| TEST                                                                                                |    &check;    |
+| TEST                                                                                                |    &check;    |
+
+| **As a user I can see how long ago a comment was made so that I know how old a comment is** | **Complete?** |
+| :------------------------------------------------------------------------------------------ | :-----------: |
+| TEST                                                                                        |    &check;    |
+| TEST                                                                                        |    &check;    |
+| TEST                                                                                        |    &check;    |
+
+| **As a logged in owner of a comment I can edit my comment so that I can fix or update my existing comment** | **Complete?** |
+| :---------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                        |    &check;    |
+| TEST                                                                                                        |    &check;    |
+| TEST                                                                                                        |    &check;    |
+
+| **As a logged in owner of a comment I can delete my comment so that I can control removal of my comment from the application** | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                           |    &check;    |
+| TEST                                                                                                                           |    &check;    |
+| TEST                                                                                                                           |    &check;    |
+
+| **As a logged in user I can like the comments of other users so that I can show support or agreement as to what other users have to say** | **Complete?** |
+| :---------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                      |    &check;    |
+| TEST                                                                                                                                      |    &check;    |
+| TEST                                                                                                                                      |    &check;    |
 
 ### **User Stories: Profiles**
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a user I can view user's avatars so that I can easily identify users of the application and their posts** | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                           |    &check;    |
+| TEST                                                                                                           |    &check;    |
+| TEST                                                                                                           |    &check;    |
 
-| **_USER STORY_** | **Complete?** |
-| :--------------- | :-----------: |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
-| TEST             |    &check;    |
+| **As a user I can see a list of the most followed profiles so that I can see which profiles are popular** | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                      |    &check;    |
+| TEST                                                                                                      |    &check;    |
+| TEST                                                                                                      |    &check;    |
+
+| **As a user I can view other users profiles so that I can see their posts and learn more about them** | **Complete?** |
+| :---------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                  |    &check;    |
+| TEST                                                                                                  |    &check;    |
+| TEST                                                                                                  |    &check;    |
+
+| **As a user I can view statistics about a specific user: bio, number of posts, follows and users followed so that I can learn more about them** | **Complete?** |
+| :---------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                            |    &check;    |
+| TEST                                                                                                                                            |    &check;    |
+| TEST                                                                                                                                            |    &check;    |
+
+| **As a logged in user I can follow and unfollow other users so that I can see and remove posts by specific users in my posts feed** | **Complete?** |
+| :---------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                |    &check;    |
+| TEST                                                                                                                                |    &check;    |
+| TEST                                                                                                                                |    &check;    |
+
+| **As a user I can view all the posts by a specific user so that I can catch up on their latest posts, or decide I want to follow them** | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                                                                    |    &check;    |
+| TEST                                                                                                                                    |    &check;    |
+| TEST                                                                                                                                    |    &check;    |
+
+| **As a logged in user I can edit my profile so that I can change my profile picture and bio** | **Complete?** |
+| :-------------------------------------------------------------------------------------------- | :-----------: |
+| TEST                                                                                          |    &check;    |
+| TEST                                                                                          |    &check;    |
+| TEST                                                                                          |    &check;    |
 
 Please click the following link to return to the [**_README.md_**](README.md) document.
