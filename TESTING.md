@@ -52,11 +52,13 @@ I did leverage the following tools to help with my code quality during this proj
 
 ### **Noteworthy Bugs During Development**
 
+As mentioned above, I found that I came across significantly more bugs in my front-end code than I did in my back-end code, and this is largely due to React being new to me. I also made the choice to use the most recent versions of Create React App, as well as the newest versions of React Bootstrap and React Router Dom, whereas most of my learning material used previous versions of all three - this meant that I spent a lot of time fixing bugs that I had caused by unknowingly using outdated and/or incompatible code. Below are a few of the most noteworthy bugs I encountered - some are simple, but some much more complex from my view that often took much, much longer to resolve than anticipated!
+
 - Certain characters in my code were not escaping properly (namely apostrophes) which caused errors in my code and in some cases prevented the site from running at all. This was fixed by replacing the offending apostrophes with `&apos;`.
 - No error handling was appearing when attempting to upload an image that’s too big. This was fixed by adding a react `useState` to capture and show errors on the form.
 - The 'ProfileDataContext' component caused an infinite loop of requesting the list of profiles over and over again. This was because the profile ID being pulled from the URL was a string, but the comparison used to stop those requests expected a number. Converting the string value to a number using `Number(profileId)` fixed this issue.
 - In the MoreDropdown component, I was getting the eslint error "Component definition is missing display name" when trying to use React Bootstrap’s custom dropdown code. To fix this, I added `ThreeDotsMeatballs.displayName = "ThreeDotsMeatballs"` below the code.
-- When creating the CreateEditPost component, at first the form was not rendering and throwing the error “Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined”. I realised this was due to me following the course content, which used an earlier version of React Bootstrap. I replaced “Form.File” with “Form.Control” with type= “file”, which fixed the issue.
+- When creating the CreateEditPost component, at first the form was not rendering, and throwing the error “Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined”. I realised this was due to me following the course content, which used an earlier version of React Bootstrap. I replaced “Form.File” with “Form.Control” with type= “file”, which fixed the issue.
 - In the PostFilters component, `useNavigate` was not working correctly, as users do not navigate to different pages on the homepage. The initial solution was to keep the query in the URL in sync with the text field by using useSearchParams. However, this caused the search bar to either not allow being typed into (if `value={query}`), or it was keeping the searched keywords in the search bar after clicking Home (if `defaultValue={query}`). Additionally, by making it a controlled form, debounce was no longer working. The solution I used for this is to manually keep the text field in sync by getting the element from the DOM directly, and updating it that way.
 
 ## Post Development Testing
@@ -94,47 +96,45 @@ My User Stories can be found by following this link to [**_this repository’s p
 
 ### **User Stories: Navigation & Authentication**
 
-| **As a user I can view the navbar from every page so that I can easily navigate between pages** | **Complete?** |
-| :---------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                            |    &check;    |
-| TEST                                                                                            |    &check;    |
-| TEST                                                                                            |    &check;    |
+| **As a user I can view the navbar from every page so that I can easily navigate between pages**                                                                                                                                                                                                                                    | **Complete?** |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Open the website as both a logged out user and a logged in user, and navigate through each main page (Home, Sign Up, Sign In, Profile, Sign Out) to confirm that the navbar is present in the same position on all pages, with the only differences being the contents of the navbar based on whether the user is logged in or not |    &check;    |
 
-| **As a user I can navigate through pages quickly so that I can view content seamlessly without page refresh** | **Complete?** |
-| :------------------------------------------------------------------------------------------------------------ | :-----------: |
-| TEST                                                                                                          |    &check;    |
-| TEST                                                                                                          |    &check;    |
-| TEST                                                                                                          |    &check;    |
+| **As a user I can navigate through pages quickly so that I can view content seamlessly without page refresh**                                                                                                                                             | **Complete?** |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Open the website as both a logged out user and a logged in user, and navigate through each main page (Home, Sign Up, Sign In, Profile, Sign Out) to confirm that the main page area is rendering/re-rendering each page seamlessly without a hard refresh |    &check;    |
+| As a logged in user, navigate between Home, My Feed, My Faves, and the three category tags to confirm that the only thing re-rendering is the Posts component, and that the page never refreshes                                                          |    &check;    |
+| Click on all profiles in the Popular Profiles component to check that the profile page only re-renders the profile information, and does not refresh                                                                                                      |    &check;    |
+| Clicking on the Creature Feature logo or the 'Home' button in the navbar clears all search filters without hard refreshing the page                                                                                                                       |    &check;    |
 
-| **As a user I can create a new account so that I can access all the features for signed up users** | **Complete?** |
-| :------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                               |    &check;    |
-| TEST                                                                                               |    &check;    |
-| TEST                                                                                               |    &check;    |
+| **As a user I can create a new account so that I can access all the features for signed up users**                                                           | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| When a user is not signed in or registered, the 'Sign Up' button appears clearly in the navbar on all pages, directing the user to the sign up form          |    &check;    |
+| Clicking the 'Sign Up' form in the navbar directs the user to the sign up form seamlessly without hard refreshing                                            |    &check;    |
+| Ensure that error handling and data validation in the sign up form are working correctly by trying to sign up with empty fields and invalid/mismatching data |    &check;    |
+| Upon sign up, the user is redirected to the sign in form so that they can sign in                                                                            |    &check;    |
 
-| **As a user I can sign in to the app so that I can access functionality for logged in users** | **Complete?** |
-| :-------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                          |    &check;    |
-| TEST                                                                                          |    &check;    |
-| TEST                                                                                          |    &check;    |
+| **As a user I can sign in to the app so that I can access functionality for logged in users**                                                                                                         | **Complete?** |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| When a user is not signed in, the 'Sign In' button appears clearly in the navbar on all pages, directing the user to the sign in form                                                                 |    &check;    |
+| Clicking the 'Sign In' form in the navbar directs the user to the sign in form seamlessly without hard refreshing                                                                                     |    &check;    |
+| Ensure that error handling and data validation in the sign in form are working correctly - users cannot log in with invalid credentials                                                               |    &check;    |
+| Upon sign in, the user is redirected to the home page, where they can see all the functionality only available for logged in users, such as the ability to create posts and filter their content feed |    &check;    |
 
-| **As a user I can clearly see if I am logged in or not so that I can log in if I need to, or log out if I want to** | **Complete?** |
-| :------------------------------------------------------------------------------------------------------------------ | :-----------: |
-| TEST                                                                                                                |    &check;    |
-| TEST                                                                                                                |    &check;    |
-| TEST                                                                                                                |    &check;    |
+| **As a user I can clearly see if I am logged in or not so that I can log in if I need to, or log out if I want to**                                                                                | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Test to make sure the 'Sign In' and 'Sign Up' buttons in the navbar are only ever visible to users who are not logged in                                                                           |    &check;    |
+| When a user is logged in, test to make sure that the 'Sign Out' and 'My Profile' buttons in the navbar are clearly visible on every page                                                           |    &check;    |
+| When a user is logged in and on the Home page, the option to create posts, filter content, and view their personalised feeds are above the content feed - logged out users are unable to see these |    &check;    |
+| When a user is logged in, they can see three dots on posts and comments they have made, which are not otherwise visible                                                                            |    &check;    |
 
-| **As a user I can maintain my logged-in status until I choose to log out so that my user experience is not compromised** | **Complete?** |
-| :----------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                     |    &check;    |
-| TEST                                                                                                                     |    &check;    |
-| TEST                                                                                                                     |    &check;    |
+| **As a user I can maintain my logged-in status until I choose to log out so that my user experience is not compromised**                                                                                                                                      | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| Thanks to JWT, users are able to remain logged in if they wish, even after closing the website and coming back later - tested across various accounts on various browsers by logging in, closing the site and coming back later to find I was still logged in |    &check;    |
 
-| **As a logged out user I can see sign in and sign up options so that I can sign in/sign up** | **Complete?** |
-| :------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                         |    &check;    |
-| TEST                                                                                         |    &check;    |
-| TEST                                                                                         |    &check;    |
+| **As a logged out user I can see sign in and sign up options so that I can sign in/sign up**                                                                                         | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| When a user is not signed in/registered, the 'Sign Up' and 'Sign In' buttons appear clearly in the navbar on all pages, directing the user to the sign up/sign in forms respectively |    &check;    |
 
 ### **User Stories: Creating & Editing Posts**
 
