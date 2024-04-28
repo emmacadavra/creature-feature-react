@@ -290,44 +290,53 @@ My User Stories can be found by following this link to [**_this repository’s p
 | **As a user I can view user's avatars so that I can easily identify users of the application and their posts**                                               | **Complete?** |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
 | The Avatar component always displays next to the respective users' username so that users can easily identify which profile picture belongs to which profile |    &check;    |
-| The Avatar component always uses the profile image of the owner of the post / comment / profile respectively                                                 |    &check;    |
+| The Avatar component always uses the profile image of the username is it next to (the owner of the post / comment / profile respectively)                    |    &check;    |
 | Users who have not uploaded a profile picture are provided with a specified default image to ensure that this data is always provided to the API             |    &check;    |
 | When a user updates their profile picture, all instances of that user's Avatar update along with it                                                          |    &check;    |
 
-| **As a user I can see a list of the most followed profiles so that I can see which profiles are popular** | **Complete?** |
-| :-------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                      |    &check;    |
-| TEST                                                                                                      |    &check;    |
-| TEST                                                                                                      |    &check;    |
+| **As a user I can see a list of the most followed profiles so that I can see which profiles are popular**                                                                                                                                                                                                                  | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| The PopularProfiles component is kept up to date using the ProfileDataContext context, and always displays the most followed profiles                                                                                                                                                                                      |    &check;    |
+| On smaller screens and mobiles, the PopularProfiles component displays at the top of the Home page and individual profile pages (listing profiles horizontally), and is limited to the top four most followed profiles                                                                                                     |    &check;    |
+| On smaller screens and mobiles, the 'Follow'/'Unfollow' buttons do not appear next to/beneath the profile avatars and usernames to save space                                                                                                                                                                              |    &check;    |
+| On medium screens and up, the PopularProfiles component displays on the right-hand side of the screen on the Home page and individual profile pages (listing profiles vertically), and is limited to the top ten most followed profiles                                                                                    |    &check;    |
+| On medium screens and up, when a logged in user on the Home page clicks the 'Follow' button next to a popular profile, the individual UserProfile component updates and the 'Follow' button becomes an 'Unfollow' button (or vice versa)                                                                                   |    &check;    |
+| On medium screens and up, when a logged in user is viewing the profile page of a popular profile; if they click the 'Follow'/'Unfollow' button on the profile page, the matching button in the PopularProfiles component updates to match, and that profile's followers count increases/decreases by 1 in real time        |    &check;    |
+| On medium screens and up, when a logged in user is viewing the profile page of a popular profile; if they click the 'Follow'/'Unfollow' button in the PopularProfiles component, the matching button on the user's profile page updates to match, and that profile's followers count increases/decreases by 1 in real time |    &check;    |
+| On medium screens and up, when a logged in user is viewing their own profile page; if they click the 'Follow'/'Unfollow' button next to a profile in the PopularProfiles component, the current logged in user's following count on their profile increases/decreases by 1 in real time                                    |    &check;    |
+| Logged out users on medium screens and above are not able to see the 'Follow'/'Unfollow' buttons next to the users displayed in the PopularProfiles component on the Home page and individual profile pages, as users must be logged in to follow/unfollow other users                                                     |    &check;    |
 
-| **As a user I can view other users profiles so that I can see their posts and learn more about them** | **Complete?** |
-| :---------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                  |    &check;    |
-| TEST                                                                                                  |    &check;    |
-| TEST                                                                                                  |    &check;    |
+| **As a user I can view other users' profiles so that I can see their posts and learn more about them**                                                                                                                                                                         | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Clicking on a user's username or avatar, anywhere they are displayed on the site (posts they have created, comments they have made, or if they are shown in the PopularProfiles component) takes the current logged in user to the profile page of the user they've clicked on |    &check;    |
 
-| **As a user I can view statistics about a specific user: bio, number of posts, follows and users followed so that I can learn more about them** | **Complete?** |
-| :---------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                            |    &check;    |
-| TEST                                                                                                                                            |    &check;    |
-| TEST                                                                                                                                            |    &check;    |
+| **As a user I can view statistics about a specific user: bio, number of posts, follows and users followed so that I can learn more about them**                                                                                                                                                                                                        | **Complete?** |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Individual profile pages clearly show all of the information for that profile at the top of the page                                                                                                                                                                                                                                                   |    &check;    |
+| When a logged in user interacts with another user's profile (ie by following/unfollowing) the profile information updates in real time to reflect the number of followers that profile has                                                                                                                                                             |    &check;    |
+| When a logged in user is viewing their own profile page and follows/unfollows a user through the PopularProfiles component, or creates a new post/deletes an existing post they own through their profile page rather than the Home page, their own user stats are updated in real time to display the number of profiles followed and number of posts |    &check;    |
 
-| **As a logged in user I can follow and unfollow other users so that I can see and remove posts by specific users in my posts feed** | **Complete?** |
-| :---------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                |    &check;    |
-| TEST                                                                                                                                |    &check;    |
-| TEST                                                                                                                                |    &check;    |
+| **As a logged in user I can follow and unfollow other users so that I can see and remove posts by specific users in my posts feed**                                  | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Logged in users are given the option to follow/unfollow every other profile on the site                                                                              |    &check;    |
+| When a logged in user follows/unfollows another user, the following count on their profile increases/decreases respectively                                          |    &check;    |
+| When a logged in user follows/unfollows another user, the followers count of the profile being followed/unfollowed increases/decreases respectively                  |    &check;    |
+| When a logged in user follows/unfollows another user, their 'My Feed' filter updates to either include or not include posts by the profile being followed/unfollowed |    &check;    |
+| Logged in users cannot follow/unfollow profiles on other users' behalf, and can only follow/unfollow through their own account                                       |    &check;    |
+| Users who are not logged in cannot follow/unfollow profiles                                                                                                          |    &check;    |
 
-| **As a user I can view all the posts by a specific user so that I can catch up on their latest posts, or decide I want to follow them** | **Complete?** |
-| :-------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                                                                    |    &check;    |
-| TEST                                                                                                                                    |    &check;    |
-| TEST                                                                                                                                    |    &check;    |
+| **As a user I can view all the posts by a specific user so that I can catch up on their latest posts, or decide I want to follow them**           | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------ | :-----------: |
+| Individual profile pages display all posts made by that individual profile on their profile page, and never contain posts made by any other users |    &check;    |
+| The posts displayed on individual profile pages cannot be filtered, so that all posts by that user are always displayed                           |    &check;    |
+| Posts on individual profile pages load 10 at a time, with an infinite scroll as with the Home page, to improve performance and user experience    |    &check;    |
 
-| **As a logged in user I can edit my profile so that I can change my profile picture and bio** | **Complete?** |
-| :-------------------------------------------------------------------------------------------- | :-----------: |
-| TEST                                                                                          |    &check;    |
-| TEST                                                                                          |    &check;    |
-| TEST                                                                                          |    &check;    |
+| **As a logged in user I can edit my profile so that I can change my profile picture and bio**                                                                                                                              | **Complete?** |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| Logged in users who are viewing their own profile page are shown the pink three dots icon in the top right-hand corner of their profile card, indicating that they can edit their own profile                              |    &check;    |
+| When logged in profile owners click the 'Edit' icon after clicking the three dots, a simple form, pre-populated with their existing profile information, replaces their profile card in place for a smooth user experience |    &check;    |
+| After a logged in profile owner has updated their profile, their profile card re-renders in place with the updated information immediately                                                                                 |    &check;    |
+| Logged in users are never able to edit another users' profile, and the three dots will never display if they are not the owner of the profile                                                                              |    &check;    |
+| Logged out users are never able to edit a users' profile, and the three dots will never display if they are not logged in (or the owner of the profile)                                                                    |    &check;    |
 
 Please click the following link to return to the [**_README.md_**](README.md) document.
