@@ -1,3 +1,4 @@
+import axios from "axios";
 import { axiosReq } from "./axiosDefaults";
 
 const transformPostData = (post) => {
@@ -29,7 +30,9 @@ const transformPostData = (post) => {
 
 export const getPosts = async (params) => {
   try {
-    const { data } = await axiosReq.get("/posts/", { params: params });
+    const { data } = await axios.get("http://localhost:4000/posts/", {
+      params: params,
+    });
 
     return {
       hasMorePages: data.next ? true : false,

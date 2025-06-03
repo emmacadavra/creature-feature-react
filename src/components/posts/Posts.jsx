@@ -16,6 +16,7 @@ import { useSearchParams } from "react-router-dom";
 
 const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
   const { currentUser } = useAuth();
+  console.log("Current User:", currentUser);
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [postsData, setPostsData] = useState([]);
   const [postsLoading, setPostsLoading] = useState(true);
@@ -32,6 +33,7 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
         ...searchParamsObj,
         ...(getPostsParams ? getPostsParams : {}),
         page,
+        currentlyLoggedInUser: currentUser ? currentUser.pk : null,
       });
       setPostsData(
         appendPosts ? [...postsData, ...data.results] : data.results,

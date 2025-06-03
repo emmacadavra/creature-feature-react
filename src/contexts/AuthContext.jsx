@@ -10,6 +10,7 @@ export const AuthContext = createContext({
 });
 
 export const AuthProvider = ({ children }) => {
+  const [userInfoLoaded, setUserInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
@@ -17,8 +18,10 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data } = await axiosResp.get("dj-rest-auth/user/");
       setCurrentUser(data);
+      setUserInfoLoaded(true);
     } catch (error) {
       console.error(error);
+      setUserInfoLoaded(true);
     }
   };
 
@@ -67,6 +70,10 @@ export const AuthProvider = ({ children }) => {
       },
     );
   }, [navigate]);
+
+  if (!userInfoLoaded) {
+    return null;
+  }
 
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
