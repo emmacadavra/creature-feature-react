@@ -19,9 +19,12 @@ const transformProfileData = (profile) => {
 
 export const getProfiles = async (params) => {
   try {
-    const { data: allProfilesData } = await axiosReq.get("/profiles/", {
-      params: params,
-    });
+    const { data: allProfilesData } = await axiosReq.get(
+      "http://localhost:4000/profiles/",
+      {
+        params: params,
+      },
+    );
 
     return allProfilesData.results.map((profile) => {
       return transformProfileData(profile);

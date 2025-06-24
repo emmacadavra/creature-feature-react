@@ -51,7 +51,10 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
   };
 
   const handleCreate = async (newPostData) => {
-    const { data: newPost, formErrors } = await createPost(newPostData);
+    const { data: newPost, formErrors } = await createPost(
+      newPostData,
+      currentUser.pk,
+    );
 
     if (formErrors) {
       return formErrors;

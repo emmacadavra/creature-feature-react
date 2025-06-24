@@ -18,7 +18,9 @@ const transformCommentData = (comment) => {
 
 export const getComments = async (postId) => {
   try {
-    const { data } = await axiosReq.get(`/comments/?post=${postId}`);
+    const { data } = await axiosReq.get(
+      `http://localhost:4000/comments/?post=${postId}`,
+    );
 
     return {
       hasMorePages: data.next ? true : false,

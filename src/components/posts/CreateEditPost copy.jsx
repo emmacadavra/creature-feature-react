@@ -4,7 +4,6 @@ import uploadImage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
 import Asset from "../Asset.jsx";
 import appStyles from "../../App.module.css";
-import { imageUpload } from "../../api/imageUploads.js";
 
 const CreateEditPost = ({
   onPostCreate,
@@ -14,7 +13,7 @@ const CreateEditPost = ({
   defaultTitle = "",
   defaultContent = "",
   defaultImage = "",
-  defaultCategory = "Facinorous Fluffballs",
+  defaultCategory = "",
 }) => {
   const [errors, setErrors] = useState(null);
   const [postData, setPostData] = useState({
@@ -49,20 +48,13 @@ const CreateEditPost = ({
     event.preventDefault();
 
     const formData = new FormData();
-    let imageData;
-
-    if (imageInput.current.files.length > 0) {
-      formData.append("image", imageInput.current.files[0]);
-      console.log("formData:", formData);
-      imageData = await imageUpload(formData);
-      console.log("imageData:", imageData);
-    }
 
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("image", imageData.image);
+    if (imageInput.current.files.length > 0) {
+      formData.append("image", imageInput.current.files[0]);
+    }
     formData.append("category", category);
-
     if (postId) {
       const errors = await onPostEdit(postId, formData);
       setErrors(errors);
@@ -70,8 +62,6 @@ const CreateEditPost = ({
       const errors = await onPostCreate(formData);
       setErrors(errors);
     }
-
-    console.log("postData:", postData);
   };
 
   const postFormFields = (
