@@ -53,14 +53,13 @@ const CreateEditPost = ({
 
     if (imageInput.current.files.length > 0) {
       formData.append("image", imageInput.current.files[0]);
-      console.log("formData:", formData);
       imageData = await imageUpload(formData);
-      console.log("imageData:", imageData);
     }
-
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("image", imageData.image);
+    if (imageData?.image) {
+      formData.append("image", imageData.image);
+    }
     formData.append("category", category);
 
     if (postId) {

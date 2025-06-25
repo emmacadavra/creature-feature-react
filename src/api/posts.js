@@ -71,12 +71,12 @@ export const editPost = async (postId, editPostData) => {
     throw new Error("editPostData must be an instance of FormData");
   }
   try {
-    const { data: editedPost } = await axiosReq.put(
-      `/posts/${postId}/`,
-      editPostData,
+    const response = await axiosReq.patch(
+      `http://localhost:4000/posts/${postId}/`,
+      Object.fromEntries(editPostData),
     );
     return {
-      data: transformPostData(editedPost),
+      data: transformPostData(response.data),
     };
   } catch (error) {
     if (error.response.status === 400) {
