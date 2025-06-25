@@ -12,6 +12,7 @@ import uploadImage from "../../assets/upload.png";
 import camera from "../../assets/camera.png";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
+import { imageUpload } from "../../api/imageUploads.js";
 
 const EditProfile = ({
   onProfileEdit,
@@ -52,12 +53,18 @@ const EditProfile = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
 
-    formData.append("name", name);
-    formData.append("content", content);
+    const formData = new FormData();
+    let imageData;
+
     if (imageInput.current.files.length > 0) {
       formData.append("image", imageInput.current.files[0]);
+      imageData = await imageUpload(formData);
+    }
+    formData.append("name", name);
+    formData.append("content", content);
+    if (imageData?.image) {
+      formData.append("image", imageData.image);
     }
     onProfileEdit(profileId, formData);
   };

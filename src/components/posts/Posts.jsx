@@ -9,7 +9,7 @@ import newPost from "../../assets/new_post.png";
 import noResults from "../../assets/no_results.png";
 import Asset from "../Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { deletePost, editPost, getPosts } from "../../api/posts";
+import { deletePost, editPost, getPosts } from "../../api/posts.js";
 import Post from "./Post";
 import { createPost } from "../../api/posts.js";
 import { useSearchParams } from "react-router-dom";
@@ -68,6 +68,7 @@ const Posts = ({ hideCreatePost, hideFilters, getPostsParams = null }) => {
     const { data: editedPost, formErrors } = await editPost(
       postId,
       editPostData,
+      currentUser.pk,
     );
 
     if (formErrors) {
