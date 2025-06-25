@@ -89,7 +89,7 @@ export const editPost = async (postId, editPostData) => {
 
 export const deletePost = async (postId) => {
   try {
-    await axiosReq.delete(`posts/${postId}/`);
+    await axiosReq.delete(`http://localhost:4000/posts/${postId}/`);
   } catch (error) {
     throw new Error(`Failed to deletePost(): ${error}`);
   }
