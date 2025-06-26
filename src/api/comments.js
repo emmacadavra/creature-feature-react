@@ -33,23 +33,27 @@ export const getComments = async (postId) => {
   }
 };
 
-export const createComment = async (postId, newCommentData) => {
+export const createComment = async (postId, newCommentData, ownerId) => {
   try {
-    const { data: newComment } = await axiosReq.post("/comments/", {
-      post: postId,
-      ...newCommentData,
-    });
+    const { data: newComment } = await axiosReq.post(
+      `http://localhost:4000/comments?post=${postId}`,
+      {
+        post: postId,
+        owner: ownerId,
+        ...newCommentData,
+      },
+    );
     return transformCommentData(newComment);
   } catch (error) {
     throw new Error(`Failed to createComment(): ${error}`);
   }
 };
 
-export const editComment = async (commentId, editCommentData) => {
+export const editComment = async (commentId, editCommentData, ownerId) => {
   try {
     const { data: editedComment } = await axiosReq.put(
-      `/comments/${commentId}/`,
-      editCommentData,
+      `/comments/${commentId}`,
+      { owner: ownerId, editCommentData },
     );
     return transformCommentData(editedComment);
   } catch (error) {

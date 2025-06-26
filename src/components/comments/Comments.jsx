@@ -34,13 +34,17 @@ const Comments = ({ postId, onCommentCreated, onCommentDeleted }) => {
   }, [postId]);
 
   const handleCreate = async (postId, commentData) => {
-    const newComment = await createComment(postId, commentData);
+    const newComment = await createComment(postId, commentData, currentUser.pk);
     setCommentsData([newComment, ...commentsData]);
     onCommentCreated();
   };
 
   const handleEdit = async (commentId, commentData) => {
-    const editedComment = await editComment(commentId, commentData);
+    const editedComment = await editComment(
+      commentId,
+      commentData,
+      currentUser.pk,
+    );
     const index = commentsData.findIndex((comment) => {
       return comment.id === commentId;
     });
