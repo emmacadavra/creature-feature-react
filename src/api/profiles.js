@@ -17,10 +17,10 @@ const transformProfileData = (profile) => {
   };
 };
 
-export const getProfiles = async (params) => {
+export const getProfiles = async (params, ownerId) => {
   try {
     const { data: allProfilesData } = await axiosReq.get(
-      "http://localhost:4000/profiles/",
+      `http://localhost:4000/profiles?currentlyLoggedInUser=${ownerId}`,
       {
         params: params,
       },

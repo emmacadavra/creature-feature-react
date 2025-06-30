@@ -29,7 +29,10 @@ export const ProfilesProvider = ({ children }) => {
 
   useEffect(() => {
     const handleMount = async () => {
-      const data = await getProfiles({ ordering: "-followers_count" });
+      const data = await getProfiles(
+        { ordering: "-followers_count" },
+        currentUser.pk,
+      );
       setCurrentProfiles(
         data.map((profile) => ({ ...profile, popular: true })),
       );
@@ -48,13 +51,17 @@ export const ProfilesProvider = ({ children }) => {
     }
 
     setCurrentProfileLoading(true);
-    const currentProfileData = await getUserProfile(profileId);
+    const currentProfileData = await getUserProfile(profileId, currentUser.pk);
     setCurrentProfiles([...currentProfiles, currentProfileData]);
     setCurrentProfileLoading(false);
   };
 
   const editProfile = async (profileId, profileData) => {
-    const editedProfile = await editProfileData(profileId, profileData);
+    const editedProfile = await editProfileData(
+      profileId,
+      profileData,
+      currentUser.pk,
+    );
 
     const updatedCurrentProfiles = updateProfileById(
       currentProfiles,
@@ -65,7 +72,7 @@ export const ProfilesProvider = ({ children }) => {
   };
 
   const addFollow = async (profileId) => {
-    const newFollow = await createFollow(profileId);
+    const newFollow = await createFollow(profileId, currentUser.pk);
     const targetProfile = getProfileById(currentProfiles, profileId);
     const currentUserProfile = getProfileById(
       currentProfiles,
