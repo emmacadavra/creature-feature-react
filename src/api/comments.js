@@ -51,9 +51,9 @@ export const createComment = async (postId, newCommentData, ownerId) => {
 
 export const editComment = async (commentId, editCommentData, ownerId) => {
   try {
-    const { data: editedComment } = await axiosReq.put(
-      `/comments/${commentId}`,
-      { owner: ownerId, editCommentData },
+    const { data: editedComment } = await axiosReq.patch(
+      `http://localhost:4000/comments/${commentId}`,
+      { owner: ownerId, ...editCommentData },
     );
     return transformCommentData(editedComment);
   } catch (error) {
@@ -63,7 +63,7 @@ export const editComment = async (commentId, editCommentData, ownerId) => {
 
 export const deleteComment = async (commentId) => {
   try {
-    return axiosReq.delete(`comments/${commentId}/`);
+    return axiosReq.delete(`http://localhost:4000/comments/${commentId}/`);
   } catch (error) {
     throw new Error(`Failed to deleteComment(): ${error}`);
   }
