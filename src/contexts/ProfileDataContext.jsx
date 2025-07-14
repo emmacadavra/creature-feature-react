@@ -31,7 +31,7 @@ export const ProfilesProvider = ({ children }) => {
     const handleMount = async () => {
       const data = await getProfiles(
         { ordering: "-followers_count" },
-        currentUser.pk,
+        currentUserProfileId,
       );
       setCurrentProfiles(
         data.map((profile) => ({ ...profile, popular: true })),
