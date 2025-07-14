@@ -19,19 +19,8 @@ const transformProfileData = (profile) => {
 
 export const getProfiles = async (params, ownerId) => {
   try {
-    if (!ownerId) {
-      const { data: allProfilesData } = await axiosReq.get(
-        `http://localhost:4000/profiles`,
-        {
-          params: params,
-        },
-      );
-      return allProfilesData.results.map((profile) => {
-        return transformProfileData(profile);
-      });
-    }
     const { data: allProfilesData } = await axiosReq.get(
-      `http://localhost:4000/profiles?currentlyLoggedInUser=${ownerId}`,
+      `http://localhost:4000/profiles?currentlyLoggedInUser=${ownerId ? ownerId : ""}`,
       {
         params: params,
       },
