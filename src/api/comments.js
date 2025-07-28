@@ -16,10 +16,10 @@ const transformCommentData = (comment) => {
   };
 };
 
-export const getComments = async (postId) => {
+export const getComments = async (postId, ownerId) => {
   try {
     const { data } = await axiosReq.get(
-      `http://localhost:4000/comments/?post=${postId}`,
+      `http://localhost:4000/comments?post=${postId}&currentlyLoggedInUser=${ownerId ? ownerId : ""}`,
     );
 
     return {

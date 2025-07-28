@@ -22,7 +22,7 @@ const Comments = ({ postId, onCommentCreated, onCommentDeleted }) => {
 
   useEffect(() => {
     const fetchComments = async () => {
-      const data = await getComments(postId);
+      const data = await getComments(postId, currentUser?.pk);
       setCommentsData(
         appendComments ? [...commentsData, ...data.results] : data.results,
       );

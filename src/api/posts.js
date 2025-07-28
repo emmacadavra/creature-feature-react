@@ -35,7 +35,7 @@ export const getPosts = async (params) => {
     });
 
     return {
-      hasMorePages: data.next ? true : false,
+      hasMorePages: data.totalPages > data.currentPage ? true : false,
       results: data.results.map((post) => {
         return transformPostData(post);
       }),
