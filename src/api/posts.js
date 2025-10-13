@@ -45,13 +45,13 @@ export const getPosts = async (params) => {
   }
 };
 
-export const createPost = async (newPostData, ownerId) => {
+export const createPost = async (newPostData) => {
   if (!(newPostData instanceof FormData)) {
     throw new Error("newPostData must be an instance of FormData");
   }
   try {
     const response = await axiosReq.post(
-      `http://localhost:4000/posts?currentlyLoggedInUser=${ownerId}`,
+      `http://localhost:4000/posts/`,
       Object.fromEntries(newPostData),
     );
     return {
@@ -66,13 +66,13 @@ export const createPost = async (newPostData, ownerId) => {
   }
 };
 
-export const editPost = async (postId, editPostData, ownerId) => {
+export const editPost = async (postId, editPostData) => {
   if (!(editPostData instanceof FormData)) {
     throw new Error("editPostData must be an instance of FormData");
   }
   try {
     const response = await axiosReq.patch(
-      `http://localhost:4000/posts/${postId}?currentlyLoggedInUser=${ownerId}`,
+      `http://localhost:4000/posts/${postId}/`,
       Object.fromEntries(editPostData),
     );
     return {

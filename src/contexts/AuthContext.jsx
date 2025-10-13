@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
+// import React, { useMemo } from "react";
 import { createContext, useState, useContext, useEffect } from "react";
-import axios from "axios";
-import { axiosReq, axiosResp } from "../api/axiosDefaults";
-import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// import { axiosReq, axiosResp } from "../api/axiosDefaults";
+import { axiosResp } from "../api/axiosDefaults";
+// import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext({
   currentUser: null,
@@ -12,12 +13,12 @@ export const AuthContext = createContext({
 export const AuthProvider = ({ children }) => {
   const [userInfoLoaded, setUserInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleMount = async () => {
     try {
-      const { data } = await axiosResp.get("dj-rest-auth/user/");
-      setCurrentUser(data);
+      const { data } = await axiosResp.get("http://localhost:4000/user");
+      setCurrentUser(data.user);
       setUserInfoLoaded(true);
     } catch (error) {
       console.error(error);
@@ -29,47 +30,47 @@ export const AuthProvider = ({ children }) => {
     handleMount();
   }, []);
 
-  useMemo(() => {
-    axiosReq.interceptors.request.use(
-      async (config) => {
-        try {
-          await axios.post("/dj-rest-auth/token/refresh/");
-        } catch (error) {
-          setCurrentUser((prevCurrentUser) => {
-            if (prevCurrentUser) {
-              navigate("/signin");
-            }
-            return null;
-          });
-          return config;
-        }
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      },
-    );
+  // useMemo(() => {
+  //   axiosReq.interceptors.request.use(
+  //     async (config) => {
+  //       try {
+  //         await axios.post("/dj-rest-auth/token/refresh/");
+  //       } catch (error) {
+  //         setCurrentUser((prevCurrentUser) => {
+  //           if (prevCurrentUser) {
+  //             navigate("/signin");
+  //           }
+  //           return null;
+  //         });
+  //         return config;
+  //       }
+  //       return config;
+  //     },
+  //     (error) => {
+  //       return Promise.reject(error);
+  //     },
+  //   );
 
-    axiosResp.interceptors.response.use(
-      (response) => response,
-      async (error) => {
-        if (error.response?.status === 401) {
-          try {
-            await axios.post("/dj-rest-auth/token/refresh/");
-          } catch (error) {
-            setCurrentUser((prevCurrentUser) => {
-              if (prevCurrentUser) {
-                navigate("/signin");
-              }
-              return null;
-            });
-          }
-          return axios(error.config);
-        }
-        return Promise.reject(error);
-      },
-    );
-  }, [navigate]);
+  //   axiosResp.interceptors.response.use(
+  //     (response) => response,
+  //     async (error) => {
+  //       if (error.response?.status === 401) {
+  //         try {
+  //           await axios.post("/dj-rest-auth/token/refresh/");
+  //         } catch (error) {
+  //           setCurrentUser((prevCurrentUser) => {
+  //             if (prevCurrentUser) {
+  //               navigate("/signin");
+  //             }
+  //             return null;
+  //           });
+  //         }
+  //         return axios(error.config);
+  //       }
+  //       return Promise.reject(error);
+  //     },
+  //   );
+  // }, [navigate]);
 
   if (!userInfoLoaded) {
     return null;

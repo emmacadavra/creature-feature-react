@@ -9,7 +9,7 @@ import Asset from "../Asset";
 
 const MyProfile = () => {
   const { currentUser } = useAuth();
-  const currentUserProfileId = currentUser?.profile_id;
+  const currentUserProfileId = currentUser?.id;
   const { currentProfile, currentProfilesLoading } =
     useProfiles(currentUserProfileId);
 

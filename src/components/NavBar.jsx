@@ -39,10 +39,7 @@ const NavBar = () => {
         />
         Sign Out
       </NavLink>
-      <NavLink
-        to={`/profiles/${currentUser?.profile_id}`}
-        className={styles.NavLink}
-      >
+      <NavLink to={`/profiles/${currentUser?.id}`} className={styles.NavLink}>
         <Avatar
           src={currentUser?.profile_image}
           text="My Profile"

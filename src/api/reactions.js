@@ -10,12 +10,11 @@ const transformReactionData = (reaction) => {
   };
 };
 
-export const createReaction = async (userId, postId, reaction) => {
+export const createReaction = async (postId, reaction) => {
   try {
     const { data: newReaction } = await axiosReq.post(
       "http://localhost:4000/reactions/",
       {
-        owner: userId,
         post: postId,
         reaction: reaction,
       },
@@ -26,16 +25,11 @@ export const createReaction = async (userId, postId, reaction) => {
   }
 };
 
-export const editReaction = async (
-  userId,
-  postId,
-  reactionId,
-  reactionType,
-) => {
+export const editReaction = async (postId, reactionId, reactionType) => {
   try {
     const { data: editedReaction } = await axiosReq.patch(
       `http://localhost:4000/reactions/${reactionId}`,
-      { owner: userId, post: postId, id: reactionId, reaction: reactionType },
+      { post: postId, id: reactionId, reaction: reactionType },
     );
     return transformReactionData(editedReaction);
   } catch (error) {

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import Avatar from "../Avatar";
 import appStyles from "../../App.module.css";
@@ -10,7 +9,6 @@ const CreateEditComment = ({
   commentId,
   postId,
   profileImage,
-  profileId,
   defaultContent = "",
 }) => {
   const [commentData, setCommentData] = useState({ content: defaultContent });
@@ -38,9 +36,7 @@ const CreateEditComment = ({
       <Form.Group>
         <InputGroup>
           <div className="m-2">
-            <Link to={`/profiles/${profileId}`}>
-              <Avatar src={profileImage} height={48} />
-            </Link>
+            <Avatar src={profileImage} height={48} />
           </div>
           <Form.Control
             placeholder="Leave a comment..."

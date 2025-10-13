@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { createContext } from "react";
 import {
   editProfile as editProfileData,
@@ -9,6 +9,7 @@ import { createFollow, deleteFollow } from "../api/followers";
 import { useAuth } from "./AuthContext";
 
 export const ProfilesContext = createContext({
+  currentProfiles: null,
   popularProfileData: null,
   popularProfilesLoading: true,
   currentProfile: null,
@@ -23,45 +24,42 @@ export const ProfilesProvider = ({ children }) => {
   const [currentProfileLoading, setCurrentProfileLoading] = useState(false);
 
   const { currentUser } = useAuth();
-  const currentUserProfileId = currentUser?.profile_id;
+  const currentUserProfileId = currentUser?.id;
 
   const currentProfile = getProfileById(currentProfiles, currentProfileId);
 
   useEffect(() => {
     const handleMount = async () => {
-      const data = await getProfiles(
-        { ordering: "-followers_count" },
-        currentUser?.pk,
-      );
-      setCurrentProfiles(
-        data.map((profile) => ({ ...profile, popular: true })),
-      );
+      // vvv TO DO: POPULAR PROFILES REFACTOR vvv
+      const data = await getProfiles({ ordering: "-followers_count" });
+      const filteredData = data.map((profile) => ({
+        ...profile,
+        popular: true,
+      }));
+
+      setCurrentProfiles(filteredData);
       setCurrentProfilesLoading(false);
     };
     handleMount();
   }, []);
 
   const getProfile = async (profileId) => {
-    setCurrentProfileId(profileId);
-
     const currentProfile = getProfileById(currentProfiles, profileId);
 
     if (currentProfile) {
+      setCurrentProfileId(profileId);
       return;
     }
 
     setCurrentProfileLoading(true);
-    const currentProfileData = await getUserProfile(profileId, currentUser.pk);
+    const currentProfileData = await getUserProfile(profileId);
+    setCurrentProfileId(profileId);
     setCurrentProfiles([...currentProfiles, currentProfileData]);
     setCurrentProfileLoading(false);
   };
 
   const editProfile = async (profileId, profileData) => {
-    const editedProfile = await editProfileData(
-      profileId,
-      profileData,
-      currentUser.pk,
-    );
+    const editedProfile = await editProfileData(profileId, profileData);
 
     const updatedCurrentProfiles = updateProfileById(
       currentProfiles,
@@ -72,7 +70,7 @@ export const ProfilesProvider = ({ children }) => {
   };
 
   const addFollow = async (profileId) => {
-    const newFollow = await createFollow(profileId, currentUser.pk);
+    const newFollow = await createFollow(profileId);
     const targetProfile = getProfileById(currentProfiles, profileId);
     const currentUserProfile = getProfileById(
       currentProfiles,
@@ -97,6 +95,7 @@ export const ProfilesProvider = ({ children }) => {
 
   const removeFollow = async (profileId) => {
     const targetProfile = getProfileById(currentProfiles, profileId);
+
     const currentUserProfile = getProfileById(
       currentProfiles,
       currentUserProfileId,
@@ -120,12 +119,16 @@ export const ProfilesProvider = ({ children }) => {
     setCurrentProfiles(updatedCurrentProfiles);
   };
 
+  const popularProfiles = useMemo(
+    () => currentProfiles.filter((profile) => profile.popular),
+    [currentProfiles],
+  );
+
   return (
     <ProfilesContext.Provider
       value={{
-        popularProfileData: currentProfiles.filter(
-          (profile) => profile.popular,
-        ),
+        currentProfiles: currentProfiles,
+        popularProfileData: popularProfiles,
         currentProfilesLoading,
         currentProfile: currentProfile,
         currentProfileLoading,
@@ -156,15 +159,16 @@ const updateProfileById = (profiles, id, data) => {
 };
 
 export const useProfiles = (profileId) => {
-  const { getProfile, ...context } = useContext(ProfilesContext);
+  const { getProfile, currentProfiles, ...context } =
+    useContext(ProfilesContext);
 
   useEffect(() => {
-    if (!profileId || context.popularProfileData.length === 0) {
+    if (!profileId || currentProfiles.length === 0) {
       return;
     }
 
     getProfile(profileId);
-  }, [profileId, context.popularProfileData]);
+  }, [profileId, currentProfiles]);
 
   return context;
 };

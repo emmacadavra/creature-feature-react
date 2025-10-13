@@ -17,12 +17,11 @@ const Comments = ({ postId, onCommentCreated, onCommentDeleted }) => {
   const [commentsLoading, setCommentsLoading] = useState(true);
   const [appendComments, setAppendComments] = useState(false);
 
-  const profileId = currentUser?.profile_id;
   const profileImage = currentUser?.profile_image;
 
   useEffect(() => {
     const fetchComments = async () => {
-      const data = await getComments(postId, currentUser?.pk);
+      const data = await getComments(postId);
       setCommentsData(
         appendComments ? [...commentsData, ...data.results] : data.results,
       );
@@ -34,7 +33,7 @@ const Comments = ({ postId, onCommentCreated, onCommentDeleted }) => {
   }, [postId]);
 
   const handleCreate = async (postId, commentData) => {
-    const newComment = await createComment(postId, commentData, currentUser.pk);
+    const newComment = await createComment(postId, commentData, currentUser.id);
     setCommentsData([newComment, ...commentsData]);
     onCommentCreated();
   };
@@ -43,7 +42,7 @@ const Comments = ({ postId, onCommentCreated, onCommentDeleted }) => {
     const editedComment = await editComment(
       commentId,
       commentData,
-      currentUser.pk,
+      currentUser.id,
     );
     const index = commentsData.findIndex((comment) => {
       return comment.id === commentId;
@@ -63,7 +62,6 @@ const Comments = ({ postId, onCommentCreated, onCommentDeleted }) => {
       {currentUser && (
         <CreateEditComment
           postId={postId}
-          profileId={profileId}
           profileImage={profileImage}
           onCommentCreate={handleCreate}
         />

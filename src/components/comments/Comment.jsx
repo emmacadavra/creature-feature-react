@@ -26,7 +26,6 @@ const Comment = ({
   const [likeCommentCount, setLikeCommentCount] = useState(likesCount);
   const [editComment, setEditComment] = useState(false);
   const { currentUser } = useAuth();
-  const userId = currentUser?.profile_id;
   const isOwner = currentUser?.username === owner;
 
   const handleEdit = async (commentId, editCommentData) => {
@@ -40,7 +39,7 @@ const Comment = ({
       setCommentLiked(null);
       setLikeCommentCount(likeCommentCount - 1);
     } else if (currentUser && isOwner === false) {
-      const newLikeComment = await createLikeComment(userId, id);
+      const newLikeComment = await createLikeComment(id);
       setCommentLiked(newLikeComment.id);
       setLikeCommentCount(likeCommentCount + 1);
     }

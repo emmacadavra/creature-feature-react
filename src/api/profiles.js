@@ -17,10 +17,10 @@ const transformProfileData = (profile) => {
   };
 };
 
-export const getProfiles = async (params, ownerId) => {
+export const getProfiles = async (params) => {
   try {
     const { data: allProfilesData } = await axiosReq.get(
-      `http://localhost:4000/profiles?currentlyLoggedInUser=${ownerId ? ownerId : ""}`,
+      "http://localhost:4000/profiles/",
       {
         params: params,
       },
@@ -34,24 +34,24 @@ export const getProfiles = async (params, ownerId) => {
   }
 };
 
-export const getUserProfile = async (profileId, ownerId) => {
+export const getUserProfile = async (profileId) => {
   try {
     const { data: userProfileData } = await axiosReq.get(
-      `http://localhost:4000/profiles/${profileId}?currentlyLoggedInUser=${ownerId}`,
+      `http://localhost:4000/profiles/${profileId}/`,
     );
-    return transformProfileData(userProfileData);
+    return transformProfileData(userProfileData.results[0]);
   } catch (error) {
     throw new Error(`Failed to getUserProfile(): ${error}`);
   }
 };
 
-export const editProfile = async (profileId, editProfileData, ownerId) => {
+export const editProfile = async (profileId, editProfileData) => {
   if (!(editProfileData instanceof FormData)) {
     throw new Error("editProfileData must be an instance of FormData");
   }
   try {
     const { data: editedPost } = await axiosReq.patch(
-      `http://localhost:4000/profiles/${profileId}?currentlyLoggedInUser=${ownerId}`,
+      `http://localhost:4000/profiles/${profileId}/`,
       Object.fromEntries(editProfileData),
     );
 

@@ -68,7 +68,6 @@ const ReactionsBar = ({
   loveCount: loveCountDefault,
 }) => {
   const { currentUser } = useAuth();
-  const userId = currentUser?.profile_id;
   const [show, setShow] = useState(false);
   const [userReaction, setUserReaction] = useState(currentUserReaction);
   const [counts, setCounts] = useState({
@@ -86,7 +85,6 @@ const ReactionsBar = ({
       setCounts({ ...counts, [countField]: counts[countField] - 1 });
     } else if (userReaction && userReaction.reactionType !== reaction) {
       const editedReaction = await editReaction(
-        userId,
         postId,
         userReaction.reactionId,
         reaction,
@@ -105,7 +103,7 @@ const ReactionsBar = ({
         [countFieldToIncrement]: counts[countFieldToIncrement] + 1,
       });
     } else if (currentUser && isOwner === false) {
-      const newReaction = await createReaction(userId, postId, reaction);
+      const newReaction = await createReaction(postId, reaction);
       setUserReaction({
         reactionId: newReaction.id,
         reactionType: newReaction.reactionType,

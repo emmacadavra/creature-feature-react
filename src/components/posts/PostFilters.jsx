@@ -13,7 +13,7 @@ export const PostFilters = () => {
   const { currentUser } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchParamsObj = Object.fromEntries(searchParams.entries());
-  const profileId = currentUser?.profile_id || "";
+  const profileId = currentUser?.id || "";
 
   const inputRef = useRef(null);
   useEffect(() => {

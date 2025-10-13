@@ -10,12 +10,11 @@ const transformFollowData = (followData) => {
   };
 };
 
-export const createFollow = async (profileToFollowId, ownerId) => {
+export const createFollow = async (profileToFollowId) => {
   try {
     const { data: newFollowData } = await axiosReq.post(
       "http://localhost:4000/followers",
       {
-        owner: ownerId,
         followed: profileToFollowId,
       },
     );

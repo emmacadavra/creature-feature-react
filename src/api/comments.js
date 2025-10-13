@@ -16,10 +16,10 @@ const transformCommentData = (comment) => {
   };
 };
 
-export const getComments = async (postId, ownerId) => {
+export const getComments = async (postId) => {
   try {
     const { data } = await axiosReq.get(
-      `http://localhost:4000/comments?post=${postId}&currentlyLoggedInUser=${ownerId ? ownerId : ""}`,
+      `http://localhost:4000/comments?post=${postId}`,
     );
 
     return {
@@ -33,13 +33,12 @@ export const getComments = async (postId, ownerId) => {
   }
 };
 
-export const createComment = async (postId, newCommentData, ownerId) => {
+export const createComment = async (postId, newCommentData) => {
   try {
     const { data: newComment } = await axiosReq.post(
       `http://localhost:4000/comments?post=${postId}`,
       {
         post: postId,
-        owner: ownerId,
         ...newCommentData,
       },
     );
@@ -49,11 +48,11 @@ export const createComment = async (postId, newCommentData, ownerId) => {
   }
 };
 
-export const editComment = async (commentId, editCommentData, ownerId) => {
+export const editComment = async (commentId, editCommentData) => {
   try {
     const { data: editedComment } = await axiosReq.patch(
       `http://localhost:4000/comments/${commentId}`,
-      { owner: ownerId, ...editCommentData },
+      { ...editCommentData },
     );
     return transformCommentData(editedComment);
   } catch (error) {

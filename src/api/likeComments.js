@@ -9,12 +9,11 @@ const transformLikeCommentData = (like) => {
   };
 };
 
-export const createLikeComment = async (userId, commentId) => {
+export const createLikeComment = async (commentId) => {
   try {
     const { data: newLikeComment } = await axiosReq.post(
       "http://localhost:4000/like-comments",
       {
-        owner: userId,
         comment: commentId,
       },
     );

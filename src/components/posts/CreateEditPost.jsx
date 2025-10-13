@@ -69,8 +69,6 @@ const CreateEditPost = ({
       const errors = await onPostCreate(formData);
       setErrors(errors);
     }
-
-    console.log("postData:", postData);
   };
 
   const postFormFields = (

@@ -30,7 +30,10 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post(
+        "http://localhost:4000/login",
+        signInData,
+      );
       setCurrentUser(data.user);
       navigate("/");
     } catch (error) {
