@@ -14,6 +14,7 @@ const transformProfileData = (profile) => {
     followingCount: profile.following_count,
     createdOn: profile.created_on,
     updatedOn: profile.updated_on,
+    popular: profile.popular,
   };
 };
 

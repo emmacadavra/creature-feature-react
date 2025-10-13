@@ -30,14 +30,9 @@ export const ProfilesProvider = ({ children }) => {
 
   useEffect(() => {
     const handleMount = async () => {
-      // vvv TO DO: POPULAR PROFILES REFACTOR vvv
-      const data = await getProfiles({ ordering: "-followers_count" });
-      const filteredData = data.map((profile) => ({
-        ...profile,
-        popular: true,
-      }));
+      const data = await getProfiles();
 
-      setCurrentProfiles(filteredData);
+      setCurrentProfiles(data);
       setCurrentProfilesLoading(false);
     };
     handleMount();
@@ -120,7 +115,10 @@ export const ProfilesProvider = ({ children }) => {
   };
 
   const popularProfiles = useMemo(
-    () => currentProfiles.filter((profile) => profile.popular),
+    () =>
+      currentProfiles
+        .filter((profile) => profile.popular)
+        .sort((a, b) => b.followersCount - a.followersCount),
     [currentProfiles],
   );
 
