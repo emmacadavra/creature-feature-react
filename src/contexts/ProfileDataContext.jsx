@@ -24,6 +24,7 @@ export const ProfilesProvider = ({ children }) => {
   const [currentProfileLoading, setCurrentProfileLoading] = useState(false);
 
   const { currentUser } = useAuth();
+  console.log("currentUser:", currentUser);
   const currentUserProfileId = currentUser?.id;
 
   const currentProfile = getProfileById(currentProfiles, currentProfileId);
@@ -36,7 +37,7 @@ export const ProfilesProvider = ({ children }) => {
       setCurrentProfilesLoading(false);
     };
     handleMount();
-  }, []);
+  }, [currentUser]);
 
   const getProfile = async (profileId) => {
     const currentProfile = getProfileById(currentProfiles, profileId);

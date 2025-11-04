@@ -14,14 +14,13 @@ import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle.js";
 
 const NavBar = () => {
-  const { currentUser } = useAuth();
-  const { setCurrentUser } = useAuth();
+  const { currentUser, setCurrentUser } = useAuth();
 
   const { toggleExpand, setToggleExpand, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
     try {
-      await axios.post("dj-rest-auth/logout/");
+      await axios.post("http://localhost:4000/logout");
       setCurrentUser(null);
     } catch (error) {
       console.error(error);
