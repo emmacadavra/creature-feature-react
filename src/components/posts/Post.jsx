@@ -10,6 +10,7 @@ import { MoreDropdown } from "../MoreDropdown";
 import commentsImg from "../../assets/comments.png";
 import Comments from "../comments/Comments";
 import CreateEditPost from "./CreateEditPost";
+import { format } from "date-fns";
 
 const Post = ({
   id,
@@ -112,7 +113,7 @@ const Post = ({
                   />
                 </div>
               )}
-              <div>{updatedOn}</div>
+              <div>{format(new Date(updatedOn), "do MMMM yyyy HH:mm")}</div>
             </div>
           </Card.Body>
           <Card.Img src={image} alt={title} />

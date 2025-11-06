@@ -9,6 +9,7 @@ import CreateEditComment from "./CreateEditComment";
 import { createLikeComment, deleteLikeComment } from "../../api/likeComments";
 import likeCommentDefault from "../../assets/like.png";
 import likeCommentHighlight from "../../assets/like_highlight.png";
+import { format } from "date-fns";
 
 const Comment = ({
   id,
@@ -68,7 +69,9 @@ const Comment = ({
             </div>
             <div className="align-self-center flex-grow-1 ms-2">
               <span className={styles.Owner}>{owner}</span>
-              <span className={styles.Date}>{updatedOn}</span>
+              <span className={styles.Date}>
+                {format(new Date(updatedOn), "do MMMM yyyy HH:mm")}
+              </span>
               {editComment ? (
                 <CreateEditComment
                   onCommentEdit={handleEdit}

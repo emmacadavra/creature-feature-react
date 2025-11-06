@@ -1,13 +1,7 @@
 import axios from "axios";
 import { axiosReq } from "./axiosDefaults";
-import { format } from "date-fns";
 
 const transformPostData = (post) => {
-  const transformedDate = format(
-    new Date(post.updated_on),
-    "do MMMM yyyy HH:mm",
-  );
-
   return {
     id: post.id,
     owner: post.owner,
@@ -30,7 +24,7 @@ const transformPostData = (post) => {
     goodCount: post.good_count,
     loveCount: post.love_count,
     createdOn: post.created_on,
-    updatedOn: transformedDate,
+    updatedOn: post.updated_on,
   };
 };
 

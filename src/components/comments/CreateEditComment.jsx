@@ -11,13 +11,11 @@ const CreateEditComment = ({
   profileImage,
   defaultContent = "",
 }) => {
-  const [commentData, setCommentData] = useState({ content: defaultContent });
-
-  const { content } = commentData;
+  const [comment, setComment] = useState(defaultContent);
 
   const handleChange = (event) => {
-    setCommentData({
-      ...commentData,
+    setComment({
+      ...comment,
       [event.target.name]: event.target.value,
     });
   };
@@ -25,9 +23,11 @@ const CreateEditComment = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (commentId) {
-      onCommentEdit(commentId, commentData);
+      onCommentEdit(commentId, comment);
+      setComment(defaultContent);
     } else {
-      onCommentCreate(postId, commentData);
+      onCommentCreate(postId, comment);
+      setComment(defaultContent);
     }
   };
 
@@ -42,7 +42,7 @@ const CreateEditComment = ({
             placeholder="Leave a comment..."
             as="textarea"
             name="content"
-            value={content ?? ""}
+            value={comment ?? ""}
             onChange={handleChange}
             rows={2}
           />
@@ -50,7 +50,7 @@ const CreateEditComment = ({
       </Form.Group>
       <Button
         className={`${appStyles.Button} ${appStyles.TurquoiseButton} d-block ms-auto`}
-        disabled={!commentData}
+        disabled={!comment}
         type="submit"
       >
         Post Comment
