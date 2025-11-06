@@ -1,6 +1,12 @@
 import { axiosReq } from "./axiosDefaults";
+import { format } from "date-fns";
 
 const transformCommentData = (comment) => {
+  const transformedDate = format(
+    new Date(comment.updated_on),
+    "do MMMM yyyy HH:mm",
+  );
+
   return {
     id: comment.id,
     owner: comment.owner,
@@ -12,7 +18,7 @@ const transformCommentData = (comment) => {
     likeId: comment.like_id,
     likesCount: comment.likes_count,
     createdOn: comment.created_on,
-    updatedOn: comment.updated_on,
+    updatedOn: transformedDate,
   };
 };
 
